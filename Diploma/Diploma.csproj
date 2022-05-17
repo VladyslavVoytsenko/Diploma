@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,19 +32,23 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb">
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b">
+    <Reference Include="AForge.Controls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Controls.2.2.5\lib\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9">
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,6 +68,60 @@
     </Compile>
     <Compile Include="Controls\DoubleBufferDisplay.designer.cs">
       <DependentUpon>DoubleBufferDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilterPreview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\HuePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\AdaptiveSmoothForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\AdaptiveSmoothForm.designer.cs">
+      <DependentUpon>AdaptiveSmoothForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\BrightnessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\BrightnessForm.designer.cs">
+      <DependentUpon>BrightnessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\ColorFilteringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\ColorFilteringForm.designer.cs">
+      <DependentUpon>ColorFilteringForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\ContrastForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\ContrastForm.designer.cs">
+      <DependentUpon>ContrastForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\CustomRotationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\CustomRotationForm.designer.cs">
+      <DependentUpon>CustomRotationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\HueModifierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\HueModifierForm.designer.cs">
+      <DependentUpon>HueModifierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\ResizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\ResizeForm.designer.cs">
+      <DependentUpon>ResizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\SaturationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\SaturationForm.designer.cs">
+      <DependentUpon>SaturationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -84,8 +143,50 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View Forms\ImageProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View Forms\ImageProperties.designer.cs">
+      <DependentUpon>ImageProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Forms\ImageStatisticsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View Forms\ImageStatisticsWindow.Designer.cs">
+      <DependentUpon>ImageStatisticsWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Controls\DoubleBufferDisplay.resx">
       <DependentUpon>DoubleBufferDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FilterPreview.resx">
+      <DependentUpon>FilterPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\HuePicker.resx">
+      <DependentUpon>HuePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\AdaptiveSmoothForm.resx">
+      <DependentUpon>AdaptiveSmoothForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\BrightnessForm.resx">
+      <DependentUpon>BrightnessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ColorFilteringForm.resx">
+      <DependentUpon>ColorFilteringForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ContrastForm.resx">
+      <DependentUpon>ContrastForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\CustomRotationForm.resx">
+      <DependentUpon>CustomRotationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\HueModifierForm.resx">
+      <DependentUpon>HueModifierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ResizeForm.resx">
+      <DependentUpon>ResizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\SaturationForm.resx">
+      <DependentUpon>SaturationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -102,6 +203,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View Forms\ImageProperties.resx">
+      <DependentUpon>ImageProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View Forms\ImageStatisticsWindow.resx">
+      <DependentUpon>ImageStatisticsWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -116,9 +223,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="AForge\AForge.Controls.dll" />
+    <Folder Include="Filters\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AForge\AForge.Controls.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="AForge\AForge.dll" />
     <Content Include="AForge\AForge.Imaging.dll" />
     <Content Include="AForge\AForge.Math.dll" />

@@ -55,6 +55,8 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(160, 583);
             this.panel1.TabIndex = 0;
+            this.panel1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // SettingsBtn
             // 
@@ -73,6 +75,8 @@
             this.SettingsBtn.Text = "    Settings";
             this.SettingsBtn.UseVisualStyleBackColor = true;
             this.SettingsBtn.Click += new System.EventHandler(this.SettingsBtn_Click);
+            this.SettingsBtn.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.SettingsBtn.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // SendBtn
             // 
@@ -91,6 +95,8 @@
             this.SendBtn.Text = "   Send";
             this.SendBtn.UseVisualStyleBackColor = true;
             this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
+            this.SendBtn.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.SendBtn.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // HomeBtn
             // 
@@ -109,6 +115,8 @@
             this.HomeBtn.Text = "   Home";
             this.HomeBtn.UseVisualStyleBackColor = true;
             this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
+            this.HomeBtn.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.HomeBtn.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // panel2
             // 

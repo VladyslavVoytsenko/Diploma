@@ -22,6 +22,8 @@ namespace Diploma
         public MainWindow()
         {
             InitializeComponent();
+            Pages.Home home = new Pages.Home() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            this.panelDesktopPane.Controls.Add(home);
             this.Text = String.Empty;
             this.ControlBox = false;
         }
@@ -84,6 +86,16 @@ namespace Diploma
         private void SettingsBtn_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Pages.Settings(), sender);
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            panel1.Width = 160;
+        }
+
+        private void panel1_MouseLeave(object sender, EventArgs e)
+        {
+            panel1.Width = 60;
         }
     }
 }

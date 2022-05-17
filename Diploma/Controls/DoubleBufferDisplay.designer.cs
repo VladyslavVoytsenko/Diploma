@@ -1,6 +1,6 @@
-﻿namespace Diploma
+﻿namespace Diploma.Controls
 {
-    partial class DoubleBufferDisplay
+    sealed partial class DoubleBufferDisplay
     {
         /// <summary> 
         /// Required designer variable.
@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "DoubleBufferDisplay";
-            this.Size = new System.Drawing.Size(514, 295);
+            this.Size = new System.Drawing.Size(744, 462);
             this.ResumeLayout(false);
 
         }
