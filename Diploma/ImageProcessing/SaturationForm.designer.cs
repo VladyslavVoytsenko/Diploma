@@ -66,12 +66,12 @@ namespace Diploma.ImageProcessing
             // saturationTrackBar
             // 
             this.saturationTrackBar.Location = new System.Drawing.Point(12, 49);
-            this.saturationTrackBar.Maximum = 100;
-            this.saturationTrackBar.Minimum = -100;
+            this.saturationTrackBar.Maximum = 1000;
+            this.saturationTrackBar.Minimum = -1000;
             this.saturationTrackBar.Name = "saturationTrackBar";
             this.saturationTrackBar.Size = new System.Drawing.Size(250, 45);
             this.saturationTrackBar.TabIndex = 18;
-            this.saturationTrackBar.TickFrequency = 10;
+            this.saturationTrackBar.TickFrequency = 50;
             this.saturationTrackBar.ValueChanged += new System.EventHandler(this.saturationTrackBar_ValueChanged);
             // 
             // saturationBox

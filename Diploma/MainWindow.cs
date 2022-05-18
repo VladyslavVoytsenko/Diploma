@@ -18,14 +18,21 @@ namespace Diploma
         private Random random;
         private int tempIndex;
         private Form activeForm;
-
+        private Pages.Home home = new Pages.Home();
         public MainWindow()
         {
             InitializeComponent();
-            Pages.Home home = new Pages.Home() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            this.panelDesktopPane.Controls.Add(home);
-            this.Text = String.Empty;
-            this.ControlBox = false;
+            //Pages.Home home = new Pages.Home() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            //this.panelDesktopPane.Controls.Add(home);
+            home.TopLevel = false;
+            home.FormBorderStyle = FormBorderStyle.None;
+            home.Dock = DockStyle.Fill;
+            panelDesktopPane.Controls.Add(home);
+            panelDesktopPane.Tag = home;
+            home.BringToFront();
+            home.Show();
+            Text = String.Empty;
+            ControlBox = false;
         }
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -42,11 +49,10 @@ namespace Diploma
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            this.panelDesktopPane.Controls.Add(childForm);
-            this.panelDesktopPane.Tag = childForm;
+            panelDesktopPane.Controls.Add(childForm);
+            panelDesktopPane.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            //lblTitle.Text = childForm.Text;
         }
 
         private void panel3_MouseDown(object sender, MouseEventArgs e)
@@ -78,24 +84,11 @@ namespace Diploma
             OpenChildForm(new Pages.Home(), sender);
         }
 
-        private void SendBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SettingsBtn_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Pages.Settings(), sender);
         }
 
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
-        {
-            panel1.Width = 160;
-        }
-
-        private void panel1_MouseLeave(object sender, EventArgs e)
-        {
-            panel1.Width = 60;
-        }
+        
     }
 }

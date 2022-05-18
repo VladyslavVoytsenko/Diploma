@@ -26,8 +26,8 @@ namespace Diploma.ImageProcessing
         {
             InitializeComponent();
 
-            saturationBox.Text = filter.AdjustValue.ToString(CultureInfo.InvariantCulture);
-            saturationTrackBar.Value = (int)filter.AdjustValue;
+            saturationBox.Text = (filter.AdjustValue/1000).ToString(CultureInfo.InvariantCulture);
+            saturationTrackBar.Value = (int)filter.AdjustValue*1000 ;
 
             filterPreview.Filter = filter;
         }
@@ -35,7 +35,7 @@ namespace Diploma.ImageProcessing
         private void saturationTrackBar_ValueChanged(object sender, EventArgs e)
         {
             if (!updating)
-                saturationBox.Text = (saturationTrackBar.Value).ToString(CultureInfo.InvariantCulture);
+                saturationBox.Text = (saturationTrackBar.Value / 1000).ToString(CultureInfo.InvariantCulture);
         }
 
         private void saturationBox_TextChanged(object sender, EventArgs e)
@@ -48,10 +48,10 @@ namespace Diploma.ImageProcessing
                     return;
                 }
 
-                filter.AdjustValue = (float)double.Parse(saturationBox.Text, CultureInfo.InvariantCulture);
+                filter.AdjustValue = float.Parse(saturationBox.Text, CultureInfo.InvariantCulture);
 
                 updating = true;
-                saturationTrackBar.Value = (int)filter.AdjustValue;
+                saturationTrackBar.Value = (int)filter.AdjustValue*1000;
                 updating = false;
 
                 filterPreview.RefreshFilter();

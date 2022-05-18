@@ -105,6 +105,12 @@
     <Compile Include="ImageProcessing\CustomRotationForm.designer.cs">
       <DependentUpon>CustomRotationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageProcessing\EuclideanColorFilteringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\EuclideanColorFilteringForm.designer.cs">
+      <DependentUpon>EuclideanColorFilteringForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageProcessing\HueModifierForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\CustomRotationForm.resx">
       <DependentUpon>CustomRotationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\EuclideanColorFilteringForm.resx">
+      <DependentUpon>EuclideanColorFilteringForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\HueModifierForm.resx">
       <DependentUpon>HueModifierForm.cs</DependentUpon>
