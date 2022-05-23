@@ -14,19 +14,16 @@ namespace Diploma.ImageProcessing
 
         public Bitmap Image
         {
-            set { filterPreview.Image = value; }
+            set => filterPreview.Image = value;
         }
 
-        public IFilter Filter
-        {
-            get { return filter; }
-        }
+        public IFilter Filter => filter;
 
         public SaturationForm()
         {
             InitializeComponent();
 
-            saturationBox.Text = (filter.AdjustValue/1000).ToString(CultureInfo.InvariantCulture);
+            saturationBox.Text = (filter.AdjustValue/1000.0).ToString(CultureInfo.InvariantCulture);
             saturationTrackBar.Value = (int)filter.AdjustValue*1000 ;
 
             filterPreview.Filter = filter;
@@ -35,7 +32,7 @@ namespace Diploma.ImageProcessing
         private void saturationTrackBar_ValueChanged(object sender, EventArgs e)
         {
             if (!updating)
-                saturationBox.Text = (saturationTrackBar.Value / 1000).ToString(CultureInfo.InvariantCulture);
+                saturationBox.Text = (saturationTrackBar.Value / 1000.0).ToString(CultureInfo.InvariantCulture);
         }
 
         private void saturationBox_TextChanged(object sender, EventArgs e)
@@ -44,7 +41,7 @@ namespace Diploma.ImageProcessing
             {
                 if (this.saturationBox.Text.Contains(','))
                 {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "SPixel", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -58,6 +55,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
     }

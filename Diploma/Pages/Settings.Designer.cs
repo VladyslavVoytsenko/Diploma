@@ -28,12 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
+            this.Language = new System.Windows.Forms.Label();
+            this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
+            this.SuspendLayout();
+            // 
+            // Language
+            // 
+            resources.ApplyResources(this.Language, "Language");
+            this.Language.Name = "Language";
+            // 
+            // comboBoxLanguage
+            // 
+            resources.ApplyResources(this.comboBoxLanguage, "comboBoxLanguage");
+            this.comboBoxLanguage.FormattingEnabled = true;
+            this.comboBoxLanguage.Items.AddRange(new object[] {
+            resources.GetString("comboBoxLanguage.Items"),
+            resources.GetString("comboBoxLanguage.Items1")});
+            this.comboBoxLanguage.Name = "comboBoxLanguage";
+            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxLanguages_SelectedIndexChanged);
+            // 
+            // Settings
+            // 
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Settings";
+            this.BackColor = System.Drawing.Color.DarkGray;
+            this.Controls.Add(this.comboBoxLanguage);
+            this.Controls.Add(this.Language);
+            this.Name = "Settings";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label Language;
+        private System.Windows.Forms.ComboBox comboBoxLanguage;
     }
 }

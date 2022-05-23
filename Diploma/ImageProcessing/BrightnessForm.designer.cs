@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrightnessForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.filterPreview = new Diploma.Controls.FilterPreview();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,82 +43,57 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.filterPreview);
-            this.groupBox1.Location = new System.Drawing.Point(271, 9);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(170, 175);
-            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Preview";
             // 
             // filterPreview
             // 
             this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point(10, 17);
+            resources.ApplyResources(this.filterPreview, "filterPreview");
             this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size(150, 150);
-            this.filterPreview.TabIndex = 0;
-            this.filterPreview.Text = "filterPreview1";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.label1.Location = new System.Drawing.Point(12, 17);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Adjust brightness by:";
             // 
             // brightnessBox
             // 
-            this.brightnessBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.brightnessBox.Location = new System.Drawing.Point(174, 14);
+            resources.ApplyResources(this.brightnessBox, "brightnessBox");
             this.brightnessBox.Name = "brightnessBox";
-            this.brightnessBox.Size = new System.Drawing.Size(50, 26);
-            this.brightnessBox.TabIndex = 5;
             this.brightnessBox.TextChanged += new System.EventHandler(this.brightnessBox_TextChanged);
             // 
             // brightnessTrackBar
             // 
             this.brightnessTrackBar.LargeChange = 1;
-            this.brightnessTrackBar.Location = new System.Drawing.Point(12, 49);
+            resources.ApplyResources(this.brightnessTrackBar, "brightnessTrackBar");
             this.brightnessTrackBar.Maximum = 250;
             this.brightnessTrackBar.Minimum = -250;
             this.brightnessTrackBar.Name = "brightnessTrackBar";
-            this.brightnessTrackBar.Size = new System.Drawing.Size(250, 45);
-            this.brightnessTrackBar.TabIndex = 6;
             this.brightnessTrackBar.TickFrequency = 50;
             this.brightnessTrackBar.ValueChanged += new System.EventHandler(this.brightnessTrackBar_ValueChanged);
             // 
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(139, 159);
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 8;
-            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(58, 159);
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 7;
-            this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // BrightnessForm
             // 
-            this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(452, 194);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.brightnessTrackBar);
@@ -130,8 +106,6 @@
             this.Name = "BrightnessForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brightness";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize) (this.brightnessTrackBar)).EndInit();
             this.ResumeLayout(false);

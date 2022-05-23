@@ -13,18 +13,30 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
+using Diploma.View_Forms;
 using Point = System.Drawing.Point;
 
 namespace Diploma.Pages
 {
     public partial class Home : Form
     {
+        [Obsolete("Obsolete")]
+        public void SuperUpdate()
+        {
+            Controls.Clear();
+            InitializeComponent();
+            deleteImage = true;
+            imageDisplay.Invalidate();
+        }
+        
+
+        [Obsolete("Obsolete")]
         public Home()
         {
             InitializeComponent();
-            var topLevelControl = printPreviewDialog.TopLevelControl;
-            this.printPreviewDialog.TopLevelControl.Text = "Print Preview";
-            //SetMenuItems(false);
+            var levelControl = printPreviewDialog.TopLevelControl;
+            if (levelControl != null)
+                levelControl.Text = "Print Preview";
             imageDisplay.Select();
         }
 
@@ -123,11 +135,7 @@ namespace Diploma.Pages
 
         private void ResetForm()
         {
-            //StatusLabelDepth.Available = StatusLabelFileIndex.Available = StatusLabelZoom.Available =
-            //StatusLabelFileSize.Available = StatusLabelDateTime.Available = false;
-            //StatusLabelDimensions.Text = "No file loaded (use File->Open)";
-            //StatusLabelDimensions.BorderSides = ToolStripStatusLabelBorderSides.None;
-            Text = "ImageEditor";
+            //Text = "ImageEditor";
             MenuItemReopen.Enabled = true;
             MenuItemUndo.Enabled = false;
             toolStripButtonUndo.Enabled = false;
@@ -136,18 +144,16 @@ namespace Diploma.Pages
         private void CheckZoom()
         {
             zoom = zoomFactor;
-            if (zoom < 0.09F || zoom > 5.01F)
-            {
-                MessageBox.Show("Image zoom must be between 10 and 500% !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (zoom < 0.09F)
-                    zoomFactor += 0.10F;
-                else
-                    zoomFactor -= 0.10F;
-                zoom = zoomFactor;
-            }
+            if (!(zoom < 0.09F) && !(zoom > 5.01F)) return;
+            MessageBox.Show("Image zoom must be between 10 and 500% !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (zoom < 0.09F)
+                zoomFactor += 0.10F;
+            else
+                zoomFactor -= 0.10F;
+            zoom = zoomFactor;
         }
 
-        public void ApplyFilterInPlace(IInPlaceFilter filter)
+        private void ApplyFilterInPlace(IInPlaceFilter filter)
         {
             try
             {
@@ -160,10 +166,10 @@ namespace Diploma.Pages
             {
                 MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
-        private ImageFormat FormatFromExtension(string ext)
+        private static ImageFormat FormatFromExtension(string ext)
         {
             if (ext.IndexOf('.') > 0)
                 ext = ext.Substring(ext.LastIndexOf('.') + 1);
@@ -224,14 +230,14 @@ namespace Diploma.Pages
             fs.Dispose();
 
             Stream st = File.Open(GetFilePath(), FileMode.Open, FileAccess.Read, FileShare.Read);
-            byte[] b = new byte[st.Length];
+            var b = new byte[st.Length];
             st.Read(b, 0, b.Length);
-            MemoryStream ms = new MemoryStream(b);
+            var ms = new MemoryStream(b);
             deletedBitmap = (Bitmap)System.Drawing.Image.FromStream(ms, true);
         }
 
 
-        private string ReturnBitDepth(string pixFormat)
+        private static string ReturnBitDepth(string pixFormat)
         {
             string bitDepth;
             switch (pixFormat)
@@ -273,7 +279,7 @@ namespace Diploma.Pages
             return bitDepth;
         }
 
-        private string ColorsFromPixelFormat(string pixelFormat)
+        private static string ColorsFromPixelFormat(string pixelFormat)
         {
             string colors;
             switch (pixelFormat)
@@ -310,27 +316,27 @@ namespace Diploma.Pages
 
         private void SetMenuItems(bool enabledState)
         {
-            ToolStripButton[] toolStripButtons = new ToolStripButton[] { toolStripButtonSaveAs, toolStripButton1, toolStripButtonPrintImage ,
+            var toolStripButtons = new[] { toolStripButtonSaveAs, toolStripButton1, toolStripButtonPrintImage ,
             toolStripButtonDelete,toolStripButtonUndo, ImageProperties, toolStripButtonZoomIn, toolStripButtonZoomOut, toolStripButtonFullScreen,
             toolStripButtonCrop, toolStripButtonRotateLeft, toolStripButtonRotateRight, FlipVertical, FlipHorizontal, toolStripButtonActualSize,
             toolStripButtonFitImages, toolStripButtonSend, toolStripButtonReset, toolStripButtonBrightness, toolStripButtonContrast, toolStripButtonColorFiltering,
-            toolStripButtonSaturation, toolStripButtonHUE, toolStripButtonSmooth, toolStripButtonResize, toolStripButtonCustomRotation};
+            toolStripButtonSaturation, toolStripButtonHUE, toolStripButtonSmooth, toolStripButtonResize, toolStripButtonCustomRotation, toolStripButtonPixellate, toolStripButtonOilPainting, toolStripButtonGaussianBlur};
 
            // ToolStripButton[] toolStripButtonsNextPrev = new ToolStripButton[] { toolStripButtonPreviousImage, toolStripButtonNextImage };
-            foreach (ToolStripButton button in toolStripButtons)
+            foreach (var button in toolStripButtons)
             {
                 button.Enabled = enabledState;
             }
 
-            this.MenuItemSave.Enabled = this.MenuItemSaveAs.Enabled = this.MenuItemPrint.Enabled =
-                 this.MenuItemZoom.Enabled = this.MenuItemImageProperties.Enabled = this.MenuItemFullScreen.Enabled =
-                this.MenuItemDelete.Enabled = this.MenuItemHistogram.Enabled  = this.MenuItemCut.Enabled = this.MenuItemCopy.Enabled = enabledState;
+            MenuItemSave.Enabled = MenuItemSaveAs.Enabled = MenuItemPrint.Enabled =
+                 MenuItemZoom.Enabled = MenuItemImageProperties.Enabled = MenuItemFullScreen.Enabled =
+                MenuItemDelete.Enabled  = MenuItemCut.Enabled = MenuItemCopy.Enabled = enabledState;
 
-            this.MenuItemImage.Visible = this.MenuItemAdjustments.Visible = this.MenuItemEffects.Visible = enabledState;
+            MenuItemImage.Visible = MenuItemAdjustments.Visible = MenuItemEffects.Visible = enabledState;
 
-            this.toolStripButtonSaveAs.Enabled = this.toolStripButtonDelete.Enabled = this.toolStripButtonPrintImage.Enabled = this.toolStripButtonCrop.Enabled =
-                 this.toolStripButtonActualSize.Enabled = this.toolStripButtonFitImages.Enabled = this.toolStripButtonRotateLeft.Enabled = this.toolStripButtonRotateRight.Enabled =
-                 this.toolStripButtonFullScreen.Enabled = enabledState;
+            toolStripButtonSaveAs.Enabled = toolStripButtonDelete.Enabled = toolStripButtonPrintImage.Enabled = toolStripButtonCrop.Enabled =
+                 toolStripButtonActualSize.Enabled = toolStripButtonFitImages.Enabled = toolStripButtonRotateLeft.Enabled = toolStripButtonRotateRight.Enabled =
+                 toolStripButtonFullScreen.Enabled = enabledState;
 
             if (imageFiles.Count > 1)
             {
@@ -347,42 +353,30 @@ namespace Diploma.Pages
         {
             fullScreen = false;
             cropping = croppingState;
-            //if (centerImagesState)
-            //    //MenuItemCenterImages.Checked = true;
-            //else
-            //    //MenuItemCenterImages.Checked = false;
+            MenuItemCenterImages.Checked = centerImagesState;
             fitImagesToWindow = fitImagesState;
             BackColor = SystemColors.ControlDark;
             imageDisplay.BackColor = SystemColors.ControlDark;
-            //this.mainMenu.Visible = true;
-            //if (toolBarShowState)
-            //{
-            //    MenuItemShowToolbar.Checked = true;
-            //    this.toolBar.Visible = true;
-            //}
-            //else
-            //{
-            //    MenuItemShowToolbar.Checked = false;
-            //    this.toolBar.Visible = false;
-            //}
-            //if (statusBarShowState)
-            //{
-            //    MenuItemShowStatusBar.Checked = true;
-            //    this.statusBar.Visible = true;
-            //}
-            //else
-            //{
-            //    MenuItemShowStatusBar.Checked = false;
-            //    this.statusBar.Visible = false;
-            //}
-            //this.FormBorderStyle = FormBorderStyle.Sizable;
+            mainMenu.Visible = true;
+            MenuItemShowToolbar.Checked = toolBarShowState;
+            if (statusBarShowState)
+            {
+                MenuItemShowStatusBar.Checked = true;
+                statusBar.Visible = true;
+            }
+            else
+            {
+                MenuItemShowStatusBar.Checked = false;
+                statusBar.Visible = false;
+            }
+            //FormBorderStyle = FormBorderStyle.Sizable;
             toolStrip1.Visible = true;
             toolStrip2.Visible = true;
             statusBar.Visible = true;
             panel1.Visible = true;
             panel2.Visible = true;
             //panel3.Visible = true;
-            WindowState = (FormWindowState)FormBorderStyle.None;
+            WindowState = (FormWindowState) FormBorderStyle.None;
             Top = formTop;
             Left = formLeft;
             WindowState = formState;
@@ -411,7 +405,7 @@ namespace Diploma.Pages
             palette = output.Palette;
             for (var i = 0; i < 256; i++)
             {
-                Color tmp = Color.FromArgb(255, i, i, i);
+                var tmp = Color.FromArgb(255, i, i, i);
                 palette.Entries[i] = Color.FromArgb(255, i, i, i);
             }
             output.Palette = palette;
@@ -430,6 +424,25 @@ namespace Diploma.Pages
                 case PixelFormat.Format24bppRgb: bytesPerPixel = 3; break;
                 case PixelFormat.Format32bppArgb: bytesPerPixel = 4; break;
                 case PixelFormat.Format32bppRgb: bytesPerPixel = 4; break;
+                case PixelFormat.Indexed:
+                case PixelFormat.Gdi:
+                case PixelFormat.Alpha:
+                case PixelFormat.PAlpha:
+                case PixelFormat.Extended:
+                case PixelFormat.Canonical:
+                case PixelFormat.Undefined:
+                case PixelFormat.Format1bppIndexed:
+                case PixelFormat.Format4bppIndexed:
+                case PixelFormat.Format8bppIndexed:
+                case PixelFormat.Format16bppGrayScale:
+                case PixelFormat.Format16bppRgb555:
+                case PixelFormat.Format16bppRgb565:
+                case PixelFormat.Format16bppArgb1555:
+                case PixelFormat.Format32bppPArgb:
+                case PixelFormat.Format48bppRgb:
+                case PixelFormat.Format64bppArgb:
+                case PixelFormat.Format64bppPArgb:
+                case PixelFormat.Max:
                 default: throw new InvalidOperationException("Image format not supported");
             }
 
@@ -470,15 +483,29 @@ namespace Diploma.Pages
             return output;
         }
 
+        private void ShowStatusBarInfo()
+        {
+            string pixFormat = bitmap.PixelFormat.ToString();
+            string bitDepth = ReturnBitDepth(pixFormat);
+        
+            NumberFormatInfo numberFormat = NumberFormatInfo.InvariantInfo;
+            float zoomPercent = zoom * 100;
+
+            imageFileInfo = new FileInfo(imageFiles[currentFileIndex].ToString());
+            long byteSize = imageFileInfo.Length;
+            float kiloByteSize = (float)byteSize / 1024F;
+            float megaByteSize = kiloByteSize / 1024F;
+        }
+
         private void ApplyFilter(IFilter filter)
         {
             try
             {
-                this.Cursor = Cursors.WaitCursor;
+                Cursor = Cursors.WaitCursor;
 
                 SetUndo();
 
-                Bitmap newBitmap = filter.Apply(bitmap);
+                var newBitmap = filter.Apply(bitmap);
                 if (cropped)
                     newBitmap = filter.Apply(zoomBitmap);
 
@@ -492,7 +519,7 @@ namespace Diploma.Pages
                 else
                 {
                     bitmap = new Bitmap(newBitmap.Size.Width, newBitmap.Size.Height, PixelFormat.Format24bppRgb);
-                    Graphics g = Graphics.FromImage(bitmap);
+                    var g = Graphics.FromImage(bitmap);
                     g.DrawImage(newBitmap, new Point(0, 0));
                     g.Dispose();
                 }
@@ -546,10 +573,10 @@ namespace Diploma.Pages
             fileTypes.Add("*.TIF");
 
             imageFiles = new ArrayList();
-            string[] files;
             foreach (string type in fileTypes)
             {
-                files = Directory.GetFiles(Directory.GetCurrentDirectory(), type); if (files.Length > 0) imageFiles.AddRange(files);
+                var files = Directory.GetFiles(Directory.GetCurrentDirectory(), type);
+                if (files.Length > 0) imageFiles.AddRange(files);
             }
             if (imageFiles.Count > 0)
             {
@@ -583,74 +610,19 @@ namespace Diploma.Pages
                     resetBitmap = (Bitmap)bitmap.Clone();
                 }
 
-                printImage.DocumentName = Path.GetFileName(GetFilePath()); if (bitmap.Width > bitmap.Height) printImage.DefaultPageSettings.Landscape = true;
-                else printImage.DefaultPageSettings.Landscape = false;
+                printImage.DocumentName = Path.GetFileName(GetFilePath()); 
+                printImage.DefaultPageSettings.Landscape = bitmap.Width > bitmap.Height;
                 //printPreviewDialog.PrintPreviewControl.Document.DefaultPageSettings = printImage.DefaultPageSettings;
 
-                SetMenuItems(true); 
+                SetMenuItems(true);
                 zoomFactor = 1.00F;
-                this.imageDisplay.Invalidate();
+                imageDisplay.Invalidate();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        //private Bitmap GenerateSurface(Bitmap imgParent, List<Bitmap> surfImgs, ToothSurfaceMaterial material)
-        //{
-        //    Bitmap mask = new Bitmap(imgParent.Width, imgParent.Height,
-        //                   System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-
-        //    using (Graphics g = Graphics.FromImage(mask))
-        //    {
-        //        foreach (Bitmap img in surfImgs)
-        //        {
-        //            g.DrawImage(img, System.Drawing.Point.Empty);
-        //        }
-        //    }
-
-        //    Bitmap output = new Bitmap(mask.Width, mask.Height,
-        //                   System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-
-        //    using (Graphics g = Graphics.FromImage(output))
-        //    {
-        //        if (material.HatchStyle != null)
-        //        {
-        //            HatchBrush hb = new HatchBrush((HatchStyle)material.HatchStyle, material.FgColor, material.BgColor);
-        //            g.FillRectangle(hb, new Rectangle(0, 0, output.Width, output.Height));
-        //        }
-        //        else
-        //        {
-        //            SolidBrush sb = new SolidBrush(material.FgColor);
-        //            g.FillRectangle(sb, new Rectangle(0, 0, output.Width, output.Height));
-        //        }
-
-        //    }
-
-        //    var rect = new Rectangle(0, 0, output.Width, output.Height);
-        //    var bitsMask = mask.LockBits(rect, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-        //    var bitsOutput = output.LockBits(rect, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-        //    unsafe
-        //    {
-        //        int offset = 0;
-        //        for (int y = 0; y < mask.Height; y++)
-        //        {
-        //            byte* ptrMask = (byte*)bitsMask.Scan0 + y * bitsMask.Stride;
-        //            byte* ptrOutput = (byte*)bitsOutput.Scan0 + y * bitsOutput.Stride;
-        //            for (int x = 0; x < mask.Width; x++)
-        //            {
-        //                offset = 4 * x + 3;
-        //                ptrOutput[offset] = (byte)(ptrMask[offset] * 0.7);
-        //            }
-        //        }
-        //    }
-        //    mask.UnlockBits(bitsMask);
-        //    output.UnlockBits(bitsOutput);
-
-        //    return output;
-
-        //}
 
         #endregion
 
@@ -661,16 +633,14 @@ namespace Diploma.Pages
             openFileDialog.Multiselect = false;
             try
             {
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    imageFile = openFileDialog.FileName;
-                    Directory.SetCurrentDirectory(Directory.GetParent(imageFile)?.FullName ?? string.Empty);
-                    ProcessDirectory();
-                    zoomFactor = 1.00F;
-                    isDeleted = false;
-                    if (currentFileIndex != -1)
-                        ShowPicture();
-                }
+                if (openFileDialog.ShowDialog() != DialogResult.OK) return;
+                imageFile = openFileDialog.FileName;
+                Directory.SetCurrentDirectory(Directory.GetParent(imageFile)?.FullName ?? string.Empty);
+                ProcessDirectory();
+                zoomFactor = 1.00F;
+                isDeleted = false;
+                if (currentFileIndex != -1)
+                    ShowPicture();
             }
             catch (Exception ex)
             {
@@ -738,13 +708,13 @@ namespace Diploma.Pages
                     this.imageDisplay.AutoScroll = false;
                     if (MenuItemCenterImages.Checked)
                     {
-                    position.X = (imageDisplay.Width - bitmap.Width * zoomFactor) / 2;
-                    position.Y = (imageDisplay.Height - bitmap.Height * zoomFactor) / 2;
+                        position.X = (imageDisplay.Width - bitmap.Width * zoomFactor) / 2;
+                        position.Y = (imageDisplay.Height - bitmap.Height * zoomFactor) / 2;
                     }
                     else
                     {
-                    position.X = 0;
-                    position.Y = 0;
+                        position.X = 0;
+                        position.Y = 0;
                     }
 
                     g.DrawImage(bitmap, new RectangleF(position.X, position.Y, bitmap.Width * zoomFactor, bitmap.Height * zoomFactor));
@@ -780,24 +750,25 @@ namespace Diploma.Pages
                         position.Y = 0;
                         if (MenuItemCenterImages.Checked)
                         {
-                        if (height < imageDisplay.Height)
-                        {
-                            position.X = 0;
-                            position.Y = (imageDisplay.Height - height) / 2;
-                        }
-                        else
-                        {
-                            position.X = (imageDisplay.Width - width) / 2;
-                            position.Y = 0;
-                        }
+                            if (height < imageDisplay.Height)
+                            {
+                                position.X = 0;
+                                if (imageDisplay != null)
+                                    position.Y = (imageDisplay.Height - height) / 2;
+                            }
+                            else
+                            {
+                                position.X = (imageDisplay.Width - width) / 2;
+                                position.Y = 0;
+                            }
                         }
 
                         g.DrawImage(bitmap, new RectangleF(position.X, position.Y, width, height));
 
                         if (fullScreen)
                         {
-                            string fileIndex = " [" + (currentFileIndex + 1).ToString() + "/" + imageFiles.Count.ToString() + "]";
-                            g.DrawString(GetFilePath() + fileIndex, new Font("Segoe UI", 10, GraphicsUnit.Point), Brushes.Lime, new Point(2, 2));
+                            var fileIndex = " [" + (currentFileIndex + 1) + "/" + imageFiles.Count + "]";
+                            g.DrawString(GetFilePath() + fileIndex, new Font("Segoe UI", 12, GraphicsUnit.Point), Brushes.Indigo, new Point(2, 2));
                         }
 
                         zoomBitmap = new Bitmap(bitmap, new Size(width, height));
@@ -845,7 +816,7 @@ namespace Diploma.Pages
                 }
                 else
                 {
-                    //ShowStatusBarInfo();
+                    ShowStatusBarInfo();
 
                     MenuItemReopen.Enabled = false;
                 }
@@ -876,7 +847,7 @@ namespace Diploma.Pages
         private void toolStripButtonDelete_Click(object sender, EventArgs e)
         {
             deleteImage = true;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void imageDisplay_Click(object sender, EventArgs e)
@@ -891,7 +862,7 @@ namespace Diploma.Pages
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (cropping && this.Cursor == Cursors.Cross)
+                if (cropping && Cursor == Cursors.Cross)
                 {
                     dragging = true;
 
@@ -899,10 +870,11 @@ namespace Diploma.Pages
                     cropStartPoint = bitmapPoint;
 
                     selection = new Rectangle(new Point(displayStartPoint.X, displayStartPoint.Y), new Size());
+                    imageDisplay.Invalidate();
                 }
             }
             PencilTool = true;
-            this.FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.None;
         }
 
         private void imageDisplay_MouseLeave(object sender, EventArgs e)
@@ -910,7 +882,7 @@ namespace Diploma.Pages
             StatusLabelMousePosition.Visible = false;
             StatusLabelRGB.Visible = false;
             StatusLabelHSL.Visible = false;
-            this.Cursor = Cursors.Default;
+            Cursor = Cursors.Default;
         }
 
         
@@ -919,12 +891,51 @@ namespace Diploma.Pages
 
         private void imageDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            if (bitmap != null)
-            {
-                bitmapPoint = CalculateMouseOverImagePosition(e.X, e.Y);
-                int posX = bitmapPoint.X, posY = bitmapPoint.Y;
+            if (bitmap == null) return;
+            bitmapPoint = CalculateMouseOverImagePosition(e.X, e.Y);
+            int posX = bitmapPoint.X, posY = bitmapPoint.Y;
 
-                if (zoomBitmap.Width <= imageDisplay.Width && zoomBitmap.Height <= imageDisplay.Height)
+            if (zoomBitmap.Width <= imageDisplay.Width && zoomBitmap.Height <= imageDisplay.Height)
+            {
+                if (posX < 0 || posY < 0 || posX >= zoomBitmap.Width || posY >= zoomBitmap.Height ||
+                    e.X < position.X || e.X > position.X + zoomBitmap.Width || e.Y < position.Y || e.Y > position.Y + zoomBitmap.Height)
+                {
+                    StatusLabelMousePosition.Visible = false;
+                    StatusLabelRGB.Visible = false;
+                    StatusLabelHSL.Visible = false;
+                    this.Cursor = Cursors.Default;
+                    return;
+                }
+            }
+            else
+            {
+                if (fitImagesToWindow)
+                {
+                    int maxWidth = imageDisplay.Width, maxHeight = imageDisplay.Height;
+                    int width = bitmap.Width, height = bitmap.Height;
+
+                    var ratio = width / (float)height;
+
+                    width = maxWidth;
+                    height = (int)Math.Floor(maxWidth / ratio);
+
+                    if (height > maxHeight)
+                    {
+                        height = maxHeight;
+                        width = (int)Math.Floor(maxHeight * ratio);
+                    }
+
+                    if (posX < 0 || posY < 0 || posX >= width || posY >= height ||
+                        e.X < position.X || e.X > position.X + width || e.Y < position.Y || e.Y > position.Y + height)
+                    {
+                        StatusLabelMousePosition.Visible = false;
+                        StatusLabelRGB.Visible = false;
+                        StatusLabelHSL.Visible = false;
+                        Cursor = Cursors.Default;
+                        return;
+                    }
+                }
+                else
                 {
                     if (posX < 0 || posY < 0 || posX >= zoomBitmap.Width || posY >= zoomBitmap.Height ||
                         e.X < position.X || e.X > position.X + zoomBitmap.Width || e.Y < position.Y || e.Y > position.Y + zoomBitmap.Height)
@@ -932,90 +943,55 @@ namespace Diploma.Pages
                         StatusLabelMousePosition.Visible = false;
                         StatusLabelRGB.Visible = false;
                         StatusLabelHSL.Visible = false;
-                        this.Cursor = Cursors.Default;
+                        Cursor = Cursors.Default;
                         return;
                     }
                 }
-                else
-                {
-                    if (fitImagesToWindow)
-                    {
-                        int maxWidth = imageDisplay.Width, maxHeight = imageDisplay.Height;
-                        int width = bitmap.Width, height = bitmap.Height;
-
-                        float ratio = (float)width / (float)height;
-
-                        width = maxWidth;
-                        height = (int)Math.Floor(maxWidth / ratio);
-
-                        if (height > maxHeight)
-                        {
-                            height = maxHeight;
-                            width = (int)Math.Floor(maxHeight * ratio);
-                        }
-
-                        if (posX < 0 || posY < 0 || posX >= width || posY >= height ||
-                            e.X < position.X || e.X > position.X + width || e.Y < position.Y || e.Y > position.Y + height)
-                        {
-                            StatusLabelMousePosition.Visible = false;
-                            StatusLabelRGB.Visible = false;
-                            StatusLabelHSL.Visible = false;
-                            Cursor = Cursors.Default;
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        if (posX < 0 || posY < 0 || posX >= zoomBitmap.Width || posY >= zoomBitmap.Height ||
-                            e.X < position.X || e.X > position.X + zoomBitmap.Width || e.Y < position.Y || e.Y > position.Y + zoomBitmap.Height)
-                        {
-                            StatusLabelMousePosition.Visible = false;
-                            StatusLabelRGB.Visible = false;
-                            StatusLabelHSL.Visible = false;
-                            Cursor = Cursors.Default;
-                            return;
-                        }
-                    }
-                }
-
-                //if (PencilTool)
-                //{
-                //    pen.StartCap = LineCap.Round;
-                //    pen.EndCap = LineCap.Round;
-                //    arrayPoints.SetPoint(e.X, e.Y);
-                //    graphics = Graphics.FromImage(bitmap);
-                //    if (arrayPoints.GetCountPoints() >= 2)
-                //    {
-                //        graphics.DrawLines(pen,arrayPoints.GetPoints());
-                //        arrayPoints.SetPoint(e.X,e.Y);
-                //    }
-                //    imageDisplay.Invalidate();
-                //}
-
-                Color color = zoomBitmap.GetPixel(posX, posY);
-                RGB rgbColor = new RGB(color);
-                HSL hslColor = HSL.FromRGB(rgbColor);
-
-                StatusLabelMousePosition.Visible = true;
-                StatusLabelMousePosition.Text = "X: " + posX + " Y: " + posY;
-
-                StatusLabelRGB.Visible = true;
-                StatusLabelRGB.Text = "R: " + rgbColor.Red + " G: " + rgbColor.Green + " B: " + rgbColor.Blue;
-
-                StatusLabelHSL.Visible = true;
-                StatusLabelHSL.Text = "H: " + hslColor.Hue + " S: " + hslColor.Saturation.ToString("0.000", CultureInfo.InvariantCulture) + " L: " + hslColor.Luminance.ToString("0.000", CultureInfo.InvariantCulture);
-
-                if (!cropping) return;
-                Cursor = Cursors.Cross;
-                if (!dragging) return;
-                displayEndPoint = e.Location;
-                cropEndPoint = bitmapPoint;
-
-                selection.Width = displayEndPoint.X - selection.X;
-                selection.Height = displayEndPoint.Y - selection.Y;
-
-                imageDisplay.Invalidate();
             }
+
+            /*if (PencilTool)
+            {
+                try
+                {
+                    pen.StartCap = LineCap.Round;
+                    pen.EndCap = LineCap.Round;
+                    arrayPoints.SetPoint(posX, posY);
+                    graphics = Graphics.FromImage(bitmap);
+                    if (arrayPoints.GetCountPoints() >= 2)
+                    {
+                        graphics.DrawLines(pen, arrayPoints.GetPoints());
+                        arrayPoints.SetPoint(e.X, e.Y);
+                    }
+                    imageDisplay.Invalidate();
+                } catch (Exception)
+                {
+                    arrayPoints.ResetPoints();
+                }
+            }*/
+
+            Color color = zoomBitmap.GetPixel(posX, posY);
+            RGB rgbColor = new RGB(color);
+            HSL hslColor = HSL.FromRGB(rgbColor);
+
+            StatusLabelMousePosition.Visible = true;
+            StatusLabelMousePosition.Text = "X: " + posX + " Y: " + posY;
+
+            StatusLabelRGB.Visible = true;
+            StatusLabelRGB.Text = "R: " + rgbColor.Red + " G: " + rgbColor.Green + " B: " + rgbColor.Blue;
+
+            StatusLabelHSL.Visible = true;
+            StatusLabelHSL.Text = "H: " + hslColor.Hue + " S: " + hslColor.Saturation.ToString("0.000", CultureInfo.InvariantCulture) + " L: " + hslColor.Luminance.ToString("0.000", CultureInfo.InvariantCulture);
+
+            if (!cropping) return;
+            Cursor = Cursors.Cross;
+            if (!dragging) return;
+            displayEndPoint = e.Location;
+            cropEndPoint = bitmapPoint;
+
+            selection.Width = displayEndPoint.X - selection.X;
+            selection.Height = displayEndPoint.Y - selection.Y;
+
+            imageDisplay.Invalidate();
         }
 
        
@@ -1794,11 +1770,268 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
             {
-                MessageBox.Show("Euclidean color filtering can be applied to 24 bpp RGB images only!", "SPixel", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Channels filtering can be applied to 24 bpp RGB images only!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            EuclideanColorFilteringForm form = new EuclideanColorFilteringForm();
+            ChannelFilteringForm form = new ChannelFilteringForm();
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemExtractRedChannel_Click(object sender, EventArgs e)
+        {
+            ApplyFilter(new ExtractChannel(RGB.R));
+        }
+
+        private void MenuItemExtractGreenChannel_Click(object sender, EventArgs e)
+        {
+            ApplyFilter(new ExtractChannel(RGB.G));
+        }
+
+        private void MenuItemExtractBlueChannel_Click(object sender, EventArgs e)
+        {
+            ApplyFilter(new ExtractChannel(RGB.B));
+        }
+
+        private void MenuItemGammaCorrection_Click(object sender, EventArgs e)
+        {
+            GammaCorrectionForm form = new GammaCorrectionForm();
+
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                    toGrayscale = true;
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemGaussianBlur_Click(object sender, EventArgs e)
+        {
+            GaussianBlurForm form = new GaussianBlurForm();
+
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                    toGrayscale = true;
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemGaussianSharpen_Click(object sender, EventArgs e)
+        {
+            GaussianSharpenForm form = new GaussianSharpenForm();
+
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                    toGrayscale = true;
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemConservativeSmoothing_Click(object sender, EventArgs e)
+        {
+            ApplyFilterInPlace(new ConservativeSmoothing());
+        }
+
+        private void MenuItemPixellate_Click(object sender, EventArgs e)
+        {
+            PixellateForm form = new PixellateForm();
+
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                    toGrayscale = true;
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemJitter_Click(object sender, EventArgs e)
+        {
+            ApplyFilterInPlace(new Jitter(1));
+        }
+
+        private void MenuItemOilPainting_Click(object sender, EventArgs e)
+        {
+            OilPaintingForm form = new OilPaintingForm();
+
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                    toGrayscale = true;
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemPerlinNoise_Click(object sender, EventArgs e)
+        {
+            PerlinNoiseForm form = new PerlinNoiseForm();
+
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                    toGrayscale = true;
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemEdges_Click(object sender, EventArgs e)
+        {
+            ApplyFilterInPlace(new Edges());
+        }
+
+        private void MenuItemHomogenity_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
+            {
+                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            ApplyFilterInPlace(new HomogenityEdgeDetector());
+        }
+
+        private void MenuItemThreshold_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed && bitmap.PixelFormat != PixelFormat.Format16bppGrayScale)
+            {
+                MessageBox.Show("The filter accepts only 8 and 16 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            ThresholdForm form = new ThresholdForm();
+
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                toGrayscale = true;
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemThresholdWithErrorCarry_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
+            {
+                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            ApplyFilterInPlace(new ThresholdWithCarry());
+        }
+
+        private void MenuItemOrderedDither_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
+            {
+                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            ApplyFilterInPlace(new OrderedDithering());
+        }
+
+        private void MenuItemFloydSteinberg_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
+            {
+                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            ApplyFilterInPlace(new FloydSteinbergDithering());
+        }
+
+        private void MenuItemSISThreshold_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
+            {
+                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            ApplyFilterInPlace(new SISThreshold());
+        }
+
+        private void MenuItemErosion_Click(object sender, EventArgs e)
+        {
+            ApplyFilterInPlace(new Erosion());
+        }
+
+        private void MenuItemDilatation_Click(object sender, EventArgs e)
+        {
+            ApplyFilterInPlace(new Dilatation());
+        }
+
+        private void MenuItemOpening_Click(object sender, EventArgs e)
+        {
+            ApplyFilterInPlace(new Opening());
+        }
+
+        private void MenuItemClosing_Click(object sender, EventArgs e)
+        {
+            ApplyFilterInPlace(new Closing());
+        }
+
+        private void MenuItemSobel_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
+            {
+                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            ApplyFilterInPlace(new SobelEdgeDetector());
+        }
+
+        private void MenuItemCanny_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
+            {
+                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            CannyDetectorForm form = new CannyDetectorForm();
+
+            form.Image = bitmap;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                toGrayscale = true;
+                ApplyFilter(form.Filter);
+            }
+        }
+
+        private void MenuItemDifference_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
+            {
+                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            ApplyFilterInPlace(new DifferenceEdgeDetector());
+        }
+
+        private void MenuItemHSLFiltering_Click(object sender, EventArgs e)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
+            {
+                MessageBox.Show("HSL filtering is available for 24 bpp RGB images only!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            HslFilteringForm form = new HslFilteringForm();
             form.Image = bitmap;
 
             if (form.ShowDialog() == DialogResult.OK)

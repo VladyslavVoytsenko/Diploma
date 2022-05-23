@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PagesContainer.cs" />
     <Compile Include="Controls\DoubleBufferDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +87,18 @@
     </Compile>
     <Compile Include="ImageProcessing\BrightnessForm.designer.cs">
       <DependentUpon>BrightnessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\CannyDetectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\CannyDetectorForm.designer.cs">
+      <DependentUpon>CannyDetectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\ChannelFilteringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\ChannelFilteringForm.designer.cs">
+      <DependentUpon>ChannelFilteringForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageProcessing\ColorFilteringForm.cs">
       <SubType>Form</SubType>
@@ -111,11 +124,53 @@
     <Compile Include="ImageProcessing\EuclideanColorFilteringForm.designer.cs">
       <DependentUpon>EuclideanColorFilteringForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageProcessing\GammaCorrectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\GammaCorrectionForm.designer.cs">
+      <DependentUpon>GammaCorrectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\GaussianBlurForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\GaussianBlurForm.designer.cs">
+      <DependentUpon>GaussianBlurForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\GaussianSharpenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\GaussianSharpenForm.designer.cs">
+      <DependentUpon>GaussianSharpenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\HSLFilteringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\HSLFilteringForm.designer.cs">
+      <DependentUpon>HSLFilteringForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageProcessing\HueModifierForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ImageProcessing\HueModifierForm.designer.cs">
       <DependentUpon>HueModifierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\OilPaintingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\OilPaintingForm.designer.cs">
+      <DependentUpon>OilPaintingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\PerlinNoiseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\PerlinNoiseForm.designer.cs">
+      <DependentUpon>PerlinNoiseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\PixellateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\PixellateForm.designer.cs">
+      <DependentUpon>PixellateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageProcessing\ResizeForm.cs">
       <SubType>Form</SubType>
@@ -128,6 +183,12 @@
     </Compile>
     <Compile Include="ImageProcessing\SaturationForm.designer.cs">
       <DependentUpon>SaturationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\ThresholdForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\ThresholdForm.designer.cs">
+      <DependentUpon>ThresholdForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -155,12 +216,6 @@
     <Compile Include="View Forms\ImageProperties.designer.cs">
       <DependentUpon>ImageProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Forms\ImageStatisticsWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View Forms\ImageStatisticsWindow.Designer.cs">
-      <DependentUpon>ImageStatisticsWindow.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Controls\DoubleBufferDisplay.resx">
       <DependentUpon>DoubleBufferDisplay.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +231,15 @@
     <EmbeddedResource Include="ImageProcessing\BrightnessForm.resx">
       <DependentUpon>BrightnessForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\BrightnessForm.uk.resx">
+      <DependentUpon>BrightnessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\CannyDetectorForm.resx">
+      <DependentUpon>CannyDetectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ChannelFilteringForm.resx">
+      <DependentUpon>ChannelFilteringForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\ColorFilteringForm.resx">
       <DependentUpon>ColorFilteringForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,8 +252,29 @@
     <EmbeddedResource Include="ImageProcessing\EuclideanColorFilteringForm.resx">
       <DependentUpon>EuclideanColorFilteringForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\GammaCorrectionForm.resx">
+      <DependentUpon>GammaCorrectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\GaussianBlurForm.resx">
+      <DependentUpon>GaussianBlurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\GaussianSharpenForm.resx">
+      <DependentUpon>GaussianSharpenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\HSLFilteringForm.resx">
+      <DependentUpon>HSLFilteringForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\HueModifierForm.resx">
       <DependentUpon>HueModifierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\OilPaintingForm.resx">
+      <DependentUpon>OilPaintingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\PerlinNoiseForm.resx">
+      <DependentUpon>PerlinNoiseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\PixellateForm.resx">
+      <DependentUpon>PixellateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\ResizeForm.resx">
       <DependentUpon>ResizeForm.cs</DependentUpon>
@@ -197,11 +282,26 @@
     <EmbeddedResource Include="ImageProcessing\SaturationForm.resx">
       <DependentUpon>SaturationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ThresholdForm.resx">
+      <DependentUpon>ThresholdForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Home.uk.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings.en-GB.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings.uk.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -214,9 +314,6 @@
     </Compile>
     <EmbeddedResource Include="View Forms\ImageProperties.resx">
       <DependentUpon>ImageProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View Forms\ImageStatisticsWindow.resx">
-      <DependentUpon>ImageStatisticsWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -232,10 +329,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Filters\" />
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="AForge\AForge.Controls.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

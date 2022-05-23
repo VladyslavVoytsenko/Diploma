@@ -36,7 +36,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -110,6 +110,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(409, 193);
             this.Controls.Add(this.cancelButton);
@@ -127,10 +128,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adaptive Smoothing";
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

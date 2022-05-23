@@ -35,7 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.filterPreview = new Diploma.Controls.FilterPreview();
-            ((System.ComponentModel.ISupportInitialize)(this.contrastTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.contrastTrackBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,8 +63,8 @@
             // contrastTrackBar
             // 
             this.contrastTrackBar.Location = new System.Drawing.Point(12, 49);
-            this.contrastTrackBar.Maximum = 150;
-            this.contrastTrackBar.Minimum = -50;
+            this.contrastTrackBar.Maximum = 127;
+            this.contrastTrackBar.Minimum = -127;
             this.contrastTrackBar.Name = "contrastTrackBar";
             this.contrastTrackBar.Size = new System.Drawing.Size(250, 45);
             this.contrastTrackBar.TabIndex = 12;
@@ -129,11 +129,10 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contrast";
-            ((System.ComponentModel.ISupportInitialize)(this.contrastTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.contrastTrackBar)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

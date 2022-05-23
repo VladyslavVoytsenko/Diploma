@@ -18,33 +18,33 @@ namespace Diploma
         private Random random;
         private int tempIndex;
         private Form activeForm;
-        private Pages.Home home = new Pages.Home();
+        private readonly Pages.Home home = new Pages.Home();
         public MainWindow()
         {
             InitializeComponent();
             //Pages.Home home = new Pages.Home() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             //this.panelDesktopPane.Controls.Add(home);
-            home.TopLevel = false;
-            home.FormBorderStyle = FormBorderStyle.None;
-            home.Dock = DockStyle.Fill;
-            panelDesktopPane.Controls.Add(home);
-            panelDesktopPane.Tag = home;
-            home.BringToFront();
-            home.Show();
+            OpenChildForm(PagesContainer.Home);
             Text = String.Empty;
             ControlBox = false;
         }
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
-
-        private void OpenChildForm(Form childForm, object btnSender)
+        public sealed override string Text
         {
-            if (activeForm != null)
-                activeForm.Close();
-            
+            get => base.Text;
+            set => base.Text = value;
+        }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+
+        private void OpenChildForm(Form childForm)
+        {
+            activeForm?.Hide();
+
             activeForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -63,15 +63,12 @@ namespace Diploma
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Normal)
-                this.WindowState = FormWindowState.Maximized;
-            else
-                this.WindowState = FormWindowState.Normal;
+            WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -79,14 +76,16 @@ namespace Diploma
             Application.Exit();
         }
 
+        
+        [Obsolete("Obsolete")]
         private void HomeBtn_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Pages.Home(), sender);
+            OpenChildForm(PagesContainer.Home);
         }
 
         private void SettingsBtn_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Pages.Settings(), sender);
+            OpenChildForm(PagesContainer.Settings);
         }
 
         

@@ -39,7 +39,7 @@ namespace Diploma.ImageProcessing
             {
                 if (this.factorBox.Text.Contains(','))
                 {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "SPixel", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 

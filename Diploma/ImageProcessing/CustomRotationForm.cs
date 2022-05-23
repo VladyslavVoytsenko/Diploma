@@ -54,7 +54,7 @@ namespace Diploma.ImageProcessing
             }
             else
             {
-                MessageBox.Show(this, "Incorrect RGB value entered, must be 0-255!", "SPixel", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(this, "Incorrect RGB value entered, must be 0-255!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
         }
