@@ -31,6 +31,7 @@ namespace Diploma.ImageProcessing
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EuclideanColorFilteringForm));
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -70,131 +71,113 @@ namespace Diploma.ImageProcessing
             // 
             // okButton
             // 
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(308, 306);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 0;
-            this.okButton.Text = "OK";
+            this.toolTip.SetToolTip(this.okButton, resources.GetString("okButton.ToolTip"));
             this.okButton.UseVisualStyleBackColor = true;
             // 
             // cancelButton
             // 
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(389, 306);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 1;
-            this.cancelButton.Text = "Cancel";
+            this.toolTip.SetToolTip(this.cancelButton, resources.GetString("cancelButton.ToolTip"));
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.filterPreview);
-            this.groupBox1.Location = new System.Drawing.Point(298, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(170, 175);
-            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Preview";
+            this.toolTip.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
             // 
             // filterPreview
             // 
+            resources.ApplyResources(this.filterPreview, "filterPreview");
             this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point(10, 17);
             this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size(150, 150);
-            this.filterPreview.TabIndex = 0;
-            this.filterPreview.Text = "filterPreview1";
+            this.toolTip.SetToolTip(this.filterPreview, resources.GetString("filterPreview.ToolTip"));
             // 
             // redSlider
             // 
+            resources.ApplyResources(this.redSlider, "redSlider");
             this.redSlider.DoubleArrow = false;
             this.redSlider.EndColor = System.Drawing.Color.Red;
-            this.redSlider.Location = new System.Drawing.Point(9, 49);
             this.redSlider.Name = "redSlider";
-            this.redSlider.Size = new System.Drawing.Size(262, 23);
-            this.redSlider.TabIndex = 4;
             this.redSlider.TabStop = false;
+            this.toolTip.SetToolTip(this.redSlider, resources.GetString("redSlider.ToolTip"));
             this.redSlider.ValuesChanged += new System.EventHandler(this.redSlider_ValuesChanged);
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.radiusBox);
             this.groupBox3.Controls.Add(this.radiusTrackBar);
-            this.groupBox3.Location = new System.Drawing.Point(12, 141);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(280, 108);
-            this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Radius";
+            this.toolTip.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
             // 
             // radiusBox
             // 
-            this.radiusBox.Location = new System.Drawing.Point(13, 26);
+            resources.ApplyResources(this.radiusBox, "radiusBox");
             this.radiusBox.Name = "radiusBox";
-            this.radiusBox.Size = new System.Drawing.Size(50, 20);
-            this.radiusBox.TabIndex = 1;
+            this.toolTip.SetToolTip(this.radiusBox, resources.GetString("radiusBox.ToolTip"));
             this.radiusBox.TextChanged += new System.EventHandler(this.radiusBox_TextChanged);
             // 
             // radiusTrackBar
             // 
-            this.radiusTrackBar.Location = new System.Drawing.Point(6, 59);
+            resources.ApplyResources(this.radiusTrackBar, "radiusTrackBar");
             this.radiusTrackBar.Maximum = 450;
             this.radiusTrackBar.Minimum = 1;
             this.radiusTrackBar.Name = "radiusTrackBar";
-            this.radiusTrackBar.Size = new System.Drawing.Size(268, 45);
-            this.radiusTrackBar.TabIndex = 0;
             this.radiusTrackBar.TickFrequency = 10;
+            this.toolTip.SetToolTip(this.radiusTrackBar, resources.GetString("radiusTrackBar.ToolTip"));
             this.radiusTrackBar.Value = 100;
             this.radiusTrackBar.Scroll += new System.EventHandler(this.radiusTrackBar_Scroll);
             // 
             // greenSlider
             // 
+            resources.ApplyResources(this.greenSlider, "greenSlider");
             this.greenSlider.DoubleArrow = false;
             this.greenSlider.EndColor = System.Drawing.Color.Lime;
-            this.greenSlider.Location = new System.Drawing.Point(9, 71);
             this.greenSlider.Name = "greenSlider";
-            this.greenSlider.Size = new System.Drawing.Size(262, 23);
-            this.greenSlider.TabIndex = 5;
             this.greenSlider.TabStop = false;
+            this.toolTip.SetToolTip(this.greenSlider, resources.GetString("greenSlider.ToolTip"));
             this.greenSlider.ValuesChanged += new System.EventHandler(this.greenSlider_ValuesChanged);
             // 
             // blueSlider
             // 
+            resources.ApplyResources(this.blueSlider, "blueSlider");
             this.blueSlider.DoubleArrow = false;
             this.blueSlider.EndColor = System.Drawing.Color.Blue;
-            this.blueSlider.Location = new System.Drawing.Point(9, 92);
             this.blueSlider.Name = "blueSlider";
-            this.blueSlider.Size = new System.Drawing.Size(262, 23);
-            this.blueSlider.TabIndex = 6;
             this.blueSlider.TabStop = false;
+            this.toolTip.SetToolTip(this.blueSlider, resources.GetString("blueSlider.ToolTip"));
             this.blueSlider.ValuesChanged += new System.EventHandler(this.blueSlider_ValuesChanged);
             // 
             // fillTypeCombo
             // 
+            resources.ApplyResources(this.fillTypeCombo, "fillTypeCombo");
             this.fillTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fillTypeCombo.FormattingEnabled = true;
             this.fillTypeCombo.Items.AddRange(new object[] {
-            "Outside",
-            "Inside"});
-            this.fillTypeCombo.Location = new System.Drawing.Point(360, 214);
+            resources.GetString("fillTypeCombo.Items"),
+            resources.GetString("fillTypeCombo.Items1")});
             this.fillTypeCombo.Name = "fillTypeCombo";
-            this.fillTypeCombo.Size = new System.Drawing.Size(112, 21);
-            this.fillTypeCombo.TabIndex = 7;
+            this.toolTip.SetToolTip(this.fillTypeCombo, resources.GetString("fillTypeCombo.ToolTip"));
             this.fillTypeCombo.SelectedIndexChanged += new System.EventHandler(this.fillTypeCombo_SelectedIndexChanged);
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(305, 217);
+            resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 13);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "Fill Type:";
+            this.toolTip.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.blueBox);
             this.groupBox2.Controls.Add(this.blueSlider);
             this.groupBox2.Controls.Add(this.redSlider);
@@ -204,66 +187,52 @@ namespace Diploma.ImageProcessing
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(280, 123);
-            this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Center Color";
+            this.toolTip.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
             // 
             // blueBox
             // 
-            this.blueBox.Location = new System.Drawing.Point(219, 20);
+            resources.ApplyResources(this.blueBox, "blueBox");
             this.blueBox.Name = "blueBox";
-            this.blueBox.Size = new System.Drawing.Size(50, 20);
-            this.blueBox.TabIndex = 5;
+            this.toolTip.SetToolTip(this.blueBox, resources.GetString("blueBox.ToolTip"));
             this.blueBox.TextChanged += new System.EventHandler(this.blueBox_TextChanged);
             // 
             // greenBox
             // 
-            this.greenBox.Location = new System.Drawing.Point(128, 20);
+            resources.ApplyResources(this.greenBox, "greenBox");
             this.greenBox.Name = "greenBox";
-            this.greenBox.Size = new System.Drawing.Size(50, 20);
-            this.greenBox.TabIndex = 4;
+            this.toolTip.SetToolTip(this.greenBox, resources.GetString("greenBox.ToolTip"));
             this.greenBox.TextChanged += new System.EventHandler(this.greenBox_TextChanged);
             // 
             // redBox
             // 
-            this.redBox.Location = new System.Drawing.Point(34, 20);
+            resources.ApplyResources(this.redBox, "redBox");
             this.redBox.Name = "redBox";
-            this.redBox.Size = new System.Drawing.Size(50, 20);
-            this.redBox.TabIndex = 3;
+            this.toolTip.SetToolTip(this.redBox, resources.GetString("redBox.ToolTip"));
             this.redBox.TextChanged += new System.EventHandler(this.redBox_TextChanged);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(196, 23);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "B:";
+            this.toolTip.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(104, 23);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "G:";
+            this.toolTip.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 23);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(18, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "R:";
+            this.toolTip.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // groupBox5
             // 
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Controls.Add(this.fillBBox);
             this.groupBox5.Controls.Add(this.fillGBox);
             this.groupBox5.Controls.Add(this.fillRBox);
@@ -273,108 +242,86 @@ namespace Diploma.ImageProcessing
             this.groupBox5.Controls.Add(this.colorBox);
             this.groupBox5.Controls.Add(this.coverBox);
             this.groupBox5.Controls.Add(this.button1);
-            this.groupBox5.Location = new System.Drawing.Point(12, 255);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(280, 79);
-            this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Fill Color";
+            this.toolTip.SetToolTip(this.groupBox5, resources.GetString("groupBox5.ToolTip"));
             // 
             // fillBBox
             // 
-            this.fillBBox.Location = new System.Drawing.Point(219, 20);
+            resources.ApplyResources(this.fillBBox, "fillBBox");
             this.fillBBox.Name = "fillBBox";
-            this.fillBBox.Size = new System.Drawing.Size(50, 20);
-            this.fillBBox.TabIndex = 5;
+            this.toolTip.SetToolTip(this.fillBBox, resources.GetString("fillBBox.ToolTip"));
             this.fillBBox.TextChanged += new System.EventHandler(this.fillBox_TextChanged);
             // 
             // fillGBox
             // 
-            this.fillGBox.Location = new System.Drawing.Point(127, 20);
+            resources.ApplyResources(this.fillGBox, "fillGBox");
             this.fillGBox.Name = "fillGBox";
-            this.fillGBox.Size = new System.Drawing.Size(50, 20);
-            this.fillGBox.TabIndex = 4;
+            this.toolTip.SetToolTip(this.fillGBox, resources.GetString("fillGBox.ToolTip"));
             this.fillGBox.TextChanged += new System.EventHandler(this.fillBox_TextChanged);
             // 
             // fillRBox
             // 
-            this.fillRBox.Location = new System.Drawing.Point(34, 20);
+            resources.ApplyResources(this.fillRBox, "fillRBox");
             this.fillRBox.Name = "fillRBox";
-            this.fillRBox.Size = new System.Drawing.Size(50, 20);
-            this.fillRBox.TabIndex = 3;
+            this.toolTip.SetToolTip(this.fillRBox, resources.GetString("fillRBox.ToolTip"));
             this.fillRBox.TextChanged += new System.EventHandler(this.fillBox_TextChanged);
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(196, 23);
+            resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(17, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "B:";
+            this.toolTip.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(103, 23);
+            resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "G:";
+            this.toolTip.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 23);
+            resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(18, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "R:";
+            this.toolTip.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
             // 
             // colorBox
             // 
+            resources.ApplyResources(this.colorBox, "colorBox");
             this.colorBox.BackColor = System.Drawing.Color.Black;
             this.colorBox.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.colorBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.colorBox.Location = new System.Drawing.Point(105, 49);
             this.colorBox.Name = "colorBox";
-            this.colorBox.Size = new System.Drawing.Size(70, 20);
-            this.colorBox.TabIndex = 9;
-            this.toolTip.SetToolTip(this.colorBox, "Pick Color");
+            this.toolTip.SetToolTip(this.colorBox, resources.GetString("colorBox.ToolTip"));
             this.colorBox.UseVisualStyleBackColor = false;
-            this.colorBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.colorBox_MouseMove);
             this.colorBox.Click += new System.EventHandler(this.colorBox_Click);
             this.colorBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.colorBox_MouseClick);
             this.colorBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.colorBox_MouseDown);
+            this.colorBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.colorBox_MouseMove);
             this.colorBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.colorBox_MouseUp);
             // 
             // coverBox
             // 
+            resources.ApplyResources(this.coverBox, "coverBox");
             this.coverBox.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.coverBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.coverBox.Location = new System.Drawing.Point(105, 49);
             this.coverBox.Name = "coverBox";
-            this.coverBox.Size = new System.Drawing.Size(70, 20);
-            this.coverBox.TabIndex = 10;
+            this.toolTip.SetToolTip(this.coverBox, resources.GetString("coverBox.ToolTip"));
             this.coverBox.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
+            resources.ApplyResources(this.button1, "button1");
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(105, 49);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 20);
-            this.button1.TabIndex = 11;
+            this.toolTip.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
             this.button1.UseVisualStyleBackColor = false;
             // 
             // EuclideanColorFilteringForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(480, 341);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label10);
@@ -383,14 +330,14 @@ namespace Diploma.ImageProcessing
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EuclideanColorFilteringForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Euclidean Color Filtering";
+            this.toolTip.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EuclideanColorFilteringForm_MouseDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

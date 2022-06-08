@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using AForge.Imaging;
+using System.Runtime.InteropServices;
 
 namespace Diploma.ImageProcessing
 {
@@ -13,6 +14,12 @@ namespace Diploma.ImageProcessing
         private byte fillR, fillG, fillB;
         private short radius = 100;
         private bool updating;
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
 
         public Bitmap Image
         {
@@ -163,6 +170,12 @@ namespace Diploma.ImageProcessing
         private void colorBox_MouseMove(object sender, MouseEventArgs e)
         {
             colorBox.Cursor = Cursors.Hand;
+        }
+
+        private void EuclideanColorFilteringForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
         private void colorBox_MouseDown(object sender, MouseEventArgs e)

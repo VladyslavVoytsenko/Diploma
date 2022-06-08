@@ -3,24 +3,29 @@ using System;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Diploma.ImageProcessing
 {
     public partial class CannyDetectorForm : Form
     {
-        private CannyEdgeDetector filter = new CannyEdgeDetector();
-        private bool updating = false;
+        private readonly CannyEdgeDetector filter = new CannyEdgeDetector();
+        private bool updating;
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
 
         public Bitmap Image
         {
-            set { filterPreview.Image = value; }
+            set => filterPreview.Image = value;
         }
 
-        public IFilter Filter
-        {
-            get { return filter; }
-        }
+        public IFilter Filter => filter;
 
         public CannyDetectorForm()
         {
@@ -47,16 +52,25 @@ namespace Diploma.ImageProcessing
                 sigmaBox.Text = v.ToString(CultureInfo.InvariantCulture);
             }
         }
+        
+        private void ReturnMessageBox(Control textBox)
+        {
+            if (!textBox.Text.Contains(',')) return;
+            if (Equals(Thread.CurrentThread.CurrentUICulture, new  CultureInfo("uk")))
+            {
+                MessageBox.Show(this, @"Неправильний десятковий роздільник, використовуйте крапку ( . ) замість коми ( , )!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(this, @"Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
 
         private void sigmaBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (this.sigmaBox.Text.Contains(','))
-                {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                ReturnMessageBox(sigmaBox);
 
                 filter.GaussianSigma = double.Parse(sigmaBox.Text, CultureInfo.InvariantCulture);
 
@@ -68,6 +82,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -83,6 +98,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -98,6 +114,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -105,6 +122,12 @@ namespace Diploma.ImageProcessing
         {
             lowThresholdBox.Text = thresholdSlider.Min.ToString();
             highThresholdBox.Text = thresholdSlider.Max.ToString();
+        }
+
+        private void CannyDetectorForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

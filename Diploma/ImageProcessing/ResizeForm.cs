@@ -3,26 +3,30 @@ using System;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Diploma.ImageProcessing
 {
     public partial class ResizeForm : Form
     {
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         private Size originalSize;
-        private BaseResizeFilter filter = null;
-        private bool updating = false;
+        private BaseResizeFilter filter;
+        private bool updating;
 
         public Size OriginalSize
         {
-            get { return originalSize; }
-            set { originalSize = value; }
+            get => originalSize;
+            set => originalSize = value;
         }
 
-        public IFilter Filter
-        {
-            get { return filter; }
-        }
+        public IFilter Filter => filter;
 
         public ResizeForm(Size bitmapSize)
         {
@@ -31,7 +35,7 @@ namespace Diploma.ImageProcessing
             originalSize = bitmapSize;
 
             // default resize factor
-            factorBox.Text = "1.00";
+            factorBox.Text = @"1.00";
 
             // width and height
             widthBox.Text = originalSize.Width.ToString();
@@ -55,15 +59,25 @@ namespace Diploma.ImageProcessing
             resizeTrackBar.Enabled = factorButton.Checked;
         }
 
+        private void ReturnMessageBox(Control textBox)
+        {
+            if (!textBox.Text.Contains(',')) return;
+            if (Equals(Thread.CurrentThread.CurrentUICulture, new  CultureInfo("uk")))
+            {
+                MessageBox.Show(this, @"Неправильний десятковий роздільник, використовуйте крапку ( . ) замість коми ( , )!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(this, @"Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        
         private void factorBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (this.factorBox.Text.Contains(','))
-                {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                ReturnMessageBox(factorBox);
+                
 
                 float factor = float.Parse(factorBox.Text, CultureInfo.InvariantCulture);
 
@@ -75,6 +89,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -86,37 +101,35 @@ namespace Diploma.ImageProcessing
 
         private void widthBox_TextChanged(object sender, EventArgs e)
         {
-            if ((!updating) && (ratioCheck.Checked))
+            if (updating || !ratioCheck.Checked) return;
+            try
             {
-                try
-                {
-                    int width = int.Parse(widthBox.Text);
+                int width = int.Parse(widthBox.Text);
 
-                    updating = true;
-                    heightBox.Text = Math.Max(1, Math.Min(5000, (int)(width * originalSize.Height / originalSize.Width))).ToString();
-                    updating = false;
-                }
-                catch (Exception)
-                {
-                }
+                updating = true;
+                heightBox.Text = Math.Max(1, Math.Min(5000, width * originalSize.Height / originalSize.Width)).ToString();
+                updating = false;
+            }
+            catch (Exception)
+            {
+                // ignored
             }
         }
 
         private void heightBox_TextChanged(object sender, EventArgs e)
         {
-            if ((!updating) && (ratioCheck.Checked))
+            if (updating || !ratioCheck.Checked) return;
+            try
             {
-                try
-                {
-                    int height = int.Parse(heightBox.Text);
+                int height = int.Parse(heightBox.Text);
 
-                    updating = true;
-                    widthBox.Text = Math.Max(1, Math.Min(5000, (int)(height * originalSize.Width / originalSize.Height))).ToString();
-                    updating = false;
-                }
-                catch (Exception)
-                {
-                }
+                updating = true;
+                widthBox.Text = Math.Max(1, Math.Min(5000, height * originalSize.Width / originalSize.Height)).ToString();
+                updating = false;
+            }
+            catch (Exception)
+            {
+                // ignored
             }
         }
 
@@ -143,13 +156,26 @@ namespace Diploma.ImageProcessing
                 }
 
                 // close the dialog
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(this, "Incorrect values are entered!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new  CultureInfo("uk")))
+                {
+                    MessageBox.Show(this, @"Введено неправильні значення!", @"Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show(this, @"Incorrect values are entered!", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        private void ResizeForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

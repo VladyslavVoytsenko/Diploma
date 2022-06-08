@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Diploma.ImageProcessing
@@ -22,9 +23,9 @@ namespace Diploma.ImageProcessing
         private float fillL;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
+        private static extern void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         public Bitmap Image
         {
             set => filterPreview.Image = value;
@@ -53,6 +54,19 @@ namespace Diploma.ImageProcessing
             filterPreview.Filter = filter;
         }
 
+        private void ReturnMessageBox(Control textBox)
+        {
+            if (!textBox.Text.Contains(',')) return;
+            if (Equals(Thread.CurrentThread.CurrentUICulture, new  CultureInfo("uk")))
+            {
+                MessageBox.Show(this, @"Неправильний десятковий роздільник, використовуйте крапку ( . ) замість коми ( , )!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(this, @"Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        
         private void UpdateFilter()
         {
             filter.Hue = hue;
@@ -91,11 +105,8 @@ namespace Diploma.ImageProcessing
         {
             try
             {
-                if (this.minSBox.Text.Contains(','))
-                {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                ReturnMessageBox(minSBox);
+                
 
                 saturation.Min = (float) double.Parse(minSBox.Text, CultureInfo.InvariantCulture);
                 saturationSlider.Min = (int)(saturation.Min * 255);
@@ -111,11 +122,7 @@ namespace Diploma.ImageProcessing
         {
             try
             {
-                if (this.maxSBox.Text.Contains(','))
-                {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                ReturnMessageBox(maxSBox);
 
                 saturation.Max = (float) double.Parse(maxSBox.Text, CultureInfo.InvariantCulture);
                 saturationSlider.Max = (int)(saturation.Max * 255);
@@ -131,11 +138,8 @@ namespace Diploma.ImageProcessing
         {
             try
             {
-                if (this.minLBox.Text.Contains(','))
-                {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                ReturnMessageBox(minLBox);
+                
                 luminance.Min = (float) double.Parse(minLBox.Text, CultureInfo.InvariantCulture);
                 luminanceSlider.Min = (int)(luminance.Min * 255);
                 UpdateFilter();
@@ -150,11 +154,8 @@ namespace Diploma.ImageProcessing
         {
             try
             {
-                if (this.maxLBox.Text.Contains(','))
-                {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                ReturnMessageBox(maxLBox);
+                
                 luminance.Max = (float) double.Parse(maxLBox.Text, CultureInfo.InvariantCulture);
                 luminanceSlider.Max = (int)(luminance.Max * 255);
                 UpdateFilter();
@@ -200,11 +201,8 @@ namespace Diploma.ImageProcessing
         {
             try
             {
-                if (this.fillSBox.Text.Contains(','))
-                {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                ReturnMessageBox(fillSBox);
+                
                 fillS = (float) double.Parse(fillSBox.Text, CultureInfo.InvariantCulture);
                 UpdateFillColor();
             }
@@ -218,11 +216,8 @@ namespace Diploma.ImageProcessing
         {
             try
             {
-                if (this.fillLBox.Text.Contains(','))
-                {
-                    MessageBox.Show(this, "Incorrect decimal separator, use dot ( . ) instead of comma ( , )!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                ReturnMessageBox(fillLBox);
+                
                 fillL = (float) double.Parse(fillLBox.Text, CultureInfo.InvariantCulture);
                 UpdateFillColor();
             }
@@ -233,9 +228,7 @@ namespace Diploma.ImageProcessing
         }
         private void UpdateFillColor()
         {
-            int v;
-
-            v = (int)(fillS * 255);
+            var v = (int)(fillS * 255);
             saturationSlider.FillColor = Color.FromArgb(v, v, v);
             v = (int)(fillL * 255);
             luminanceSlider.FillColor = Color.FromArgb(v, v, v);
@@ -273,11 +266,6 @@ namespace Diploma.ImageProcessing
 
             filter.FillOutsideRange = (fillTypeCombo.SelectedIndex == 0);
             filterPreview.RefreshFilter();
-        }
-
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void HslFilteringForm_MouseDown(object sender, MouseEventArgs e)

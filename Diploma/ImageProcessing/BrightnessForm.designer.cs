@@ -37,7 +37,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.brightnessTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brightnessTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -93,23 +93,25 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.brightnessTrackBar);
             this.Controls.Add(this.brightnessBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BrightnessForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BrightnessForm_MouseDown);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize) (this.brightnessTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brightnessTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

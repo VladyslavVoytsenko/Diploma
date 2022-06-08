@@ -2,13 +2,18 @@
 using AForge.Imaging.Textures;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Diploma.ImageProcessing
 {
     public partial class PerlinNoiseForm : Form
     {
-        private IFilter filter = null;
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private int imageWidth;
         private int imageHeight;
@@ -23,11 +28,9 @@ namespace Diploma.ImageProcessing
             }
         }
 
-        public IFilter Filter
-        {
-            get { return filter; }
-        }
+        public IFilter Filter { get; private set; }
 
+        [Obsolete("Obsolete")]
         public PerlinNoiseForm()
         {
             InitializeComponent();
@@ -35,41 +38,49 @@ namespace Diploma.ImageProcessing
             effectComboBox.SelectedIndex = 0;
         }
 
+        [Obsolete("Obsolete")]
         private void effectComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (effectComboBox.SelectedIndex)
             {
                 case 0:			// Marble effect
-                    filter = new Texturer(new MarbleTexture(imageWidth / 96, imageHeight / 48), 0.7f, 0.3f);
+                    Filter = new Texturer(new MarbleTexture(imageWidth / 96, imageHeight / 48), 0.7f, 0.3f);
                     break;
                 case 1:			// Wood effect
-                    filter = new Texturer(new WoodTexture(), 0.7f, 0.3f);
+                    Filter = new Texturer(new WoodTexture(), 0.7f, 0.3f);
                     break;
                 case 2:			// Clouds
-                    filter = new Texturer(new CloudsTexture(), 0.7f, 0.3f);
+                    Filter = new Texturer(new CloudsTexture(), 0.7f, 0.3f);
                     break;
                 case 3:			// Labyrinth
-                    filter = new Texturer(new LabyrinthTexture(), 0.7f, 0.3f);
+                    Filter = new Texturer(new LabyrinthTexture(), 0.7f, 0.3f);
                     break;
                 case 4:			// Textile
-                    filter = new Texturer(new TextileTexture(), 0.7f, 0.3f);
+                    Filter = new Texturer(new TextileTexture(), 0.7f, 0.3f);
                     break;
                 case 5:			// Dirty
-                    TexturedFilter f = new TexturedFilter(new CloudsTexture(), new Sepia());
+                    var f = new TexturedFilter(new CloudsTexture(), new Sepia())
+                    {
+                        PreserveLevel = 0.30f,
+                        FilterLevel = 0.90f
+                    };
 
-                    f.PreserveLevel = 0.30f;
-                    f.FilterLevel = 0.90f;
-
-                    filter = f;
+                    Filter = f;
 
                     break;
                 case 6:			// Rusty
-                    filter = new TexturedFilter(new CloudsTexture(), new Sepia(), new GrayscaleBT709());
+                    Filter = new TexturedFilter(new CloudsTexture(), new Sepia(), new GrayscaleBT709());
 
                     break;
             }
 
-            filterPreview.Filter = filter;
+            filterPreview.Filter = Filter;
+        }
+
+        private void PerlinNoiseForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

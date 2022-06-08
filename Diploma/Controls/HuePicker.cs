@@ -15,15 +15,15 @@ namespace Diploma.Controls
     public class HuePicker : Control
     {
         private HuePickerType type = HuePickerType.Value;
-        private Pen blackPen;
-        private Brush blackBrush;
-        private Pen whitePen;
-        private Brush whiteBrush;
+        private readonly Pen blackPen;
+        private readonly Brush blackBrush;
+        private readonly Pen whitePen;
+        private readonly Brush whiteBrush;
         private Point ptCenter = new Point(0, 0);
         private Point ptMin = new Point(0, 0);
         private Point ptMax = new Point(0, 0);
-        private int trackMode = 0;
-        private int min = 0;
+        private int trackMode;
+        private int min;
         private int max = 359;
 
         // Values changed event
@@ -33,7 +33,7 @@ namespace Diploma.Controls
         [DefaultValue(0)]
         public int Min
         {
-            get { return min; }
+            get => min;
             set
             {
                 min = Math.Max(0, Math.Min(359, value));
@@ -45,7 +45,7 @@ namespace Diploma.Controls
         [DefaultValue(359)]
         public int Max
         {
-            get { return max; }
+            get => max;
             set
             {
                 max = Math.Max(0, Math.Min(359, value));
@@ -57,7 +57,7 @@ namespace Diploma.Controls
         [DefaultValue(HuePickerType.Value)]
         public HuePickerType Type
         {
-            get { return type; }
+            get => type;
             set
             {
                 type = value;
@@ -95,9 +95,9 @@ namespace Diploma.Controls
         // Initialize component
         private void InitializeComponent()
         {
-            MouseUp += new MouseEventHandler(HSLPicker_MouseUp);
-            MouseMove += new MouseEventHandler(HSLPicker_MouseMove);
-            MouseDown += new MouseEventHandler(HSLPicker_MouseDown);
+            MouseUp += HSLPicker_MouseUp;
+            MouseMove += HSLPicker_MouseMove;
+            MouseDown += HSLPicker_MouseDown;
         }
 
         // Paint control
@@ -105,13 +105,12 @@ namespace Diploma.Controls
         {
             Graphics g = pe.Graphics;
             Rectangle rc = ClientRectangle;
-            Rectangle rcPie;
             Brush brush;
             RGB rgb = new RGB();
             HSL hsl = new HSL();
 
             // get pie rectangle
-            rcPie = new Rectangle(4, 4, Math.Min(rc.Right, rc.Bottom) - 8, Math.Min(rc.Right, rc.Bottom) - 8);
+            var rcPie = new Rectangle(4, 4, Math.Min(rc.Right, rc.Bottom) - 8, Math.Min(rc.Right, rc.Bottom) - 8);
 
             // init HSL value
             hsl.Luminance = (float)0.5;
@@ -237,7 +236,7 @@ namespace Diploma.Controls
 
                 // notify client
                 if (ValuesChanged != null)
-                    ValuesChanged(this, new EventArgs());
+                    ValuesChanged(this, EventArgs.Empty);
             }
         }
 

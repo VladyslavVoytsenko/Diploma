@@ -1,37 +1,43 @@
 ﻿using AForge.Imaging.Filters;
 using System;
 using System.Drawing;
+using System.Globalization;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Diploma.ImageProcessing
 {
     public partial class CustomRotationForm : Form
     {
-        private BaseRotateFilter filter = null;
-        private int redColor = 0;
-        private int greenColor = 0;
-        private int blueColor = 0;
-        private bool updating = false;
+        private BaseRotateFilter filter;
+        private int redColor;
+        private int greenColor;
+        private int blueColor;
+        private bool updating;
 
-        public IFilter Filter
-        {
-            get { return filter; }
-        }
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+
+        public IFilter Filter => filter;
 
         public CustomRotationForm()
         {
             InitializeComponent();
 
-            angleBox.Text = "45";
-            redBox.Text = "0";
-            greenBox.Text = "0";
-            blueBox.Text = "0";
+            angleBox.Text = @"45";
+            redBox.Text = @"0";
+            greenBox.Text = @"0";
+            blueBox.Text = @"0";
 
             UpdateFillColor();
 
             methodCombo.SelectedIndex = 1;
         }
-
+        
         private void UpdateFillColor()
         {
             try
@@ -42,47 +48,56 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SPixel", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(ex.Message,
+                    Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk"))
+                        ? @"Редактор зображень"
+                        : @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        private bool CheckRGBValue(int color)
+        private bool CheckRgbValue(int color)
         {
             if (color >= 0 && color <= 255)
             {
                 return true;
             }
+
+            if (Equals(Thread.CurrentThread.CurrentUICulture, new  CultureInfo("uk")))
+            {
+                MessageBox.Show(this, @"Введено неправильне значення RGB, має бути 0-255!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
             else
             {
-                MessageBox.Show(this, "Incorrect RGB value entered, must be 0-255!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
+                MessageBox.Show(this, @"Incorrect RGB value entered, must be 0-255!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            
+            return false;
         }
 
         private void redBox_TextChanged(object sender, EventArgs e)
         {
             redColor = int.Parse(redBox.Text);
-            if (!updating && CheckRGBValue(redColor))
+            if (!updating && CheckRgbValue(redColor))
                 UpdateFillColor();
         }
 
         private void greenBox_TextChanged(object sender, EventArgs e)
         {
             greenColor = int.Parse(greenBox.Text);
-            if (!updating && CheckRGBValue(greenColor))
+            if (!updating && CheckRgbValue(greenColor))
                 UpdateFillColor();
         }
 
         private void blueBox_TextChanged(object sender, EventArgs e)
         {
             blueColor = int.Parse(blueBox.Text);
-            if (!updating && CheckRGBValue(blueColor))
+            if (!updating && CheckRgbValue(blueColor))
                 UpdateFillColor();
         }
 
         private void colorBox_MouseMove(object sender, MouseEventArgs e)
         {
-            //colorBox.Cursor = new Cursor(new System.IO.MemoryStream(Diploma.Properties.Resources.colorpicker));
+            colorBox.Cursor = Cursors.Arrow;
         }
 
         private void colorBox_MouseDown(object sender, MouseEventArgs e)
@@ -101,7 +116,7 @@ namespace Diploma.ImageProcessing
 
         private void colorBox_Click(object sender, EventArgs e)
         {
-            this.ActiveControl = redBox;
+            ActiveControl = redBox;
 
             ColorDialog dialog = new ColorDialog();
             dialog.FullOpen = true;
@@ -154,13 +169,26 @@ namespace Diploma.ImageProcessing
                 filter.KeepSize = keepSizeCheck.Checked;
 
                 // close dialog
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(this, "Incorrect values are entered!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new  CultureInfo("uk")))
+                {
+                    MessageBox.Show(this, @"Введено неправильні значення!", @"Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show(this, @"Incorrect values are entered!", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        private void CustomRotationForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

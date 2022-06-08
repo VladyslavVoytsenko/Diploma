@@ -1,6 +1,7 @@
 ﻿using AForge.Imaging.Filters;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Diploma.ImageProcessing
@@ -9,15 +10,17 @@ namespace Diploma.ImageProcessing
     {
         private OilPainting filter = new OilPainting(7);
 
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         public Bitmap Image
         {
-            set { filterPreview.Image = value; }
+            set => filterPreview.Image = value;
         }
 
-        public IFilter Filter
-        {
-            get { return filter; }
-        }
+        public IFilter Filter => filter;
 
         public OilPaintingForm()
         {
@@ -43,7 +46,14 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
+        }
+
+        private void OilPaintingForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

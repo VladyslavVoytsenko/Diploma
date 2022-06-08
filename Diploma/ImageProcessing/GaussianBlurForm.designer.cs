@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GaussianBlurForm));
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -45,102 +46,77 @@
             // 
             // cancelButton
             // 
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(233, 194);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 16;
-            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(152, 194);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 15;
-            this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.filterPreview);
-            this.groupBox3.Location = new System.Drawing.Point(282, 5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(170, 175);
-            this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Preview";
             // 
             // filterPreview
             // 
+            resources.ApplyResources(this.filterPreview, "filterPreview");
             this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point(10, 17);
             this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size(150, 150);
-            this.filterPreview.TabIndex = 13;
             // 
             // sizeTrackBar
             // 
+            resources.ApplyResources(this.sizeTrackBar, "sizeTrackBar");
             this.sizeTrackBar.LargeChange = 1;
-            this.sizeTrackBar.Location = new System.Drawing.Point(12, 135);
             this.sizeTrackBar.Maximum = 9;
             this.sizeTrackBar.Name = "sizeTrackBar";
-            this.sizeTrackBar.Size = new System.Drawing.Size(260, 45);
-            this.sizeTrackBar.TabIndex = 22;
             this.sizeTrackBar.Value = 1;
             this.sizeTrackBar.ValueChanged += new System.EventHandler(this.sizeTrackBar_ValueChanged);
             // 
             // sizeBox
             // 
-            this.sizeBox.Location = new System.Drawing.Point(55, 101);
+            resources.ApplyResources(this.sizeBox, "sizeBox");
             this.sizeBox.Name = "sizeBox";
-            this.sizeBox.Size = new System.Drawing.Size(60, 20);
-            this.sizeBox.TabIndex = 21;
             this.sizeBox.TextChanged += new System.EventHandler(this.sizeBox_TextChanged);
             // 
             // sigmaBox
             // 
-            this.sigmaBox.Location = new System.Drawing.Point(55, 10);
+            resources.ApplyResources(this.sigmaBox, "sigmaBox");
             this.sigmaBox.Name = "sigmaBox";
-            this.sigmaBox.Size = new System.Drawing.Size(60, 20);
-            this.sigmaBox.TabIndex = 18;
             this.sigmaBox.TextChanged += new System.EventHandler(this.sigmaBox_TextChanged);
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 104);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 15);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Size:";
             // 
             // sigmaTrackBar
             // 
-            this.sigmaTrackBar.Location = new System.Drawing.Point(12, 44);
+            resources.ApplyResources(this.sigmaTrackBar, "sigmaTrackBar");
             this.sigmaTrackBar.Maximum = 50;
             this.sigmaTrackBar.Name = "sigmaTrackBar";
-            this.sigmaTrackBar.Size = new System.Drawing.Size(260, 45);
-            this.sigmaTrackBar.TabIndex = 19;
             this.sigmaTrackBar.TickFrequency = 2;
             this.sigmaTrackBar.ValueChanged += new System.EventHandler(this.sigmaTrackBar_ValueChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 13);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 19);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Sigma:";
             // 
             // GaussianBlurForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(461, 229);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.sizeTrackBar);
             this.Controls.Add(this.sizeBox);
@@ -150,14 +126,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GaussianBlurForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gaussian Blur";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GaussianBlurForm_MouseDown);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sizeTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sigmaTrackBar)).EndInit();

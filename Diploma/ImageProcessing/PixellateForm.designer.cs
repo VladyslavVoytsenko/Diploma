@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PixellateForm));
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.syncCheck = new System.Windows.Forms.CheckBox();
@@ -47,117 +48,89 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(209, 240);
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 22;
-            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(128, 240);
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 21;
-            this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             // 
             // syncCheck
             // 
             this.syncCheck.Checked = true;
             this.syncCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.syncCheck.Location = new System.Drawing.Point(157, 57);
+            resources.ApplyResources(this.syncCheck, "syncCheck");
             this.syncCheck.Name = "syncCheck";
-            this.syncCheck.Size = new System.Drawing.Size(55, 24);
-            this.syncCheck.TabIndex = 30;
-            this.syncCheck.Text = "Sync";
             // 
             // heightTrackBar
             // 
-            this.heightTrackBar.Location = new System.Drawing.Point(12, 166);
+            resources.ApplyResources(this.heightTrackBar, "heightTrackBar");
             this.heightTrackBar.Maximum = 32;
             this.heightTrackBar.Minimum = 2;
             this.heightTrackBar.Name = "heightTrackBar";
-            this.heightTrackBar.Size = new System.Drawing.Size(200, 45);
-            this.heightTrackBar.TabIndex = 29;
             this.heightTrackBar.Value = 2;
             this.heightTrackBar.Scroll += new System.EventHandler(this.heightTrackBar_Scroll);
             // 
             // heightBox
             // 
-            this.heightBox.Location = new System.Drawing.Point(82, 139);
+            resources.ApplyResources(this.heightBox, "heightBox");
             this.heightBox.Name = "heightBox";
             this.heightBox.ReadOnly = true;
-            this.heightBox.Size = new System.Drawing.Size(50, 20);
-            this.heightBox.TabIndex = 28;
             this.heightBox.TabStop = false;
             this.heightBox.TextChanged += new System.EventHandler(this.heightBox_TextChanged);
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 142);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 16);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Pixel Height:";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.filterPreview);
-            this.groupBox1.Location = new System.Drawing.Point(232, 54);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(170, 175);
-            this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Preview";
             // 
             // filterPreview
             // 
             this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point(10, 17);
+            resources.ApplyResources(this.filterPreview, "filterPreview");
             this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size(150, 150);
-            this.filterPreview.TabIndex = 0;
             this.filterPreview.TabStop = false;
             // 
             // widthTrackBar
             // 
-            this.widthTrackBar.Location = new System.Drawing.Point(12, 86);
+            resources.ApplyResources(this.widthTrackBar, "widthTrackBar");
             this.widthTrackBar.Maximum = 32;
             this.widthTrackBar.Minimum = 2;
             this.widthTrackBar.Name = "widthTrackBar";
-            this.widthTrackBar.Size = new System.Drawing.Size(200, 45);
-            this.widthTrackBar.TabIndex = 25;
             this.widthTrackBar.Value = 2;
             this.widthTrackBar.Scroll += new System.EventHandler(this.widthTrackBar_Scroll);
             // 
             // widthBox
             // 
-            this.widthBox.Location = new System.Drawing.Point(82, 59);
+            resources.ApplyResources(this.widthBox, "widthBox");
             this.widthBox.Name = "widthBox";
             this.widthBox.ReadOnly = true;
-            this.widthBox.Size = new System.Drawing.Size(50, 20);
-            this.widthBox.TabIndex = 24;
             this.widthBox.TabStop = false;
             this.widthBox.TextChanged += new System.EventHandler(this.widthBox_TextChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 62);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 14);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Pixel Width:";
             // 
             // PixellateForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(414, 276);
             this.Controls.Add(this.syncCheck);
             this.Controls.Add(this.heightTrackBar);
             this.Controls.Add(this.heightBox);
@@ -168,14 +141,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PixellateForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pixellate";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PixellateForm_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.heightTrackBar)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.widthTrackBar)).EndInit();

@@ -1,4 +1,6 @@
-﻿namespace Diploma.ImageProcessing
+﻿using System;
+
+namespace Diploma.ImageProcessing
 {
     partial class PerlinNoiseForm
     {
@@ -26,8 +28,10 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        [Obsolete("Obsolete")]
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PerlinNoiseForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.filterPreview = new Diploma.Controls.FilterPreview();
             this.effectComboBox = new System.Windows.Forms.ComboBox();
@@ -39,88 +43,71 @@
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.filterPreview);
-            this.groupBox1.Location = new System.Drawing.Point(225, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(170, 175);
-            this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Preview";
             // 
             // filterPreview
             // 
+            resources.ApplyResources(this.filterPreview, "filterPreview");
             this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point(10, 17);
             this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size(150, 150);
-            this.filterPreview.TabIndex = 0;
             this.filterPreview.TabStop = false;
             // 
             // effectComboBox
             // 
+            resources.ApplyResources(this.effectComboBox, "effectComboBox");
             this.effectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.effectComboBox.Items.AddRange(new object[] {
-            "Marble",
-            "Wood",
-            "Clouds",
-            "Labyrinth",
-            "Textile",
-            "Dirty",
-            "Rusty"});
-            this.effectComboBox.Location = new System.Drawing.Point(60, 24);
+            resources.GetString("effectComboBox.Items"),
+            resources.GetString("effectComboBox.Items1"),
+            resources.GetString("effectComboBox.Items2"),
+            resources.GetString("effectComboBox.Items3"),
+            resources.GetString("effectComboBox.Items4"),
+            resources.GetString("effectComboBox.Items5"),
+            resources.GetString("effectComboBox.Items6")});
             this.effectComboBox.Name = "effectComboBox";
-            this.effectComboBox.Size = new System.Drawing.Size(140, 21);
-            this.effectComboBox.TabIndex = 9;
             this.effectComboBox.SelectedIndexChanged += new System.EventHandler(this.effectComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 27);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Effect:";
             // 
             // cancelButton
             // 
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(115, 163);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 18;
-            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(34, 163);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 17;
-            this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             // 
             // PerlinNoiseForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(409, 198);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.effectComboBox);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PerlinNoiseForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Perlin Noise";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PerlinNoiseForm_MouseDown);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

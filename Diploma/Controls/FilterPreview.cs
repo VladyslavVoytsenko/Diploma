@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Diploma.Controls
@@ -26,7 +25,6 @@ namespace Diploma.Controls
         [Browsable(false)]
         public Bitmap Image
         {
-            get => image;
             set
             {
                 image = value;
@@ -64,7 +62,6 @@ namespace Diploma.Controls
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw | ControlStyles.DoubleBuffer | ControlStyles.UserPaint, true);
 
             // load cursors
-            Assembly assembly = this.GetType().Assembly;
             cursorHand = Cursors.Hand;
             cursorHandMove = Cursors.WaitCursor;
         }
@@ -170,7 +167,7 @@ namespace Diploma.Controls
         }
 
         // On mouse move
-        private void FilterPreview_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void FilterPreview_MouseMove(object sender, MouseEventArgs e)
         {
             if (image == null) return;
             if (!tracking)
@@ -203,7 +200,7 @@ namespace Diploma.Controls
         }
 
         // On mouse button down
-        private void FilterPreview_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void FilterPreview_MouseDown(object sender, MouseEventArgs e)
         {
             if ((image == null) || (e.Button != MouseButtons.Left)) return;
             // start tracking
@@ -230,7 +227,7 @@ namespace Diploma.Controls
         }
 
         // On mouse button up
-        private void FilterPreview_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void FilterPreview_MouseUp(object sender, MouseEventArgs e)
         {
             if (!tracking) return;
             // stop tracking

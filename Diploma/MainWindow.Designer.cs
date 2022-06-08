@@ -1,4 +1,6 @@
-﻿namespace Diploma
+﻿using System;
+
+namespace Diploma
 {
     partial class MainWindow
     {
@@ -26,6 +28,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        [Obsolete("Obsolete")]
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
@@ -44,7 +47,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(18)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (11)))), ((int) (((byte) (7)))), ((int) (((byte) (18)))));
             this.panel1.Controls.Add(this.SettingsBtn);
             this.panel1.Controls.Add(this.HomeBtn);
             this.panel1.Controls.Add(this.panel2);
@@ -59,9 +62,9 @@
             this.SettingsBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SettingsBtn.FlatAppearance.BorderSize = 0;
             this.SettingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SettingsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.SettingsBtn.ForeColor = System.Drawing.Color.White;
-            this.SettingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("SettingsBtn.Image")));
+            this.SettingsBtn.Image = ((System.Drawing.Image) (resources.GetObject("SettingsBtn.Image")));
             this.SettingsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SettingsBtn.Location = new System.Drawing.Point(0, 533);
             this.SettingsBtn.Name = "SettingsBtn";
@@ -70,17 +73,15 @@
             this.SettingsBtn.TabIndex = 3;
             this.SettingsBtn.UseVisualStyleBackColor = true;
             this.SettingsBtn.Click += new System.EventHandler(this.SettingsBtn_Click);
-            
-            
             // 
             // HomeBtn
             // 
             this.HomeBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.HomeBtn.FlatAppearance.BorderSize = 0;
             this.HomeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HomeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HomeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.HomeBtn.ForeColor = System.Drawing.Color.White;
-            this.HomeBtn.Image = ((System.Drawing.Image)(resources.GetObject("HomeBtn.Image")));
+            this.HomeBtn.Image = ((System.Drawing.Image) (resources.GetObject("HomeBtn.Image")));
             this.HomeBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.HomeBtn.Location = new System.Drawing.Point(0, 50);
             this.HomeBtn.Name = "HomeBtn";
@@ -89,8 +90,6 @@
             this.HomeBtn.TabIndex = 1;
             this.HomeBtn.UseVisualStyleBackColor = true;
             this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
-            
-            
             // 
             // panel2
             // 
@@ -102,7 +101,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(18)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (11)))), ((int) (((byte) (7)))), ((int) (((byte) (18)))));
             this.panel3.Controls.Add(this.btnMinimize);
             this.panel3.Controls.Add(this.btnMaximize);
             this.panel3.Controls.Add(this.BtnClose);
@@ -115,10 +114,10 @@
             // 
             // btnMinimize
             // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
+            this.btnMinimize.Image = ((System.Drawing.Image) (resources.GetObject("btnMinimize.Image")));
             this.btnMinimize.Location = new System.Drawing.Point(981, 3);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(0);
             this.btnMinimize.Name = "btnMinimize";
@@ -129,10 +128,10 @@
             // 
             // btnMaximize
             // 
-            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximize.Image")));
+            this.btnMaximize.Image = ((System.Drawing.Image) (resources.GetObject("btnMaximize.Image")));
             this.btnMaximize.Location = new System.Drawing.Point(1021, 3);
             this.btnMaximize.Margin = new System.Windows.Forms.Padding(0);
             this.btnMaximize.Name = "btnMaximize";
@@ -143,10 +142,10 @@
             // 
             // BtnClose
             // 
-            this.BtnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnClose.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnClose.FlatAppearance.BorderSize = 0;
             this.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnClose.Image = ((System.Drawing.Image)(resources.GetObject("BtnClose.Image")));
+            this.BtnClose.Image = ((System.Drawing.Image) (resources.GetObject("BtnClose.Image")));
             this.BtnClose.Location = new System.Drawing.Point(1061, 3);
             this.BtnClose.Margin = new System.Windows.Forms.Padding(0);
             this.BtnClose.Name = "BtnClose";
@@ -181,7 +180,6 @@
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion

@@ -12,7 +12,8 @@ namespace Diploma
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        [Obsolete("Obsolete")]
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

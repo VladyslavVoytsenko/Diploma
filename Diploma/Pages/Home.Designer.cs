@@ -1,4 +1,5 @@
-﻿using Diploma.Controls;
+﻿using System;
+using Diploma.Controls;
 
 namespace Diploma.Pages
 {
@@ -28,7 +29,7 @@ namespace Diploma.Pages
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        [System.Obsolete]
+        [Obsolete]
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
@@ -52,8 +53,6 @@ namespace Diploma.Pages
             this.FlipHorizontal = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonActualSize = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonFitImages = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonReset = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonSend = new System.Windows.Forms.ToolStripButton();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.StatusLabelMousePosition = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusLabelRGB = new System.Windows.Forms.ToolStripStatusLabel();
@@ -195,13 +194,12 @@ namespace Diploma.Pages
             this.toolStripButtonHUE = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSmooth = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonResize = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonPen = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCustomRotation = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonPixellate = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOilPainting = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonGaussianBlur = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonHSLFiltering = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonPerlinNoise = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.imageDisplay = new Diploma.Controls.DoubleBufferDisplay();
             this.printImage = new System.Drawing.Printing.PrintDocument();
@@ -242,9 +240,7 @@ namespace Diploma.Pages
             this.FlipVertical,
             this.FlipHorizontal,
             this.toolStripButtonActualSize,
-            this.toolStripButtonFitImages,
-            this.toolStripButtonReset,
-            this.toolStripButtonSend});
+            this.toolStripButtonFitImages});
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 
@@ -381,21 +377,6 @@ namespace Diploma.Pages
             this.toolStripButtonFitImages.Name = "toolStripButtonFitImages";
             this.toolStripButtonFitImages.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
-            // toolStripButtonReset
-            // 
-            resources.ApplyResources(this.toolStripButtonReset, "toolStripButtonReset");
-            this.toolStripButtonReset.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButtonReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonReset.Name = "toolStripButtonReset";
-            this.toolStripButtonReset.Click += new System.EventHandler(this.toolStripButtonReset_Click);
-            // 
-            // toolStripButtonSend
-            // 
-            resources.ApplyResources(this.toolStripButtonSend, "toolStripButtonSend");
-            this.toolStripButtonSend.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSend.Name = "toolStripButtonSend";
-            this.toolStripButtonSend.Click += new System.EventHandler(this.toolStripButtonSend_Click);
-            // 
             // statusBar
             // 
             resources.ApplyResources(this.statusBar, "statusBar");
@@ -408,39 +389,34 @@ namespace Diploma.Pages
             // 
             // StatusLabelMousePosition
             // 
-            resources.ApplyResources(this.StatusLabelMousePosition, "StatusLabelMousePosition");
             this.StatusLabelMousePosition.Name = "StatusLabelMousePosition";
+            resources.ApplyResources(this.StatusLabelMousePosition, "StatusLabelMousePosition");
             // 
             // StatusLabelRGB
             // 
-            resources.ApplyResources(this.StatusLabelRGB, "StatusLabelRGB");
             this.StatusLabelRGB.Name = "StatusLabelRGB";
+            resources.ApplyResources(this.StatusLabelRGB, "StatusLabelRGB");
             // 
             // StatusLabelHSL
             // 
-            resources.ApplyResources(this.StatusLabelHSL, "StatusLabelHSL");
             this.StatusLabelHSL.Name = "StatusLabelHSL";
+            resources.ApplyResources(this.StatusLabelHSL, "StatusLabelHSL");
             // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
-            resources.ApplyResources(this.openFileDialog, "openFileDialog");
-            // 
-            // saveFileDialog
-            // 
-            resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.toolStrip1);
             this.panel1.Controls.Add(this.mainMenu);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // mainMenu
             // 
-            resources.ApplyResources(this.mainMenu, "mainMenu");
             this.mainMenu.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.mainMenu, "mainMenu");
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemFile,
             this.MenuItemEdit,
@@ -452,7 +428,6 @@ namespace Diploma.Pages
             // 
             // MenuItemFile
             // 
-            resources.ApplyResources(this.MenuItemFile, "MenuItemFile");
             this.MenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemOpen,
             this.MenuItemReopen,
@@ -464,11 +439,12 @@ namespace Diploma.Pages
             this.toolStripSeparator3,
             this.MenuItemExit});
             this.MenuItemFile.Name = "MenuItemFile";
+            resources.ApplyResources(this.MenuItemFile, "MenuItemFile");
             // 
             // MenuItemOpen
             // 
-            resources.ApplyResources(this.MenuItemOpen, "MenuItemOpen");
             this.MenuItemOpen.Name = "MenuItemOpen";
+            resources.ApplyResources(this.MenuItemOpen, "MenuItemOpen");
             this.MenuItemOpen.Click += new System.EventHandler(this.toolStripButtonOpen_Click);
             // 
             // MenuItemReopen
@@ -479,8 +455,8 @@ namespace Diploma.Pages
             // 
             // toolStripMenuItem1
             // 
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // MenuItemSave
             // 
@@ -496,8 +472,8 @@ namespace Diploma.Pages
             // 
             // toolStripSeparator4
             // 
-            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             this.toolStripSeparator4.Name = "toolStripSeparator4";
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             // 
             // MenuItemPrint
             // 
@@ -507,18 +483,17 @@ namespace Diploma.Pages
             // 
             // toolStripSeparator3
             // 
-            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
             // MenuItemExit
             // 
-            resources.ApplyResources(this.MenuItemExit, "MenuItemExit");
             this.MenuItemExit.Name = "MenuItemExit";
+            resources.ApplyResources(this.MenuItemExit, "MenuItemExit");
             this.MenuItemExit.Click += new System.EventHandler(this.MenuItemExit_Click);
             // 
             // MenuItemEdit
             // 
-            resources.ApplyResources(this.MenuItemEdit, "MenuItemEdit");
             this.MenuItemEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemUndo,
             this.toolStripMenuItem4,
@@ -526,6 +501,7 @@ namespace Diploma.Pages
             this.MenuItemCopy,
             this.MenuItemPaste});
             this.MenuItemEdit.Name = "MenuItemEdit";
+            resources.ApplyResources(this.MenuItemEdit, "MenuItemEdit");
             // 
             // MenuItemUndo
             // 
@@ -535,8 +511,8 @@ namespace Diploma.Pages
             // 
             // toolStripMenuItem4
             // 
-            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             // 
             // MenuItemCut
             // 
@@ -552,13 +528,12 @@ namespace Diploma.Pages
             // 
             // MenuItemPaste
             // 
-            resources.ApplyResources(this.MenuItemPaste, "MenuItemPaste");
             this.MenuItemPaste.Name = "MenuItemPaste";
+            resources.ApplyResources(this.MenuItemPaste, "MenuItemPaste");
             this.MenuItemPaste.Click += new System.EventHandler(this.MenuItemPaste_Click);
             // 
             // MenuItemView
             // 
-            resources.ApplyResources(this.MenuItemView, "MenuItemView");
             this.MenuItemView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemShowToolbar,
             this.MenuItemShowStatusBar,
@@ -578,29 +553,30 @@ namespace Diploma.Pages
             this.toolStripSeparator7,
             this.MenuItemImageProperties});
             this.MenuItemView.Name = "MenuItemView";
+            resources.ApplyResources(this.MenuItemView, "MenuItemView");
             // 
             // MenuItemShowToolbar
             // 
-            resources.ApplyResources(this.MenuItemShowToolbar, "MenuItemShowToolbar");
             this.MenuItemShowToolbar.Checked = true;
             this.MenuItemShowToolbar.CheckOnClick = true;
             this.MenuItemShowToolbar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.MenuItemShowToolbar.Name = "MenuItemShowToolbar";
+            resources.ApplyResources(this.MenuItemShowToolbar, "MenuItemShowToolbar");
             this.MenuItemShowToolbar.Click += new System.EventHandler(this.MenuItemShowToolbar_Click);
             // 
             // MenuItemShowStatusBar
             // 
-            resources.ApplyResources(this.MenuItemShowStatusBar, "MenuItemShowStatusBar");
             this.MenuItemShowStatusBar.Checked = true;
             this.MenuItemShowStatusBar.CheckOnClick = true;
             this.MenuItemShowStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.MenuItemShowStatusBar.Name = "MenuItemShowStatusBar";
+            resources.ApplyResources(this.MenuItemShowStatusBar, "MenuItemShowStatusBar");
             this.MenuItemShowStatusBar.Click += new System.EventHandler(this.MenuItemShowStatusBar_Click);
             // 
             // toolStripSeparator8
             // 
-            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             this.toolStripSeparator8.Name = "toolStripSeparator8";
+            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             // 
             // MenuItemNextImage
             // 
@@ -634,12 +610,11 @@ namespace Diploma.Pages
             // 
             // toolStripMenuItem6
             // 
-            resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
             // 
             // MenuItemZoom
             // 
-            resources.ApplyResources(this.MenuItemZoom, "MenuItemZoom");
             this.MenuItemZoom.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemZoomIn,
             this.MenuItemZoomOut,
@@ -655,86 +630,87 @@ namespace Diploma.Pages
             this.MenuItem200,
             this.MenuItem400,
             this.MenuItem500});
+            resources.ApplyResources(this.MenuItemZoom, "MenuItemZoom");
             this.MenuItemZoom.Name = "MenuItemZoom";
             // 
             // MenuItemZoomIn
             // 
-            resources.ApplyResources(this.MenuItemZoomIn, "MenuItemZoomIn");
             this.MenuItemZoomIn.Name = "MenuItemZoomIn";
+            resources.ApplyResources(this.MenuItemZoomIn, "MenuItemZoomIn");
             this.MenuItemZoomIn.Click += new System.EventHandler(this.toolStripButtonZoomIn_Click);
             // 
             // MenuItemZoomOut
             // 
-            resources.ApplyResources(this.MenuItemZoomOut, "MenuItemZoomOut");
             this.MenuItemZoomOut.Name = "MenuItemZoomOut";
+            resources.ApplyResources(this.MenuItemZoomOut, "MenuItemZoomOut");
             // 
             // toolStripSeparator11
             // 
-            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
             this.toolStripSeparator11.Name = "toolStripSeparator11";
+            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
             // 
             // MenuItem10
             // 
-            resources.ApplyResources(this.MenuItem10, "MenuItem10");
             this.MenuItem10.Name = "MenuItem10";
+            resources.ApplyResources(this.MenuItem10, "MenuItem10");
             this.MenuItem10.Click += new System.EventHandler(this.MenuItem10_Click);
             // 
             // MenuItem25
             // 
-            resources.ApplyResources(this.MenuItem25, "MenuItem25");
             this.MenuItem25.Name = "MenuItem25";
+            resources.ApplyResources(this.MenuItem25, "MenuItem25");
             this.MenuItem25.Click += new System.EventHandler(this.MenuItem25_Click);
             // 
             // MenuItem50
             // 
-            resources.ApplyResources(this.MenuItem50, "MenuItem50");
             this.MenuItem50.Name = "MenuItem50";
+            resources.ApplyResources(this.MenuItem50, "MenuItem50");
             this.MenuItem50.Click += new System.EventHandler(this.MenuItem50_Click);
             // 
             // MenuItem75
             // 
-            resources.ApplyResources(this.MenuItem75, "MenuItem75");
             this.MenuItem75.Name = "MenuItem75";
+            resources.ApplyResources(this.MenuItem75, "MenuItem75");
             this.MenuItem75.Click += new System.EventHandler(this.MenuItem75_Click);
             // 
             // toolStripSeparator9
             // 
-            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
             this.toolStripSeparator9.Name = "toolStripSeparator9";
+            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
             // 
             // MenuItemActualSize
             // 
-            resources.ApplyResources(this.MenuItemActualSize, "MenuItemActualSize");
             this.MenuItemActualSize.Name = "MenuItemActualSize";
+            resources.ApplyResources(this.MenuItemActualSize, "MenuItemActualSize");
             this.MenuItemActualSize.Click += new System.EventHandler(this.MenuItemActualSize_Click);
             // 
             // toolStripSeparator10
             // 
-            resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
             this.toolStripSeparator10.Name = "toolStripSeparator10";
+            resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
             // 
             // MenuItem150
             // 
-            resources.ApplyResources(this.MenuItem150, "MenuItem150");
             this.MenuItem150.Name = "MenuItem150";
+            resources.ApplyResources(this.MenuItem150, "MenuItem150");
             this.MenuItem150.Click += new System.EventHandler(this.MenuItem150_Click);
             // 
             // MenuItem200
             // 
-            resources.ApplyResources(this.MenuItem200, "MenuItem200");
             this.MenuItem200.Name = "MenuItem200";
+            resources.ApplyResources(this.MenuItem200, "MenuItem200");
             this.MenuItem200.Click += new System.EventHandler(this.MenuItem200_Click);
             // 
             // MenuItem400
             // 
-            resources.ApplyResources(this.MenuItem400, "MenuItem400");
             this.MenuItem400.Name = "MenuItem400";
+            resources.ApplyResources(this.MenuItem400, "MenuItem400");
             this.MenuItem400.Click += new System.EventHandler(this.MenuItem400_Click);
             // 
             // MenuItem500
             // 
-            resources.ApplyResources(this.MenuItem500, "MenuItem500");
             this.MenuItem500.Name = "MenuItem500";
+            resources.ApplyResources(this.MenuItem500, "MenuItem500");
             this.MenuItem500.Click += new System.EventHandler(this.MenuItem500_Click);
             // 
             // MenuItemFullScreen
@@ -751,29 +727,29 @@ namespace Diploma.Pages
             // 
             // toolStripMenuItem7
             // 
-            resources.ApplyResources(this.toolStripMenuItem7, "toolStripMenuItem7");
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            resources.ApplyResources(this.toolStripMenuItem7, "toolStripMenuItem7");
             // 
             // MenuItemCenterImages
             // 
-            resources.ApplyResources(this.MenuItemCenterImages, "MenuItemCenterImages");
             this.MenuItemCenterImages.Checked = true;
             this.MenuItemCenterImages.CheckOnClick = true;
             this.MenuItemCenterImages.CheckState = System.Windows.Forms.CheckState.Checked;
             this.MenuItemCenterImages.Name = "MenuItemCenterImages";
+            resources.ApplyResources(this.MenuItemCenterImages, "MenuItemCenterImages");
             this.MenuItemCenterImages.Click += new System.EventHandler(this.MenuItemCenterImages_Click);
             // 
             // MenuItemFitImages
             // 
-            resources.ApplyResources(this.MenuItemFitImages, "MenuItemFitImages");
             this.MenuItemFitImages.CheckOnClick = true;
             this.MenuItemFitImages.Name = "MenuItemFitImages";
+            resources.ApplyResources(this.MenuItemFitImages, "MenuItemFitImages");
             this.MenuItemFitImages.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator7
             // 
-            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
             this.toolStripSeparator7.Name = "toolStripSeparator7";
+            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
             // 
             // MenuItemImageProperties
             // 
@@ -783,7 +759,6 @@ namespace Diploma.Pages
             // 
             // MenuItemImage
             // 
-            resources.ApplyResources(this.MenuItemImage, "MenuItemImage");
             this.MenuItemImage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemRotateLeft,
             this.MenuItemRotateRight,
@@ -795,63 +770,63 @@ namespace Diploma.Pages
             this.MenuItemResize,
             this.MenuItemCrop});
             this.MenuItemImage.Name = "MenuItemImage";
+            resources.ApplyResources(this.MenuItemImage, "MenuItemImage");
             // 
             // MenuItemRotateLeft
             // 
-            resources.ApplyResources(this.MenuItemRotateLeft, "MenuItemRotateLeft");
             this.MenuItemRotateLeft.Name = "MenuItemRotateLeft";
+            resources.ApplyResources(this.MenuItemRotateLeft, "MenuItemRotateLeft");
             this.MenuItemRotateLeft.Click += new System.EventHandler(this.toolStripButtonRotateLeft_Click);
             // 
             // MenuItemRotateRight
             // 
-            resources.ApplyResources(this.MenuItemRotateRight, "MenuItemRotateRight");
             this.MenuItemRotateRight.Name = "MenuItemRotateRight";
+            resources.ApplyResources(this.MenuItemRotateRight, "MenuItemRotateRight");
             this.MenuItemRotateRight.Click += new System.EventHandler(this.toolStripButtonRotateRight_Click);
             // 
             // MenuItemCustomRotation
             // 
-            resources.ApplyResources(this.MenuItemCustomRotation, "MenuItemCustomRotation");
             this.MenuItemCustomRotation.Name = "MenuItemCustomRotation";
+            resources.ApplyResources(this.MenuItemCustomRotation, "MenuItemCustomRotation");
             this.MenuItemCustomRotation.Click += new System.EventHandler(this.toolStripButtonCustomRotation_Click);
             // 
             // toolStripSeparator6
             // 
-            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             this.toolStripSeparator6.Name = "toolStripSeparator6";
+            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             // 
             // MenuItemHorizontalFlip
             // 
-            resources.ApplyResources(this.MenuItemHorizontalFlip, "MenuItemHorizontalFlip");
             this.MenuItemHorizontalFlip.Name = "MenuItemHorizontalFlip";
+            resources.ApplyResources(this.MenuItemHorizontalFlip, "MenuItemHorizontalFlip");
             this.MenuItemHorizontalFlip.Click += new System.EventHandler(this.FlipHorizontal_Click);
             // 
             // MenuItemVerticalFlip
             // 
-            resources.ApplyResources(this.MenuItemVerticalFlip, "MenuItemVerticalFlip");
             this.MenuItemVerticalFlip.Name = "MenuItemVerticalFlip";
+            resources.ApplyResources(this.MenuItemVerticalFlip, "MenuItemVerticalFlip");
             this.MenuItemVerticalFlip.Click += new System.EventHandler(this.FlipVertical_Click);
             // 
             // toolStripMenuItem5
             // 
-            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
             // 
             // MenuItemResize
             // 
-            resources.ApplyResources(this.MenuItemResize, "MenuItemResize");
             this.MenuItemResize.Name = "MenuItemResize";
+            resources.ApplyResources(this.MenuItemResize, "MenuItemResize");
             this.MenuItemResize.Click += new System.EventHandler(this.toolStripButtonResize_Click);
             // 
             // MenuItemCrop
             // 
-            resources.ApplyResources(this.MenuItemCrop, "MenuItemCrop");
             this.MenuItemCrop.CheckOnClick = true;
             this.MenuItemCrop.Name = "MenuItemCrop";
+            resources.ApplyResources(this.MenuItemCrop, "MenuItemCrop");
             this.MenuItemCrop.Click += new System.EventHandler(this.toolStripButtonCrop_Click);
             // 
             // MenuItemAdjustments
             // 
-            resources.ApplyResources(this.MenuItemAdjustments, "MenuItemAdjustments");
             this.MenuItemAdjustments.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemColorFiltering,
             this.toolStripSeparator17,
@@ -865,21 +840,21 @@ namespace Diploma.Pages
             this.MenuItemHSLFiltering,
             this.MenuItemHueModifier});
             this.MenuItemAdjustments.Name = "MenuItemAdjustments";
+            resources.ApplyResources(this.MenuItemAdjustments, "MenuItemAdjustments");
             // 
             // MenuItemColorFiltering
             // 
-            resources.ApplyResources(this.MenuItemColorFiltering, "MenuItemColorFiltering");
             this.MenuItemColorFiltering.Name = "MenuItemColorFiltering";
+            resources.ApplyResources(this.MenuItemColorFiltering, "MenuItemColorFiltering");
             this.MenuItemColorFiltering.Click += new System.EventHandler(this.toolStripButtonColorFiltering_Click);
             // 
             // toolStripSeparator17
             // 
-            resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             this.toolStripSeparator17.Name = "toolStripSeparator17";
+            resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             // 
             // MenuItemChannels
             // 
-            resources.ApplyResources(this.MenuItemChannels, "MenuItemChannels");
             this.MenuItemChannels.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemChannelsFiltering,
             this.toolStripSeparator14,
@@ -887,85 +862,85 @@ namespace Diploma.Pages
             this.MenuItemExtractGreenChannel,
             this.MenuItemExtractBlueChannel});
             this.MenuItemChannels.Name = "MenuItemChannels";
+            resources.ApplyResources(this.MenuItemChannels, "MenuItemChannels");
             // 
             // MenuItemChannelsFiltering
             // 
-            resources.ApplyResources(this.MenuItemChannelsFiltering, "MenuItemChannelsFiltering");
             this.MenuItemChannelsFiltering.Name = "MenuItemChannelsFiltering";
+            resources.ApplyResources(this.MenuItemChannelsFiltering, "MenuItemChannelsFiltering");
             this.MenuItemChannelsFiltering.Click += new System.EventHandler(this.MenuItemChannelsFiltering_Click);
             // 
             // toolStripSeparator14
             // 
-            resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
             this.toolStripSeparator14.Name = "toolStripSeparator14";
+            resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
             // 
             // MenuItemExtractRedChannel
             // 
-            resources.ApplyResources(this.MenuItemExtractRedChannel, "MenuItemExtractRedChannel");
             this.MenuItemExtractRedChannel.Name = "MenuItemExtractRedChannel";
+            resources.ApplyResources(this.MenuItemExtractRedChannel, "MenuItemExtractRedChannel");
             this.MenuItemExtractRedChannel.Click += new System.EventHandler(this.MenuItemExtractRedChannel_Click);
             // 
             // MenuItemExtractGreenChannel
             // 
-            resources.ApplyResources(this.MenuItemExtractGreenChannel, "MenuItemExtractGreenChannel");
             this.MenuItemExtractGreenChannel.Name = "MenuItemExtractGreenChannel";
+            resources.ApplyResources(this.MenuItemExtractGreenChannel, "MenuItemExtractGreenChannel");
             this.MenuItemExtractGreenChannel.Click += new System.EventHandler(this.MenuItemExtractGreenChannel_Click);
             // 
             // MenuItemExtractBlueChannel
             // 
-            resources.ApplyResources(this.MenuItemExtractBlueChannel, "MenuItemExtractBlueChannel");
             this.MenuItemExtractBlueChannel.Name = "MenuItemExtractBlueChannel";
+            resources.ApplyResources(this.MenuItemExtractBlueChannel, "MenuItemExtractBlueChannel");
             this.MenuItemExtractBlueChannel.Click += new System.EventHandler(this.MenuItemExtractBlueChannel_Click);
             // 
             // toolStripSeparator16
             // 
-            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             this.toolStripSeparator16.Name = "toolStripSeparator16";
+            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             // 
             // MenuItemContrast
             // 
-            resources.ApplyResources(this.MenuItemContrast, "MenuItemContrast");
             this.MenuItemContrast.Name = "MenuItemContrast";
+            resources.ApplyResources(this.MenuItemContrast, "MenuItemContrast");
             this.MenuItemContrast.Click += new System.EventHandler(this.toolStripButtonContrast_Click);
             // 
             // MenuItemBrightness
             // 
-            resources.ApplyResources(this.MenuItemBrightness, "MenuItemBrightness");
             this.MenuItemBrightness.Name = "MenuItemBrightness";
+            resources.ApplyResources(this.MenuItemBrightness, "MenuItemBrightness");
             this.MenuItemBrightness.Click += new System.EventHandler(this.toolStripButtonBrightness_Click);
             // 
             // MenuItemSaturation
             // 
-            resources.ApplyResources(this.MenuItemSaturation, "MenuItemSaturation");
             this.MenuItemSaturation.Name = "MenuItemSaturation";
+            resources.ApplyResources(this.MenuItemSaturation, "MenuItemSaturation");
             this.MenuItemSaturation.Click += new System.EventHandler(this.toolStripButtonSaturation_Click);
             // 
             // MenuItemGammaCorrection
             // 
-            resources.ApplyResources(this.MenuItemGammaCorrection, "MenuItemGammaCorrection");
             this.MenuItemGammaCorrection.Name = "MenuItemGammaCorrection";
+            resources.ApplyResources(this.MenuItemGammaCorrection, "MenuItemGammaCorrection");
             this.MenuItemGammaCorrection.Click += new System.EventHandler(this.MenuItemGammaCorrection_Click);
             // 
             // toolStripSeparator5
             // 
-            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             this.toolStripSeparator5.Name = "toolStripSeparator5";
+            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
             // MenuItemHSLFiltering
             // 
-            resources.ApplyResources(this.MenuItemHSLFiltering, "MenuItemHSLFiltering");
             this.MenuItemHSLFiltering.Name = "MenuItemHSLFiltering";
+            resources.ApplyResources(this.MenuItemHSLFiltering, "MenuItemHSLFiltering");
             this.MenuItemHSLFiltering.Click += new System.EventHandler(this.MenuItemHSLFiltering_Click);
             // 
             // MenuItemHueModifier
             // 
-            resources.ApplyResources(this.MenuItemHueModifier, "MenuItemHueModifier");
             this.MenuItemHueModifier.Name = "MenuItemHueModifier";
+            resources.ApplyResources(this.MenuItemHueModifier, "MenuItemHueModifier");
             this.MenuItemHueModifier.Click += new System.EventHandler(this.toolStripButtonHUE_Click);
             // 
             // MenuItemEffects
             // 
-            resources.ApplyResources(this.MenuItemEffects, "MenuItemEffects");
             this.MenuItemEffects.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemGrayscale,
             this.MenuItemSepia,
@@ -986,33 +961,33 @@ namespace Diploma.Pages
             this.MenuItemJitter,
             this.MenuItemPixellate});
             this.MenuItemEffects.Name = "MenuItemEffects";
+            resources.ApplyResources(this.MenuItemEffects, "MenuItemEffects");
             // 
             // MenuItemGrayscale
             // 
-            resources.ApplyResources(this.MenuItemGrayscale, "MenuItemGrayscale");
             this.MenuItemGrayscale.Name = "MenuItemGrayscale";
+            resources.ApplyResources(this.MenuItemGrayscale, "MenuItemGrayscale");
             this.MenuItemGrayscale.Click += new System.EventHandler(this.MenuItemGrayscale_Click);
             // 
             // MenuItemSepia
             // 
-            resources.ApplyResources(this.MenuItemSepia, "MenuItemSepia");
             this.MenuItemSepia.Name = "MenuItemSepia";
+            resources.ApplyResources(this.MenuItemSepia, "MenuItemSepia");
             this.MenuItemSepia.Click += new System.EventHandler(this.MenuItemSepia_Click);
             // 
             // MenuItemInvertColors
             // 
-            resources.ApplyResources(this.MenuItemInvertColors, "MenuItemInvertColors");
             this.MenuItemInvertColors.Name = "MenuItemInvertColors";
+            resources.ApplyResources(this.MenuItemInvertColors, "MenuItemInvertColors");
             this.MenuItemInvertColors.Click += new System.EventHandler(this.MenuItemInvertColors_Click);
             // 
             // toolStripMenuItem3
             // 
-            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             // 
             // MenuItemBlurAndSharpen
             // 
-            resources.ApplyResources(this.MenuItemBlurAndSharpen, "MenuItemBlurAndSharpen");
             this.MenuItemBlurAndSharpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemBlur,
             this.MenuItemSharpen,
@@ -1020,39 +995,39 @@ namespace Diploma.Pages
             this.MenuItemGaussianBlur,
             this.MenuItemGaussianSharpen});
             this.MenuItemBlurAndSharpen.Name = "MenuItemBlurAndSharpen";
+            resources.ApplyResources(this.MenuItemBlurAndSharpen, "MenuItemBlurAndSharpen");
             // 
             // MenuItemBlur
             // 
-            resources.ApplyResources(this.MenuItemBlur, "MenuItemBlur");
             this.MenuItemBlur.Name = "MenuItemBlur";
+            resources.ApplyResources(this.MenuItemBlur, "MenuItemBlur");
             this.MenuItemBlur.Click += new System.EventHandler(this.MenuItemBlur_Click);
             // 
             // MenuItemSharpen
             // 
-            resources.ApplyResources(this.MenuItemSharpen, "MenuItemSharpen");
             this.MenuItemSharpen.Name = "MenuItemSharpen";
+            resources.ApplyResources(this.MenuItemSharpen, "MenuItemSharpen");
             this.MenuItemSharpen.Click += new System.EventHandler(this.MenuItemSharpen_Click);
             // 
             // toolStripMenuItem18
             // 
-            resources.ApplyResources(this.toolStripMenuItem18, "toolStripMenuItem18");
             this.toolStripMenuItem18.Name = "toolStripMenuItem18";
+            resources.ApplyResources(this.toolStripMenuItem18, "toolStripMenuItem18");
             // 
             // MenuItemGaussianBlur
             // 
-            resources.ApplyResources(this.MenuItemGaussianBlur, "MenuItemGaussianBlur");
             this.MenuItemGaussianBlur.Name = "MenuItemGaussianBlur";
+            resources.ApplyResources(this.MenuItemGaussianBlur, "MenuItemGaussianBlur");
             this.MenuItemGaussianBlur.Click += new System.EventHandler(this.MenuItemGaussianBlur_Click);
             // 
             // MenuItemGaussianSharpen
             // 
-            resources.ApplyResources(this.MenuItemGaussianSharpen, "MenuItemGaussianSharpen");
             this.MenuItemGaussianSharpen.Name = "MenuItemGaussianSharpen";
+            resources.ApplyResources(this.MenuItemGaussianSharpen, "MenuItemGaussianSharpen");
             this.MenuItemGaussianSharpen.Click += new System.EventHandler(this.MenuItemGaussianSharpen_Click);
             // 
             // MenuItemColors
             // 
-            resources.ApplyResources(this.MenuItemColors, "MenuItemColors");
             this.MenuItemColors.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemRed,
             this.MenuItemGreen,
@@ -1064,62 +1039,62 @@ namespace Diploma.Pages
             this.toolStripSeparator24,
             this.MenuItemRotateRGBChannels});
             this.MenuItemColors.Name = "MenuItemColors";
+            resources.ApplyResources(this.MenuItemColors, "MenuItemColors");
             // 
             // MenuItemRed
             // 
-            resources.ApplyResources(this.MenuItemRed, "MenuItemRed");
             this.MenuItemRed.Name = "MenuItemRed";
+            resources.ApplyResources(this.MenuItemRed, "MenuItemRed");
             this.MenuItemRed.Click += new System.EventHandler(this.MenuItemRed_Click);
             // 
             // MenuItemGreen
             // 
-            resources.ApplyResources(this.MenuItemGreen, "MenuItemGreen");
             this.MenuItemGreen.Name = "MenuItemGreen";
+            resources.ApplyResources(this.MenuItemGreen, "MenuItemGreen");
             this.MenuItemGreen.Click += new System.EventHandler(this.MenuItemGreen_Click);
             // 
             // MenuItemBlue
             // 
-            resources.ApplyResources(this.MenuItemBlue, "MenuItemBlue");
             this.MenuItemBlue.Name = "MenuItemBlue";
+            resources.ApplyResources(this.MenuItemBlue, "MenuItemBlue");
             this.MenuItemBlue.Click += new System.EventHandler(this.MenuItemBlue_Click);
             // 
             // toolStripMenuItem2
             // 
-            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // MenuItemCyan
             // 
-            resources.ApplyResources(this.MenuItemCyan, "MenuItemCyan");
             this.MenuItemCyan.Name = "MenuItemCyan";
+            resources.ApplyResources(this.MenuItemCyan, "MenuItemCyan");
             this.MenuItemCyan.Click += new System.EventHandler(this.MenuItemCyan_Click);
             // 
             // MenuItemMagenta
             // 
-            resources.ApplyResources(this.MenuItemMagenta, "MenuItemMagenta");
             this.MenuItemMagenta.Name = "MenuItemMagenta";
+            resources.ApplyResources(this.MenuItemMagenta, "MenuItemMagenta");
             this.MenuItemMagenta.Click += new System.EventHandler(this.MenuItemMagenta_Click);
             // 
             // MenuItemYellow
             // 
-            resources.ApplyResources(this.MenuItemYellow, "MenuItemYellow");
             this.MenuItemYellow.Name = "MenuItemYellow";
+            resources.ApplyResources(this.MenuItemYellow, "MenuItemYellow");
             this.MenuItemYellow.Click += new System.EventHandler(this.MenuItemYellow_Click);
             // 
             // toolStripSeparator24
             // 
-            resources.ApplyResources(this.toolStripSeparator24, "toolStripSeparator24");
             this.toolStripSeparator24.Name = "toolStripSeparator24";
+            resources.ApplyResources(this.toolStripSeparator24, "toolStripSeparator24");
             // 
             // MenuItemRotateRGBChannels
             // 
-            resources.ApplyResources(this.MenuItemRotateRGBChannels, "MenuItemRotateRGBChannels");
             this.MenuItemRotateRGBChannels.Name = "MenuItemRotateRGBChannels";
+            resources.ApplyResources(this.MenuItemRotateRGBChannels, "MenuItemRotateRGBChannels");
             this.MenuItemRotateRGBChannels.Click += new System.EventHandler(this.MenuItemRotateRGBChannels_Click);
             // 
             // MenuItemBinarization
             // 
-            resources.ApplyResources(this.MenuItemBinarization, "MenuItemBinarization");
             this.MenuItemBinarization.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemThreshold,
             this.toolStripMenuItem15,
@@ -1129,84 +1104,84 @@ namespace Diploma.Pages
             this.toolStripMenuItem17,
             this.MenuItemSISThreshold});
             this.MenuItemBinarization.Name = "MenuItemBinarization";
+            resources.ApplyResources(this.MenuItemBinarization, "MenuItemBinarization");
             // 
             // MenuItemThreshold
             // 
-            resources.ApplyResources(this.MenuItemThreshold, "MenuItemThreshold");
             this.MenuItemThreshold.Name = "MenuItemThreshold";
+            resources.ApplyResources(this.MenuItemThreshold, "MenuItemThreshold");
             this.MenuItemThreshold.Click += new System.EventHandler(this.MenuItemThreshold_Click);
             // 
             // toolStripMenuItem15
             // 
-            resources.ApplyResources(this.toolStripMenuItem15, "toolStripMenuItem15");
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
+            resources.ApplyResources(this.toolStripMenuItem15, "toolStripMenuItem15");
             // 
             // MenuItemThresholdWithErrorCarry
             // 
-            resources.ApplyResources(this.MenuItemThresholdWithErrorCarry, "MenuItemThresholdWithErrorCarry");
             this.MenuItemThresholdWithErrorCarry.Name = "MenuItemThresholdWithErrorCarry";
+            resources.ApplyResources(this.MenuItemThresholdWithErrorCarry, "MenuItemThresholdWithErrorCarry");
             this.MenuItemThresholdWithErrorCarry.Click += new System.EventHandler(this.MenuItemThresholdWithErrorCarry_Click);
             // 
             // MenuItemOrderedDither
             // 
-            resources.ApplyResources(this.MenuItemOrderedDither, "MenuItemOrderedDither");
             this.MenuItemOrderedDither.Name = "MenuItemOrderedDither";
+            resources.ApplyResources(this.MenuItemOrderedDither, "MenuItemOrderedDither");
             this.MenuItemOrderedDither.Click += new System.EventHandler(this.MenuItemOrderedDither_Click);
             // 
             // MenuItemFloydSteinberg
             // 
-            resources.ApplyResources(this.MenuItemFloydSteinberg, "MenuItemFloydSteinberg");
             this.MenuItemFloydSteinberg.Name = "MenuItemFloydSteinberg";
+            resources.ApplyResources(this.MenuItemFloydSteinberg, "MenuItemFloydSteinberg");
             this.MenuItemFloydSteinberg.Click += new System.EventHandler(this.MenuItemFloydSteinberg_Click);
             // 
             // toolStripMenuItem17
             // 
-            resources.ApplyResources(this.toolStripMenuItem17, "toolStripMenuItem17");
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            resources.ApplyResources(this.toolStripMenuItem17, "toolStripMenuItem17");
             // 
             // MenuItemSISThreshold
             // 
-            resources.ApplyResources(this.MenuItemSISThreshold, "MenuItemSISThreshold");
             this.MenuItemSISThreshold.Name = "MenuItemSISThreshold";
+            resources.ApplyResources(this.MenuItemSISThreshold, "MenuItemSISThreshold");
             this.MenuItemSISThreshold.Click += new System.EventHandler(this.MenuItemSISThreshold_Click);
             // 
             // MenuItemMorphology
             // 
-            resources.ApplyResources(this.MenuItemMorphology, "MenuItemMorphology");
             this.MenuItemMorphology.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemErosion,
             this.MenuItemDilatation,
             this.MenuItemOpening,
             this.MenuItemClosing});
             this.MenuItemMorphology.Name = "MenuItemMorphology";
+            resources.ApplyResources(this.MenuItemMorphology, "MenuItemMorphology");
             // 
             // MenuItemErosion
             // 
-            resources.ApplyResources(this.MenuItemErosion, "MenuItemErosion");
             this.MenuItemErosion.Name = "MenuItemErosion";
+            resources.ApplyResources(this.MenuItemErosion, "MenuItemErosion");
             this.MenuItemErosion.Click += new System.EventHandler(this.MenuItemErosion_Click);
             // 
             // MenuItemDilatation
             // 
-            resources.ApplyResources(this.MenuItemDilatation, "MenuItemDilatation");
             this.MenuItemDilatation.Name = "MenuItemDilatation";
+            resources.ApplyResources(this.MenuItemDilatation, "MenuItemDilatation");
             this.MenuItemDilatation.Click += new System.EventHandler(this.MenuItemDilatation_Click);
             // 
             // MenuItemOpening
             // 
-            resources.ApplyResources(this.MenuItemOpening, "MenuItemOpening");
             this.MenuItemOpening.Name = "MenuItemOpening";
+            resources.ApplyResources(this.MenuItemOpening, "MenuItemOpening");
             this.MenuItemOpening.Click += new System.EventHandler(this.MenuItemOpening_Click);
             // 
             // MenuItemClosing
             // 
-            resources.ApplyResources(this.MenuItemClosing, "MenuItemClosing");
             this.MenuItemClosing.Name = "MenuItemClosing";
+            resources.ApplyResources(this.MenuItemClosing, "MenuItemClosing");
             this.MenuItemClosing.Click += new System.EventHandler(this.MenuItemClosing_Click);
             // 
             // MenuItemEdgeDetectors
             // 
-            resources.ApplyResources(this.MenuItemEdgeDetectors, "MenuItemEdgeDetectors");
             this.MenuItemEdgeDetectors.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemEdges,
             this.MenuItemHomogenity,
@@ -1214,92 +1189,93 @@ namespace Diploma.Pages
             this.MenuItemSobel,
             this.MenuItemCanny});
             this.MenuItemEdgeDetectors.Name = "MenuItemEdgeDetectors";
+            resources.ApplyResources(this.MenuItemEdgeDetectors, "MenuItemEdgeDetectors");
             // 
             // MenuItemEdges
             // 
-            resources.ApplyResources(this.MenuItemEdges, "MenuItemEdges");
             this.MenuItemEdges.Name = "MenuItemEdges";
+            resources.ApplyResources(this.MenuItemEdges, "MenuItemEdges");
             this.MenuItemEdges.Click += new System.EventHandler(this.MenuItemEdges_Click);
             // 
             // MenuItemHomogenity
             // 
-            resources.ApplyResources(this.MenuItemHomogenity, "MenuItemHomogenity");
             this.MenuItemHomogenity.Name = "MenuItemHomogenity";
+            resources.ApplyResources(this.MenuItemHomogenity, "MenuItemHomogenity");
             this.MenuItemHomogenity.Click += new System.EventHandler(this.MenuItemHomogenity_Click);
             // 
             // MenuItemDifference
             // 
-            resources.ApplyResources(this.MenuItemDifference, "MenuItemDifference");
             this.MenuItemDifference.Name = "MenuItemDifference";
+            resources.ApplyResources(this.MenuItemDifference, "MenuItemDifference");
             this.MenuItemDifference.Click += new System.EventHandler(this.MenuItemDifference_Click);
             // 
             // MenuItemSobel
             // 
-            resources.ApplyResources(this.MenuItemSobel, "MenuItemSobel");
             this.MenuItemSobel.Name = "MenuItemSobel";
+            resources.ApplyResources(this.MenuItemSobel, "MenuItemSobel");
             this.MenuItemSobel.Click += new System.EventHandler(this.MenuItemSobel_Click);
             // 
             // MenuItemCanny
             // 
-            resources.ApplyResources(this.MenuItemCanny, "MenuItemCanny");
             this.MenuItemCanny.Name = "MenuItemCanny";
+            resources.ApplyResources(this.MenuItemCanny, "MenuItemCanny");
             this.MenuItemCanny.Click += new System.EventHandler(this.MenuItemCanny_Click);
             // 
             // toolStripSeparator18
             // 
-            resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
             this.toolStripSeparator18.Name = "toolStripSeparator18";
+            resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
             // 
             // MenuItemAdaptiveSmoothing
             // 
-            resources.ApplyResources(this.MenuItemAdaptiveSmoothing, "MenuItemAdaptiveSmoothing");
             this.MenuItemAdaptiveSmoothing.Name = "MenuItemAdaptiveSmoothing";
+            resources.ApplyResources(this.MenuItemAdaptiveSmoothing, "MenuItemAdaptiveSmoothing");
             this.MenuItemAdaptiveSmoothing.Click += new System.EventHandler(this.toolStripButtonSmooth_Click);
             // 
             // MenuItemConservativeSmoothing
             // 
-            resources.ApplyResources(this.MenuItemConservativeSmoothing, "MenuItemConservativeSmoothing");
             this.MenuItemConservativeSmoothing.Name = "MenuItemConservativeSmoothing";
+            resources.ApplyResources(this.MenuItemConservativeSmoothing, "MenuItemConservativeSmoothing");
             this.MenuItemConservativeSmoothing.Click += new System.EventHandler(this.MenuItemConservativeSmoothing_Click);
             // 
             // toolStripSeparator19
             // 
-            resources.ApplyResources(this.toolStripSeparator19, "toolStripSeparator19");
             this.toolStripSeparator19.Name = "toolStripSeparator19";
+            resources.ApplyResources(this.toolStripSeparator19, "toolStripSeparator19");
             // 
             // MenuItemPerlinNoise
             // 
-            resources.ApplyResources(this.MenuItemPerlinNoise, "MenuItemPerlinNoise");
             this.MenuItemPerlinNoise.Name = "MenuItemPerlinNoise";
+            resources.ApplyResources(this.MenuItemPerlinNoise, "MenuItemPerlinNoise");
             this.MenuItemPerlinNoise.Click += new System.EventHandler(this.MenuItemPerlinNoise_Click);
             // 
             // toolStripSeparator21
             // 
-            resources.ApplyResources(this.toolStripSeparator21, "toolStripSeparator21");
             this.toolStripSeparator21.Name = "toolStripSeparator21";
+            resources.ApplyResources(this.toolStripSeparator21, "toolStripSeparator21");
             // 
             // MenuItemOilPainting
             // 
-            resources.ApplyResources(this.MenuItemOilPainting, "MenuItemOilPainting");
             this.MenuItemOilPainting.Name = "MenuItemOilPainting";
+            resources.ApplyResources(this.MenuItemOilPainting, "MenuItemOilPainting");
             this.MenuItemOilPainting.Click += new System.EventHandler(this.MenuItemOilPainting_Click);
             // 
             // MenuItemJitter
             // 
-            resources.ApplyResources(this.MenuItemJitter, "MenuItemJitter");
             this.MenuItemJitter.Name = "MenuItemJitter";
+            resources.ApplyResources(this.MenuItemJitter, "MenuItemJitter");
             this.MenuItemJitter.Click += new System.EventHandler(this.MenuItemJitter_Click);
             // 
             // MenuItemPixellate
             // 
-            resources.ApplyResources(this.MenuItemPixellate, "MenuItemPixellate");
             this.MenuItemPixellate.Name = "MenuItemPixellate";
+            resources.ApplyResources(this.MenuItemPixellate, "MenuItemPixellate");
             this.MenuItemPixellate.Click += new System.EventHandler(this.MenuItemPixellate_Click);
             // 
             // panel2
             // 
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.toolStrip2);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // toolStrip2
@@ -1315,13 +1291,12 @@ namespace Diploma.Pages
             this.toolStripButtonHUE,
             this.toolStripButtonSmooth,
             this.toolStripButtonResize,
-            this.toolStripButtonPen,
             this.toolStripButtonCustomRotation,
             this.toolStripButtonPixellate,
             this.toolStripButtonOilPainting,
             this.toolStripButtonGaussianBlur,
             this.toolStripButtonHSLFiltering,
-            this.toolStripButton2});
+            this.toolStripButtonPerlinNoise});
             this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -1375,13 +1350,6 @@ namespace Diploma.Pages
             this.toolStripButtonResize.Name = "toolStripButtonResize";
             this.toolStripButtonResize.Click += new System.EventHandler(this.toolStripButtonResize_Click);
             // 
-            // toolStripButtonPen
-            // 
-            resources.ApplyResources(this.toolStripButtonPen, "toolStripButtonPen");
-            this.toolStripButtonPen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPen.Name = "toolStripButtonPen";
-            this.toolStripButtonPen.Click += new System.EventHandler(this.toolStripButtonPen_Click);
-            // 
             // toolStripButtonCustomRotation
             // 
             resources.ApplyResources(this.toolStripButtonCustomRotation, "toolStripButtonCustomRotation");
@@ -1417,22 +1385,23 @@ namespace Diploma.Pages
             this.toolStripButtonHSLFiltering.Name = "toolStripButtonHSLFiltering";
             this.toolStripButtonHSLFiltering.Click += new System.EventHandler(this.MenuItemHSLFiltering_Click);
             // 
-            // toolStripButton2
+            // toolStripButtonPerlinNoise
             // 
-            resources.ApplyResources(this.toolStripButton2, "toolStripButton2");
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Name = "toolStripButton2";
+            resources.ApplyResources(this.toolStripButtonPerlinNoise, "toolStripButtonPerlinNoise");
+            this.toolStripButtonPerlinNoise.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPerlinNoise.Name = "toolStripButtonPerlinNoise";
+            this.toolStripButtonPerlinNoise.Click += new System.EventHandler(this.MenuItemPerlinNoise_Click);
             // 
             // panel3
             // 
-            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Controls.Add(this.imageDisplay);
+            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
             // imageDisplay
             // 
-            resources.ApplyResources(this.imageDisplay, "imageDisplay");
             this.imageDisplay.BackColor = System.Drawing.SystemColors.ControlDark;
+            resources.ApplyResources(this.imageDisplay, "imageDisplay");
             this.imageDisplay.Name = "imageDisplay";
             this.imageDisplay.TabStop = false;
             this.imageDisplay.Click += new System.EventHandler(this.imageDisplay_Click);
@@ -1482,8 +1451,6 @@ namespace Diploma.Pages
 
         }
 
-        private System.Windows.Forms.ToolStripButton toolStripButtonSend;
-
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonOpen;
@@ -1519,7 +1486,6 @@ namespace Diploma.Pages
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
         private System.Windows.Forms.PageSetupDialog pageSetupDialog;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonReset;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton toolStripButtonBrightness;
         private System.Windows.Forms.ToolStripButton toolStripButtonContrast;
@@ -1528,7 +1494,6 @@ namespace Diploma.Pages
         private System.Windows.Forms.ToolStripButton toolStripButtonHUE;
         private System.Windows.Forms.ToolStripButton toolStripButtonSmooth;
         private System.Windows.Forms.ToolStripButton toolStripButtonResize;
-        private System.Windows.Forms.ToolStripButton toolStripButtonPen;
         private System.Windows.Forms.ToolStripButton toolStripButtonPixellate;
         private System.Windows.Forms.ToolStripButton toolStripButtonCustomRotation;
         private System.Windows.Forms.MenuStrip mainMenu;
@@ -1659,6 +1624,6 @@ namespace Diploma.Pages
         private System.Windows.Forms.ToolStripButton toolStripButtonOilPainting;
         private System.Windows.Forms.ToolStripButton toolStripButtonGaussianBlur;
         private System.Windows.Forms.ToolStripButton toolStripButtonHSLFiltering;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonPerlinNoise;
     }
 }

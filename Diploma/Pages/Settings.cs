@@ -8,9 +8,11 @@ namespace Diploma.Pages
     public partial class Settings : Form
     {
         private int selectedIndex;
+        [Obsolete("Obsolete")]
         public Settings()
         {
             InitializeComponent();
+            //comboBoxLanguage.SelectedIndex = 1;
         }
 
         [Obsolete("Obsolete")]
@@ -25,13 +27,11 @@ namespace Diploma.Pages
                 case 0:
                     Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
                     PagesContainer.Home.SuperUpdate();
-                    //comboBoxLanguage.Text = "English";
                     selectedIndex = 0;
                     break;
                 case 1:
                     Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("uk");
                     PagesContainer.Home.SuperUpdate();
-                    //comboBoxLanguage.Text = "Ukrainian";
                     selectedIndex = 1;
                     break;
             }
@@ -39,8 +39,6 @@ namespace Diploma.Pages
             InitializeComponent();
             
             comboBoxLanguage.SelectedIndex = selectedIndex;
-            
-            //comboBoxLanguage.Text = SelectedText;
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HueModifierForm));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.filterPreview = new Diploma.Controls.FilterPreview();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,99 +43,77 @@
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.filterPreview);
-            this.groupBox2.Location = new System.Drawing.Point(215, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(160, 165);
-            this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Preview";
             // 
             // filterPreview
             // 
+            resources.ApplyResources(this.filterPreview, "filterPreview");
             this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point(10, 17);
             this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size(140, 140);
-            this.filterPreview.TabIndex = 12;
             this.filterPreview.TabStop = false;
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.huePicker);
             this.groupBox1.Controls.Add(this.hueBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(10, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(195, 225);
-            this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Select Hue Value";
             // 
             // huePicker
             // 
-            this.huePicker.Location = new System.Drawing.Point(12, 45);
+            resources.ApplyResources(this.huePicker, "huePicker");
             this.huePicker.Name = "huePicker";
-            this.huePicker.Size = new System.Drawing.Size(170, 170);
-            this.huePicker.TabIndex = 2;
             this.huePicker.TabStop = false;
             this.huePicker.ValuesChanged += new System.EventHandler(this.huePicker_ValuesChanged);
             // 
             // hueBox
             // 
-            this.hueBox.Location = new System.Drawing.Point(46, 20);
+            resources.ApplyResources(this.hueBox, "hueBox");
             this.hueBox.Name = "hueBox";
-            this.hueBox.Size = new System.Drawing.Size(100, 20);
-            this.hueBox.TabIndex = 1;
             this.hueBox.TextChanged += new System.EventHandler(this.hueBox_TextChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(10, 23);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "&Hue:";
             // 
             // cancelButton
             // 
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(296, 207);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 24;
-            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(215, 207);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 23;
-            this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             // 
             // HueModifierForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(384, 242);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HueModifierForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hue Modifier";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HueModifierForm_MouseDown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

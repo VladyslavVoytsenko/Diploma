@@ -3,17 +3,24 @@ using AForge.Controls;
 using AForge.Imaging.Filters;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Diploma.ImageProcessing
 {
     public partial class ChannelFilteringForm : Form
     {
-        private ChannelFiltering filter = new ChannelFiltering();
+        private readonly ChannelFiltering filter = new ChannelFiltering();
         private IntRange red = new IntRange(0, 255);
         private IntRange green = new IntRange(0, 255);
         private IntRange blue = new IntRange(0, 255);
-        private byte fillR = 0, fillG = 0, fillB = 0;
+        private byte fillR, fillG, fillB;
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
 
         public Bitmap Image
         {
@@ -62,6 +69,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -74,6 +82,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -88,6 +97,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -100,6 +110,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -112,6 +123,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -126,6 +138,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -138,6 +151,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -150,6 +164,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -164,6 +179,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -190,6 +206,12 @@ namespace Diploma.ImageProcessing
             redSlider.Type = (redFillTypeCombo.SelectedIndex == 0) ? ColorSlider.ColorSliderType.InnerGradient : ColorSlider.ColorSliderType.OuterGradient;
             filter.RedFillOutsideRange = (redFillTypeCombo.SelectedIndex == 0);
             filterPreview.RefreshFilter();
+        }
+
+        private void ChannelFilteringForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
         private void greenFillTypeCombo_SelectedIndexChanged(object sender, EventArgs e)

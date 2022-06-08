@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GammaCorrectionForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.filterPreview = new Diploma.Controls.FilterPreview();
             this.gammaTrackBar = new System.Windows.Forms.TrackBar();
@@ -41,91 +42,72 @@
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.filterPreview);
-            this.groupBox1.Location = new System.Drawing.Point(280, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(160, 165);
-            this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Preview";
             // 
             // filterPreview
             // 
+            resources.ApplyResources(this.filterPreview, "filterPreview");
             this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point(10, 15);
             this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size(140, 140);
-            this.filterPreview.TabIndex = 12;
             // 
             // gammaTrackBar
             // 
-            this.gammaTrackBar.Location = new System.Drawing.Point(12, 47);
+            resources.ApplyResources(this.gammaTrackBar, "gammaTrackBar");
             this.gammaTrackBar.Maximum = 5000;
             this.gammaTrackBar.Minimum = 100;
             this.gammaTrackBar.Name = "gammaTrackBar";
-            this.gammaTrackBar.Size = new System.Drawing.Size(260, 45);
-            this.gammaTrackBar.TabIndex = 17;
             this.gammaTrackBar.TickFrequency = 100;
             this.gammaTrackBar.Value = 1000;
             this.gammaTrackBar.ValueChanged += new System.EventHandler(this.gammaTrackBar_ValueChanged);
             // 
             // gammaBox
             // 
-            this.gammaBox.Location = new System.Drawing.Point(89, 17);
+            resources.ApplyResources(this.gammaBox, "gammaBox");
             this.gammaBox.Name = "gammaBox";
-            this.gammaBox.Size = new System.Drawing.Size(70, 20);
-            this.gammaBox.TabIndex = 16;
             this.gammaBox.TextChanged += new System.EventHandler(this.gammaBox_TextChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 20);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 15);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Gamma value:";
             // 
             // cancelButton
             // 
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(143, 143);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 26;
-            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(62, 143);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 25;
-            this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             // 
             // GammaCorrectionForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(449, 178);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gammaTrackBar);
             this.Controls.Add(this.gammaBox);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GammaCorrectionForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gamma Correction";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GammaCorrectionForm_MouseDown);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gammaTrackBar)).EndInit();
             this.ResumeLayout(false);

@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdaptiveSmoothForm_factorBox_TextChanged_Incorrect_decimal_separator__use_dot_______instead_of_comma_______" xml:space="preserve">
+    <value>Incorrect decimal separator, use dot ( . ) instead of comma ( , )!</value>
+  </data>
+  <data name="HslFilteringForm_minSBox_TextChanged_Incorrect_decimal_separator__use_dot_______instead_of_comma_______" xml:space="preserve">
+    <value>Incorrect decimal separator, use dot ( . ) instead of comma ( , )!</value>
+  </data>
 </root>

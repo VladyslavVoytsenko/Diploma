@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Diploma
@@ -14,18 +8,16 @@ namespace Diploma
     public partial class MainWindow : Form
     {
         //Fields
-        private Button currentButton;
-        private Random random;
-        private int tempIndex;
         private Form activeForm;
-        private readonly Pages.Home home = new Pages.Home();
+        [Obsolete("Obsolete")]
         public MainWindow()
         {
             InitializeComponent();
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("uk");
             //Pages.Home home = new Pages.Home() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             //this.panelDesktopPane.Controls.Add(home);
             OpenChildForm(PagesContainer.Home);
-            Text = String.Empty;
+            Text = string.Empty;
             ControlBox = false;
         }
 
@@ -58,7 +50,7 @@ namespace Diploma
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -83,11 +75,10 @@ namespace Diploma
             OpenChildForm(PagesContainer.Home);
         }
 
+        [Obsolete("Obsolete")]
         private void SettingsBtn_Click(object sender, EventArgs e)
         {
             OpenChildForm(PagesContainer.Settings);
         }
-
-        
     }
 }

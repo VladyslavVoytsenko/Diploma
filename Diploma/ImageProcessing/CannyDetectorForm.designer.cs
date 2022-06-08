@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CannyDetectorForm));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.filterPreview = new Diploma.Controls.FilterPreview();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.thresholdSlider = new AForge.Controls.ColorSlider();
             this.highThresholdBox = new System.Windows.Forms.TextBox();
@@ -40,7 +42,6 @@
             this.sigmaBox = new System.Windows.Forms.TextBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
-            this.filterPreview = new Diploma.Controls.FilterPreview();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -50,12 +51,15 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.filterPreview);
-            this.groupBox3.Location = new System.Drawing.Point(302, 12);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(170, 185);
-            this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Preview";
+            // 
+            // filterPreview
+            // 
+            this.filterPreview.Image = null;
+            resources.ApplyResources(this.filterPreview, "filterPreview");
+            this.filterPreview.Name = "filterPreview";
             // 
             // groupBox2
             // 
@@ -64,130 +68,93 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.lowThresholdBox);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 117);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(280, 80);
-            this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Threshold Values";
             // 
             // thresholdSlider
             // 
-            this.thresholdSlider.Location = new System.Drawing.Point(9, 50);
+            resources.ApplyResources(this.thresholdSlider, "thresholdSlider");
             this.thresholdSlider.Name = "thresholdSlider";
-            this.thresholdSlider.Size = new System.Drawing.Size(262, 23);
-            this.thresholdSlider.TabIndex = 4;
             this.thresholdSlider.ValuesChanged += new System.EventHandler(this.thresholdSlider_ValuesChanged);
             // 
             // highThresholdBox
             // 
-            this.highThresholdBox.Location = new System.Drawing.Point(155, 20);
+            resources.ApplyResources(this.highThresholdBox, "highThresholdBox");
             this.highThresholdBox.Name = "highThresholdBox";
-            this.highThresholdBox.Size = new System.Drawing.Size(50, 20);
-            this.highThresholdBox.TabIndex = 3;
             this.highThresholdBox.TextChanged += new System.EventHandler(this.highThresholdBox_TextChanged);
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(120, 23);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 14);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "High:";
             // 
             // lowThresholdBox
             // 
-            this.lowThresholdBox.Location = new System.Drawing.Point(45, 20);
+            resources.ApplyResources(this.lowThresholdBox, "lowThresholdBox");
             this.lowThresholdBox.Name = "lowThresholdBox";
-            this.lowThresholdBox.Size = new System.Drawing.Size(50, 20);
-            this.lowThresholdBox.TabIndex = 1;
             this.lowThresholdBox.TextChanged += new System.EventHandler(this.lowThresholdBox_TextChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(10, 23);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Low:";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.sigmaTrackBar);
             this.groupBox1.Controls.Add(this.sigmaBox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(280, 95);
-            this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Gaussian Sigma";
             // 
             // sigmaTrackBar
             // 
-            this.sigmaTrackBar.Location = new System.Drawing.Point(10, 45);
+            resources.ApplyResources(this.sigmaTrackBar, "sigmaTrackBar");
             this.sigmaTrackBar.Maximum = 40;
             this.sigmaTrackBar.Name = "sigmaTrackBar";
-            this.sigmaTrackBar.Size = new System.Drawing.Size(260, 45);
-            this.sigmaTrackBar.TabIndex = 2;
             this.sigmaTrackBar.TickFrequency = 2;
             this.sigmaTrackBar.ValueChanged += new System.EventHandler(this.sigmaTrackBar_ValueChanged);
             // 
             // sigmaBox
             // 
-            this.sigmaBox.Location = new System.Drawing.Point(10, 20);
+            resources.ApplyResources(this.sigmaBox, "sigmaBox");
             this.sigmaBox.Name = "sigmaBox";
-            this.sigmaBox.Size = new System.Drawing.Size(60, 20);
-            this.sigmaBox.TabIndex = 1;
             this.sigmaBox.TextChanged += new System.EventHandler(this.sigmaBox_TextChanged);
             // 
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(245, 211);
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 14;
-            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(164, 211);
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 13;
-            this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            // 
-            // filterPreview
-            // 
-            this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point(10, 21);
-            this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size(150, 150);
-            this.filterPreview.TabIndex = 13;
             // 
             // CannyDetectorForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(484, 246);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CannyDetectorForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Canny Edge Detector";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CannyDetectorForm_MouseDown);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

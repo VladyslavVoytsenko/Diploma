@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageProcessing\AdaptiveSmoothForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\AdaptiveSmoothForm.designer.cs">
+      <DependentUpon>AdaptiveSmoothForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\ResizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageProcessing\ResizeForm.designer.cs">
+      <DependentUpon>ResizeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PagesContainer.cs" />
     <Compile Include="Controls\DoubleBufferDisplay.cs">
       <SubType>UserControl</SubType>
@@ -75,12 +88,6 @@
     </Compile>
     <Compile Include="Controls\HuePicker.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ImageProcessing\AdaptiveSmoothForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImageProcessing\AdaptiveSmoothForm.designer.cs">
-      <DependentUpon>AdaptiveSmoothForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageProcessing\BrightnessForm.cs">
       <SubType>Form</SubType>
@@ -172,12 +179,6 @@
     <Compile Include="ImageProcessing\PixellateForm.designer.cs">
       <DependentUpon>PixellateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageProcessing\ResizeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImageProcessing\ResizeForm.designer.cs">
-      <DependentUpon>ResizeForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ImageProcessing\SaturationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +220,9 @@
     <EmbeddedResource Include="Controls\DoubleBufferDisplay.resx">
       <DependentUpon>DoubleBufferDisplay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DoubleBufferDisplay.uk.resx">
+      <DependentUpon>DoubleBufferDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FilterPreview.resx">
       <DependentUpon>FilterPreview.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,6 +230,9 @@
       <DependentUpon>HuePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\AdaptiveSmoothForm.resx">
+      <DependentUpon>AdaptiveSmoothForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\AdaptiveSmoothForm.uk.resx">
       <DependentUpon>AdaptiveSmoothForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\BrightnessForm.resx">
@@ -237,52 +244,103 @@
     <EmbeddedResource Include="ImageProcessing\CannyDetectorForm.resx">
       <DependentUpon>CannyDetectorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\CannyDetectorForm.uk.resx">
+      <DependentUpon>CannyDetectorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\ChannelFilteringForm.resx">
+      <DependentUpon>ChannelFilteringForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ChannelFilteringForm.uk.resx">
       <DependentUpon>ChannelFilteringForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\ColorFilteringForm.resx">
       <DependentUpon>ColorFilteringForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ColorFilteringForm.uk.resx">
+      <DependentUpon>ColorFilteringForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\ContrastForm.resx">
+      <DependentUpon>ContrastForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ContrastForm.uk.resx">
       <DependentUpon>ContrastForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\CustomRotationForm.resx">
       <DependentUpon>CustomRotationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\CustomRotationForm.uk.resx">
+      <DependentUpon>CustomRotationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\EuclideanColorFilteringForm.resx">
+      <DependentUpon>EuclideanColorFilteringForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\EuclideanColorFilteringForm.uk.resx">
       <DependentUpon>EuclideanColorFilteringForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\GammaCorrectionForm.resx">
       <DependentUpon>GammaCorrectionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\GammaCorrectionForm.uk.resx">
+      <DependentUpon>GammaCorrectionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\GaussianBlurForm.resx">
+      <DependentUpon>GaussianBlurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\GaussianBlurForm.uk.resx">
       <DependentUpon>GaussianBlurForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\GaussianSharpenForm.resx">
       <DependentUpon>GaussianSharpenForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\GaussianSharpenForm.uk.resx">
+      <DependentUpon>GaussianSharpenForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\HSLFilteringForm.resx">
+      <DependentUpon>HSLFilteringForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\HSLFilteringForm.uk.resx">
       <DependentUpon>HSLFilteringForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\HueModifierForm.resx">
       <DependentUpon>HueModifierForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\HueModifierForm.uk.resx">
+      <DependentUpon>HueModifierForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\OilPaintingForm.resx">
+      <DependentUpon>OilPaintingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\OilPaintingForm.uk.resx">
       <DependentUpon>OilPaintingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\PerlinNoiseForm.resx">
       <DependentUpon>PerlinNoiseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\PerlinNoiseForm.uk.resx">
+      <DependentUpon>PerlinNoiseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\PixellateForm.resx">
+      <DependentUpon>PixellateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\PixellateForm.uk.resx">
       <DependentUpon>PixellateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\ResizeForm.resx">
       <DependentUpon>ResizeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ResizeForm.uk.resx">
+      <DependentUpon>ResizeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\SaturationForm.resx">
       <DependentUpon>SaturationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\SaturationForm.uk.resx">
+      <DependentUpon>SaturationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageProcessing\ThresholdForm.resx">
+      <DependentUpon>ThresholdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageProcessing\ThresholdForm.uk.resx">
       <DependentUpon>ThresholdForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
@@ -313,6 +371,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="View Forms\ImageProperties.resx">
+      <DependentUpon>ImageProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View Forms\ImageProperties.uk.resx">
       <DependentUpon>ImageProperties.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

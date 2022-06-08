@@ -4,28 +4,32 @@ using AForge.Imaging;
 using AForge.Imaging.Filters;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Diploma.ImageProcessing
 {
     public partial class ColorFilteringForm : Form
     {
-        private ColorFiltering filter = new ColorFiltering();
+        private readonly ColorFiltering filter = new ColorFiltering();
         private IntRange red = new IntRange(0, 255);
         private IntRange green = new IntRange(0, 255);
         private IntRange blue = new IntRange(0, 255);
-        private byte fillR = 0, fillG = 0, fillB = 0;
-        private bool updating = false;
+        private byte fillR, fillG, fillB;
+        private bool updating;
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
 
         public Bitmap Image
         {
-            set { filterPreview.Image = value; }
+            set => filterPreview.Image = value;
         }
 
-        public IFilter Filter
-        {
-            get { return filter; }
-        }
+        public IFilter Filter => filter;
 
         public ColorFilteringForm()
         {
@@ -65,6 +69,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -77,6 +82,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -89,6 +95,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -101,6 +108,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -113,6 +121,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -125,6 +134,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -159,6 +169,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -175,6 +186,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -191,6 +203,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -210,7 +223,7 @@ namespace Diploma.ImageProcessing
 
         private void colorBox_Click(object sender, EventArgs e)
         {
-            this.ActiveControl = fillRBox;
+            ActiveControl = fillRBox;
 
             ColorDialog dialog = new ColorDialog();
             dialog.FullOpen = true;
@@ -249,6 +262,12 @@ namespace Diploma.ImageProcessing
             colorBox.FlatAppearance.BorderSize = 1;
         }
 
+        private void ColorFilteringForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
         private void colorBox_MouseClick(object sender, MouseEventArgs e)
         {
             colorBox.FlatAppearance.BorderSize = 1;
@@ -256,7 +275,7 @@ namespace Diploma.ImageProcessing
 
         private void fillTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ColorSlider.ColorSliderType[] types = new ColorSlider.ColorSliderType[] { ColorSlider.ColorSliderType.InnerGradient, ColorSlider.ColorSliderType.OuterGradient };
+            ColorSlider.ColorSliderType[] types = { ColorSlider.ColorSliderType.InnerGradient, ColorSlider.ColorSliderType.OuterGradient };
             ColorSlider.ColorSliderType type = types[fillTypeCombo.SelectedIndex];
 
             redSlider.Type = type;

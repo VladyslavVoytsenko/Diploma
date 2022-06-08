@@ -6,7 +6,7 @@ namespace Diploma.Controls
     {
         public DoubleBufferDisplay()
         {
-            this.DoubleBuffered = true;
+            DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
         }
 

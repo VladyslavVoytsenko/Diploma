@@ -130,6 +130,9 @@
         TkSuQmCC
 </value>
   </data>
+  <data name="toolStripButtonOpen.ToolTipText" xml:space="preserve">
+    <value>Відкрийте файл зображення</value>
+  </data>
   <data name="toolStripButtonSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -140,6 +143,9 @@
         w9UFwCtxLhxKKQBxiUvCobQCQOAoeEk4lFoghfso8ClnFcmzCwtMpS3U5Yvc8yi/ZdHGKvySPXkAE69y
         WbFkHIXfiCz7BVniDGJUZ1mbAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="toolStripButtonSaveAs.ToolTipText" xml:space="preserve">
+    <value>Зберегти зображення як</value>
   </data>
   <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -153,6 +159,9 @@
         gg==
 </value>
   </data>
+  <data name="toolStripButton1.ToolTipText" xml:space="preserve">
+    <value>Зберегти зображення</value>
+  </data>
   <data name="toolStripButtonPrintImage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -161,6 +170,9 @@
         SxoUkinUJQ0KyRTqkgaFZAp1SYNCMoW6pPHtcqVQF14u3VFanvLZo6WX8ifvgZR4/ryL99oNlSRO/klr
         L+FYUIvU/sODAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="toolStripButtonPrintImage.ToolTipText" xml:space="preserve">
+    <value>Роздрукувати зображення</value>
   </data>
   <data name="toolStripButtonDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -171,6 +183,9 @@
         4qc27kAut3Qd0PUVdP0RpuQUTX3nkhyBbERJsfuImkK3ES1FzSM8nqK6w+0KkeIuTzmT3amQM7PdSjkz
         6ej+1+w5OlDJmXjEA4QNeIE9UMoZc5gLzrD+AZJDBMxjO17pAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="toolStripButtonDelete.ToolTipText" xml:space="preserve">
+    <value>Видалити (Очистити відображення)</value>
   </data>
   <data name="toolStripButtonUndo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -183,6 +198,9 @@
         RLFcjrV2hHe1phNpYrUh2cQHWv2jlLHakh1Bz0XmWGxK1Xvy5PnLBEEP+n8cqItXki4AAAAASUVORK5C
         YII=
 </value>
+  </data>
+  <data name="toolStripButtonUndo.ToolTipText" xml:space="preserve">
+    <value>Скасувати</value>
   </data>
   <data name="ImageProperties.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -200,6 +218,9 @@
         fpp1o7KPUxf/8Hmu1C/Iu+wdoYIHbAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="ImageProperties.ToolTipText" xml:space="preserve">
+    <value>Властивості зображення</value>
+  </data>
   <data name="toolStripButtonPreviousImage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -210,6 +231,9 @@
         HzFHCipJR3ShVtgRas/ya/dH/EK9EvpoIWEH76JnzD+JBBA2995eRgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="toolStripButtonPreviousImage.ToolTipText" xml:space="preserve">
+    <value>Попереднє зображення в каталозі</value>
+  </data>
   <data name="toolStripButtonNextImage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -219,6 +243,9 @@
         vPLXUU5qBbPwNUzCZUu2gVn4Fv8X3obflKqHy8xgFv4Tm9I5zMJl5L/f9MPEj9mnWZ3HuQdsZSCPCYkj
         qQAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="toolStripButtonNextImage.ToolTipText" xml:space="preserve">
+    <value>Наступне зображення в каталозі</value>
   </data>
   <data name="toolStripButtonZoomIn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -237,6 +264,9 @@
         uG1/AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="toolStripButtonZoomIn.ToolTipText" xml:space="preserve">
+    <value>Приближувати</value>
+  </data>
   <data name="toolStripButtonZoomOut.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -253,6 +283,9 @@
         PoCLDw3/A1Oraq9PWYRqAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="toolStripButtonZoomOut.ToolTipText" xml:space="preserve">
+    <value>Зменшення</value>
+  </data>
   <data name="toolStripButtonFullScreen.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -268,6 +301,9 @@
         YII=
 </value>
   </data>
+  <data name="toolStripButtonFullScreen.ToolTipText" xml:space="preserve">
+    <value>Повноекранний</value>
+  </data>
   <data name="toolStripButtonCrop.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -281,6 +317,9 @@
         DKjQqKL4ABJfbTuzJIRLAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="toolStripButtonCrop.ToolTipText" xml:space="preserve">
+    <value>Обрізати зображення</value>
+  </data>
   <data name="toolStripButtonRotateLeft.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -292,6 +331,9 @@
         b7d1NsQLrqFBboZjttxRQjgTPg6LanGTUbmbmZQl3MB7/MQ8gNuv6Jygxd1cuAGNzhl2cMrFs+wP/xKe
         7pRFx6gAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="toolStripButtonRotateLeft.ToolTipText" xml:space="preserve">
+    <value>Повернути вліво</value>
   </data>
   <data name="toolStripButtonRotateRight.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -313,6 +355,9 @@
         ckW3YB14Hf+tS73Be4F3uLB3SS5Ck8ivtbSaQCxgxomX2TocKJV+A3tSDRPa9Q5kAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="toolStripButtonRotateRight.ToolTipText" xml:space="preserve">
+    <value>Повернути вправо</value>
+  </data>
   <data name="FlipVertical.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -327,6 +372,9 @@
         qDovTBSg6rY8lJTalmsWB/A7ataGsZSypItZlpT2w+Rt/nsLg4SSLqYvKYufZpuwlG59nE6hF32er6Lb
         aBV/4BF0eYDuOcqHwvdhlv0HHAxROvO1UcQAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="FlipVertical.ToolTipText" xml:space="preserve">
+    <value>Перевернути вертикально</value>
   </data>
   <data name="FlipHorizontal.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -344,6 +392,9 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="FlipHorizontal.ToolTipText" xml:space="preserve">
+    <value>Перевернути по горизонталі</value>
+  </data>
   <data name="toolStripButtonActualSize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -353,6 +404,9 @@
         jIhVOPtAC31ISg/vwusIkstbPcFP8j724x8tPRxdG77GdfiILno4hbPIdXgmByELpH33K27jE25XPIfc
         0q/k7JZfSP87OUupWCUPKlbJg4pV8qDysAcBeSzxHJfROnJyPFMUf0M2zY3dMo9pAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="toolStripButtonActualSize.ToolTipText" xml:space="preserve">
+    <value>Реальний розмір</value>
   </data>
   <data name="toolStripButtonFitImages.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -369,68 +423,647 @@
         gW55kpwC3GFAAxjTZqQAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="toolStripButtonReset.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKDSURBVFhHtdY5qxNRGIfxWLgvhSi4FOIuiIIfxg0/goqF
-        W2FloyBaumvviiI2YmXhCqJgbaNYqIWICu76PENOOHfynmQmufcPPwiTMycnc5Z5Oy2yADtxEc/wAT+7
-        /Oy1C9iB+Zi0rMNlfMO/hmx7CWsxcmbjJH4h+pEmfDonMAut4shfIep0FI+xFI2yBc5p1NE43mIzBsZ/
-        PhU/njiIJQjjnA977D9wBe6G9Zjb5WevXYVtonsTp2Mm+uKCi25IbmAVhmU1biLqIzmKCXGr1Vf7aWyE
-        AzuAtvGeP8j7TL5gwlS4z+uN5mDcHES93+QMqnjCRYdMKc7fPjzB1y4/70U0t7dQ71veNw/V4okaRHGw
-        LxG11wssR541KC3M7ajO9ujLZYhyClH7xEHUn8Q1RG3Po3qJRF8eRpRNiNrn9iDPLkTtnLrOx+xCzsfm
-        IPIn4cJ08UTtc+71PJ4TUbv3GHpwjMJtlsfFFrX7jikZwGfkcfFG7aoBlKZgHK2m4Gl2IeIA76DNS6rp
-        IqwGahkVfanXWAizCIPOgMRtOAN5riNqew5VDRd9Kd8DeTy/nyNqq9JBZGUUtd+KqoAs1Xv3Uc907IaP
-        7xNc8Y/gY6//c3MbUd+9o9hYQEaNdASj5hCiPuXU92IlVHpMf7Ef09Am/njpdezW76strF6jxsk9rMCw
-        OOelx54cR18snZ3X6IbkN+7ChbsS3uM8boBbzdVeepLJQ4QlmXGVv0F042R4h/ou6Yuls9Vr1ME4/GO+
-        SRtlMR4g6mgUbtNiOV6K82T16n6NOm3C1X4MxTlvEkduDdBmILa12mlSxjeOq90azvPbSsY3mf9Qfvba
-        WWxD74QbnE7nPw7DXi5V583KAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="toolStripButtonSend.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGKSURBVEhL7dXNKwVRGMfx8VIkZGMnCwsv2VpLtgh18wdQ
-        lqxsrKSUJXsWlLKwI1sKC1lTWNmJhbeNvH9/i6mn07l3xtyZSbq/+izuzJ3zzDxzzpmgkv+QGgxgFTc4
-        QmapxzDWcI9vQ8VTTQNGsIkn2GLWCspOK6awh1f4Cn3BnlPbE6Ud09jFG2wR1wu2oOL6rbbXInY6MItj
-        hINEuUYBtu1655HpxQLOYQeMYx/qzIU5JkMomUPYC+JSNxahduq923PP0GwvmRPYi+JQS8egqLh7fhuR
-        0Z1twL24mCvo1Sij8M2DCcSOZm/UzFVLW6B04RHuf7ScmvGr9OMW7mB6qmVUQ2lCsYmopZcobThFOJAm
-        yjjCVGEHtpg1icSpg9bhJXp0wETLzldQPqAdruy4S0L78yd8RUVLM/V04gG+gqEZpBo9edSupgmoHSz1
-        rMNXMHSGTKKn1uC+ojKPzKJW3sFXuBuZZhDvsEW17HLJHGzhJeQS7V76AoWF+5BbGqFP6gF0I5X8lQTB
-        D9lj8ejIGfjdAAAAAElFTkSuQmCC
-</value>
+  <data name="toolStripButtonFitImages.ToolTipText" xml:space="preserve">
+    <value>Підігнати зображення до вікна</value>
   </data>
   <data name="MenuItemOpen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>215, 22</value>
+  </data>
+  <data name="MenuItemOpen.Text" xml:space="preserve">
+    <value>Відкрити</value>
   </data>
   <data name="MenuItemReopen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>215, 22</value>
+  </data>
+  <data name="MenuItemReopen.Text" xml:space="preserve">
+    <value>Відкрити заново</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>212, 6</value>
   </data>
   <data name="MenuItemSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>215, 22</value>
+  </data>
+  <data name="MenuItemSave.Text" xml:space="preserve">
+    <value>Зберегти</value>
   </data>
   <data name="MenuItemSaveAs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>215, 22</value>
+  </data>
+  <data name="MenuItemSaveAs.Text" xml:space="preserve">
+    <value>Зберегти Як...</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>212, 6</value>
   </data>
   <data name="MenuItemPrint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>215, 22</value>
+  </data>
+  <data name="MenuItemPrint.Text" xml:space="preserve">
+    <value>Друкувати...</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>212, 6</value>
   </data>
   <data name="MenuItemExit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>215, 22</value>
+  </data>
+  <data name="MenuItemExit.Text" xml:space="preserve">
+    <value>Вихід</value>
   </data>
   <data name="MenuItemFile.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 21</value>
   </data>
   <data name="MenuItemFile.Text" xml:space="preserve">
-    <value>&amp;Файл</value>
+    <value>Файл</value>
+  </data>
+  <data name="MenuItemUndo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="MenuItemUndo.Text" xml:space="preserve">
+    <value>Cкасувати</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 6</value>
+  </data>
+  <data name="MenuItemCut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="MenuItemCut.Text" xml:space="preserve">
+    <value>Обрізати</value>
+  </data>
+  <data name="MenuItemCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="MenuItemCopy.Text" xml:space="preserve">
+    <value>Копіювати</value>
+  </data>
+  <data name="MenuItemPaste.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="MenuItemPaste.Text" xml:space="preserve">
+    <value>Вставити</value>
+  </data>
+  <data name="MenuItemEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="MenuItemEdit.Text" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="MenuItemShowToolbar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemShowToolbar.Text" xml:space="preserve">
+    <value>Показати панель інструментів</value>
+  </data>
+  <data name="MenuItemShowStatusBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemShowStatusBar.Text" xml:space="preserve">
+    <value>Показати рядок стану</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 6</value>
+  </data>
+  <data name="MenuItemNextImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemNextImage.Text" xml:space="preserve">
+    <value>Наступне зображення в каталозі</value>
+  </data>
+  <data name="MenuItemPreviousImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemPreviousImage.Text" xml:space="preserve">
+    <value>Попереднє зображення в каталозі</value>
+  </data>
+  <data name="MenuItemFirstImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemFirstImage.Text" xml:space="preserve">
+    <value>Перше зображення в каталозі</value>
+  </data>
+  <data name="MenuItemLastImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemLastImage.Text" xml:space="preserve">
+    <value>Останнє зображення в каталозі</value>
+  </data>
+  <data name="MenuItemRandomImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemRandomImage.Text" xml:space="preserve">
+    <value>Випадкове зображення в каталозі</value>
+  </data>
+  <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 6</value>
+  </data>
+  <data name="MenuItemZoomIn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItemZoomIn.Text" xml:space="preserve">
+    <value>Приближити</value>
+  </data>
+  <data name="MenuItemZoomOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItemZoomOut.Text" xml:space="preserve">
+    <value>Зменшити</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 6</value>
+  </data>
+  <data name="MenuItem10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItem25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItem50.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItem75.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 6</value>
+  </data>
+  <data name="MenuItemActualSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 6</value>
+  </data>
+  <data name="MenuItem150.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItem200.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItem400.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItem500.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="MenuItemZoom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemZoom.Text" xml:space="preserve">
+    <value>Масштабування</value>
+  </data>
+  <data name="MenuItemFullScreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemFullScreen.Text" xml:space="preserve">
+    <value>Повноекранний режим</value>
+  </data>
+  <data name="MenuItemDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemDelete.Text" xml:space="preserve">
+    <value>Видалити (Очистити дисплей)</value>
+  </data>
+  <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 6</value>
+  </data>
+  <data name="MenuItemCenterImages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemCenterImages.Text" xml:space="preserve">
+    <value>Центрувати зображення у вікні</value>
+  </data>
+  <data name="MenuItemFitImages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemFitImages.Text" xml:space="preserve">
+    <value>Підігнати зображення до вікна</value>
+  </data>
+  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 6</value>
+  </data>
+  <data name="MenuItemImageProperties.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="MenuItemImageProperties.Text" xml:space="preserve">
+    <value>Властивості зображення</value>
+  </data>
+  <data name="MenuItemView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 21</value>
+  </data>
+  <data name="MenuItemView.Text" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="MenuItemRotateLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="MenuItemRotateLeft.Text" xml:space="preserve">
+    <value>Повертати вліво</value>
+  </data>
+  <data name="MenuItemRotateRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="MenuItemRotateRight.Text" xml:space="preserve">
+    <value>Повертати праворуч</value>
+  </data>
+  <data name="MenuItemCustomRotation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="MenuItemCustomRotation.Text" xml:space="preserve">
+    <value>Настроюване обертання</value>
+  </data>
+  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 6</value>
+  </data>
+  <data name="MenuItemHorizontalFlip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="MenuItemHorizontalFlip.Text" xml:space="preserve">
+    <value>Горизонтальний переворот</value>
+  </data>
+  <data name="MenuItemVerticalFlip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="MenuItemVerticalFlip.Text" xml:space="preserve">
+    <value>Вертикальний переворот</value>
+  </data>
+  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 6</value>
+  </data>
+  <data name="MenuItemResize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="MenuItemResize.Text" xml:space="preserve">
+    <value>Змінити розмір</value>
+  </data>
+  <data name="MenuItemCrop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="MenuItemCrop.Text" xml:space="preserve">
+    <value>Обрізати</value>
+  </data>
+  <data name="MenuItemImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 21</value>
+  </data>
+  <data name="MenuItemImage.Text" xml:space="preserve">
+    <value>Зображення</value>
+  </data>
+  <data name="MenuItemColorFiltering.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 22</value>
+  </data>
+  <data name="MenuItemColorFiltering.Text" xml:space="preserve">
+    <value>Фільтрування кольору</value>
+  </data>
+  <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 6</value>
+  </data>
+  <data name="MenuItemChannelsFiltering.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 22</value>
+  </data>
+  <data name="MenuItemChannelsFiltering.Text" xml:space="preserve">
+    <value>Фільтрація каналів...</value>
+  </data>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 6</value>
+  </data>
+  <data name="MenuItemExtractRedChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 22</value>
+  </data>
+  <data name="MenuItemExtractRedChannel.Text" xml:space="preserve">
+    <value>Вилучення червоного каналу</value>
+  </data>
+  <data name="MenuItemExtractGreenChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 22</value>
+  </data>
+  <data name="MenuItemExtractGreenChannel.Text" xml:space="preserve">
+    <value>Вилучення зеленого каналу</value>
+  </data>
+  <data name="MenuItemExtractBlueChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 22</value>
+  </data>
+  <data name="MenuItemExtractBlueChannel.Text" xml:space="preserve">
+    <value>Вилучення синього каналу</value>
+  </data>
+  <data name="MenuItemChannels.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 22</value>
+  </data>
+  <data name="MenuItemChannels.Text" xml:space="preserve">
+    <value>Канали</value>
+  </data>
+  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 6</value>
+  </data>
+  <data name="MenuItemContrast.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 22</value>
+  </data>
+  <data name="MenuItemContrast.Text" xml:space="preserve">
+    <value>Контраст...</value>
+  </data>
+  <data name="MenuItemBrightness.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 22</value>
+  </data>
+  <data name="MenuItemBrightness.Text" xml:space="preserve">
+    <value>Яскравість...</value>
+  </data>
+  <data name="MenuItemSaturation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 22</value>
+  </data>
+  <data name="MenuItemSaturation.Text" xml:space="preserve">
+    <value>Насичення...</value>
+  </data>
+  <data name="MenuItemGammaCorrection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 22</value>
+  </data>
+  <data name="MenuItemGammaCorrection.Text" xml:space="preserve">
+    <value>Гамма-корекція...</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 6</value>
+  </data>
+  <data name="MenuItemHSLFiltering.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 22</value>
+  </data>
+  <data name="MenuItemHSLFiltering.Text" xml:space="preserve">
+    <value>Фільтрування HSL...</value>
+  </data>
+  <data name="MenuItemHueModifier.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 22</value>
+  </data>
+  <data name="MenuItemHueModifier.Text" xml:space="preserve">
+    <value>Модифікатор відтінку...</value>
+  </data>
+  <data name="MenuItemAdjustments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 21</value>
+  </data>
+  <data name="MenuItemAdjustments.Text" xml:space="preserve">
+    <value>Регулювання</value>
+  </data>
+  <data name="MenuItemGrayscale.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemGrayscale.Text" xml:space="preserve">
+    <value>Градації сірого кольору</value>
+  </data>
+  <data name="MenuItemSepia.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemSepia.Text" xml:space="preserve">
+    <value>Відтінок сепії</value>
+  </data>
+  <data name="MenuItemInvertColors.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemInvertColors.Text" xml:space="preserve">
+    <value>Інвертувати кольори</value>
+  </data>
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 6</value>
+  </data>
+  <data name="MenuItemBlur.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 22</value>
+  </data>
+  <data name="MenuItemBlur.Text" xml:space="preserve">
+    <value>Розмиття</value>
+  </data>
+  <data name="MenuItemSharpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 22</value>
+  </data>
+  <data name="MenuItemSharpen.Text" xml:space="preserve">
+    <value>Загострити</value>
+  </data>
+  <data name="toolStripMenuItem18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 6</value>
+  </data>
+  <data name="MenuItemGaussianBlur.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 22</value>
+  </data>
+  <data name="MenuItemGaussianBlur.Text" xml:space="preserve">
+    <value>Гаусове розмиття</value>
+  </data>
+  <data name="MenuItemGaussianSharpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 22</value>
+  </data>
+  <data name="MenuItemGaussianSharpen.Text" xml:space="preserve">
+    <value>Гаусове посилення різкості</value>
+  </data>
+  <data name="MenuItemBlurAndSharpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemBlurAndSharpen.Text" xml:space="preserve">
+    <value>Розмиття &amp;&amp; Загострити</value>
+  </data>
+  <data name="MenuItemRed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="MenuItemRed.Text" xml:space="preserve">
+    <value>Червоний</value>
+  </data>
+  <data name="MenuItemGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="MenuItemGreen.Text" xml:space="preserve">
+    <value>Зелений</value>
+  </data>
+  <data name="MenuItemBlue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="MenuItemBlue.Text" xml:space="preserve">
+    <value>Синій</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 6</value>
+  </data>
+  <data name="MenuItemCyan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="MenuItemCyan.Text" xml:space="preserve">
+    <value>Блакитний</value>
+  </data>
+  <data name="MenuItemMagenta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="MenuItemMagenta.Text" xml:space="preserve">
+    <value>Пурпурний</value>
+  </data>
+  <data name="MenuItemYellow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="MenuItemYellow.Text" xml:space="preserve">
+    <value>Жовтий</value>
+  </data>
+  <data name="toolStripSeparator24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 6</value>
+  </data>
+  <data name="MenuItemRotateRGBChannels.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="MenuItemRotateRGBChannels.Text" xml:space="preserve">
+    <value>Поворот каналів RGB</value>
+  </data>
+  <data name="MenuItemColors.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemColors.Text" xml:space="preserve">
+    <value>Забарвлення</value>
+  </data>
+  <data name="MenuItemThreshold.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="MenuItemThreshold.Text" xml:space="preserve">
+    <value>Порогове значення</value>
+  </data>
+  <data name="toolStripMenuItem15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 6</value>
+  </data>
+  <data name="MenuItemThresholdWithErrorCarry.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="MenuItemThresholdWithErrorCarry.Text" xml:space="preserve">
+    <value>Поріг із перенесенням помилки</value>
+  </data>
+  <data name="MenuItemOrderedDither.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="MenuItemOrderedDither.Text" xml:space="preserve">
+    <value>Упорядкований поділ</value>
+  </data>
+  <data name="MenuItemFloydSteinberg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="MenuItemFloydSteinberg.Text" xml:space="preserve">
+    <value>Флойд-Стейнберг</value>
+  </data>
+  <data name="toolStripMenuItem17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 6</value>
+  </data>
+  <data name="MenuItemSISThreshold.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="MenuItemSISThreshold.Text" xml:space="preserve">
+    <value>Порогове значення SIS</value>
+  </data>
+  <data name="MenuItemBinarization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemBinarization.Text" xml:space="preserve">
+    <value>Бінаризація</value>
+  </data>
+  <data name="MenuItemErosion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 22</value>
+  </data>
+  <data name="MenuItemErosion.Text" xml:space="preserve">
+    <value>Ерозія</value>
+  </data>
+  <data name="MenuItemDilatation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 22</value>
+  </data>
+  <data name="MenuItemDilatation.Text" xml:space="preserve">
+    <value>Розширення</value>
+  </data>
+  <data name="MenuItemOpening.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 22</value>
+  </data>
+  <data name="MenuItemOpening.Text" xml:space="preserve">
+    <value>Відкриття</value>
+  </data>
+  <data name="MenuItemClosing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 22</value>
+  </data>
+  <data name="MenuItemClosing.Text" xml:space="preserve">
+    <value>Закриття</value>
+  </data>
+  <data name="MenuItemMorphology.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemMorphology.Text" xml:space="preserve">
+    <value>Морфологія</value>
+  </data>
+  <data name="MenuItemEdges.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="MenuItemEdges.Text" xml:space="preserve">
+    <value>Грані</value>
+  </data>
+  <data name="MenuItemHomogenity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="MenuItemHomogenity.Text" xml:space="preserve">
+    <value>Однорідність</value>
+  </data>
+  <data name="MenuItemDifference.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="MenuItemDifference.Text" xml:space="preserve">
+    <value>Різниця</value>
+  </data>
+  <data name="MenuItemSobel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="MenuItemSobel.Text" xml:space="preserve">
+    <value>Собель</value>
+  </data>
+  <data name="MenuItemCanny.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="MenuItemCanny.Text" xml:space="preserve">
+    <value>Кенні...</value>
+  </data>
+  <data name="MenuItemEdgeDetectors.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemEdgeDetectors.Text" xml:space="preserve">
+    <value>Детектори граней</value>
+  </data>
+  <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 6</value>
+  </data>
+  <data name="MenuItemAdaptiveSmoothing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemAdaptiveSmoothing.Text" xml:space="preserve">
+    <value>Адаптивне згладжування...</value>
+  </data>
+  <data name="MenuItemConservativeSmoothing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemConservativeSmoothing.Text" xml:space="preserve">
+    <value>Консервативне згладжування</value>
+  </data>
+  <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 6</value>
+  </data>
+  <data name="MenuItemPerlinNoise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemPerlinNoise.Text" xml:space="preserve">
+    <value>Шум Перліна...</value>
+  </data>
+  <data name="toolStripSeparator21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 6</value>
+  </data>
+  <data name="MenuItemOilPainting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemOilPainting.Text" xml:space="preserve">
+    <value>Масляний живопис...</value>
+  </data>
+  <data name="MenuItemJitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemJitter.Text" xml:space="preserve">
+    <value>Тремтіння</value>
+  </data>
+  <data name="MenuItemPixellate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 22</value>
+  </data>
+  <data name="MenuItemPixellate.Text" xml:space="preserve">
+    <value>Піксельний...</value>
+  </data>
+  <data name="MenuItemEffects.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 21</value>
+  </data>
+  <data name="MenuItemEffects.Text" xml:space="preserve">
+    <value>Ефекти</value>
   </data>
   <data name="toolStripButtonBrightness.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -443,6 +1076,9 @@
         UR5eQE0HGYKawichCl2GKHwjQqFbcRaG3j/xa4dR6HFMQNiFxCbvuskYdXmFX0rDr+XbiCXobUQH038B
         HKfNI3Vaw/ANzITxGyc6NgQAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="toolStripButtonBrightness.ToolTipText" xml:space="preserve">
+    <value>Яскравість</value>
   </data>
   <data name="toolStripButtonContrast.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -458,6 +1094,9 @@
         xdi553Nk5s5sFas56GvM4lWPSdVSOtVvHxH7boWVA+55ps9DhRvXZvMPW1yZrh4FXGYAAAAASUVORK5C
         YII=
 </value>
+  </data>
+  <data name="toolStripButtonContrast.ToolTipText" xml:space="preserve">
+    <value>Контраст</value>
   </data>
   <data name="toolStripButtonColorFiltering.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -483,32 +1122,38 @@
         RzoMAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="toolStripButtonColorFiltering.ToolTipText" xml:space="preserve">
+    <value>Фільтрування кольору</value>
+  </data>
   <data name="toolStripButtonSaturation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
         AElFTkSuQmCC
 </value>
+  </data>
+  <data name="toolStripButtonSaturation.ToolTipText" xml:space="preserve">
+    <value>Насичення</value>
   </data>
   <data name="toolStripButtonHUE.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -526,33 +1171,39 @@
         RK5CYII=
 </value>
   </data>
+  <data name="toolStripButtonHUE.ToolTipText" xml:space="preserve">
+    <value>Модифікатор відтінку</value>
+  </data>
   <data name="toolStripButtonSmooth.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
+  </data>
+  <data name="toolStripButtonSmooth.ToolTipText" xml:space="preserve">
+    <value>Адаптивне згладжування</value>
   </data>
   <data name="toolStripButtonResize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -571,16 +1222,8 @@
         W4i25kw47otN+DOdZMHdEMmZYSJlG0OXpIEM/AFSn16kt8Ak3gAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="toolStripButtonPen.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEcSURBVFhH7dc9TsNAEMVx3wFuw8cZQBBERc5DSVLlNjQ0
-        VAQ6JC5AEwU6BEr+L2gkazVLnOysafykn5TCypu119Gm6SHHuMc7HnGB3nKNb6wSt6ieXLmpOsQhlvCK
-        265QLSf4hFdsnhCaMxz8ftxk2xAfCIs9c61Kj8Dy1xAPCEm64boM8YNTFCe329MhjqBbbuVjFGfbq+YN
-        sUAv5SYdor1J907XcpMOURTdPj1DryhH15+jOLuuXHrbcJ6hvDhDuVeSM5QX51/L9Tv9Ba8kR+U3CMkl
-        vJKcsJVbpvCKPOHlygu8slSVch0Q9MVeYVuVckX/1bzCtmrlygReqdHbEbbbvTwjLX3DDCOEHaVyecUc
-        d9CxKeTQ2C1NswZlUlWWQXWjuAAAAABJRU5ErkJggg==
-</value>
+  <data name="toolStripButtonResize.ToolTipText" xml:space="preserve">
+    <value>Змінити розмір зображення</value>
   </data>
   <data name="toolStripButtonCustomRotation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -601,155 +1244,169 @@
         WHKpNQbr2k+21P2aBMvxJVoFTYY1n/8I/Z+oqPgLrxunLIyK8tIAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="toolStripButtonCustomRotation.ToolTipText" xml:space="preserve">
+    <value>Настроюване обертання</value>
+  </data>
   <data name="toolStripButtonPixellate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
+        17LH9byv718VtcQyRTFzfAAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="toolStripButtonPixellate.ToolTipText" xml:space="preserve">
+    <value>Піксельна</value>
   </data>
   <data name="toolStripButtonOilPainting.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
-        tHmCAAAAAElFTkSuQmCC
+        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
+        AAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="toolStripButtonOilPainting.ToolTipText" xml:space="preserve">
+    <value>Масляний живопис</value>
   </data>
   <data name="toolStripButtonGaussianBlur.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQRSURBVFhH1VfLThRBFJ3xsRLFxEd8xdcHqHFQfMD09HRX
-        9yQa1MgoUSJo0N9AXeNOBBaGuHBEPkN+wmAianQvCQLGBZ5z51ZTPQyM4CToSSpMn1v3Ubdu3Soy64Hx
-        TL/nebNhIXyDz2yVFWRDL5ygjHOUaz5MwUxhLHEEQbBH6Qwc77U8gnundPOB1XVjfIajF0olQAZG/YL/
-        hXOU+o+BVfRgRc+w0nalBEE+OCe8Z3rxmaoBchhDkR/llBNg/gXV6VFqbXCi3U+Med/3j5EPw/BQ/mJ+
-        zpH1iQIAnX7Lc07cGR8kH3vxcXALVhYVotuisBZ05dbJUuRFV8kHXhC6PL6fiwIAneEaWUieui7PDInC
-        WmDKMFmiRlF9LJVKu8ij0lvATZPHKhcxr0MUgDgfd5KjLMyH740xO8gja61BIZghjzEfFaPzotAITDuj
-        t84tui517YTBK0ytUglMpzlBGQNVSkAbtIVgjiq1cbAOYOx6baERSO8ZBHCNc5TaOIrF4mHuo7sapPwh
-        vn9qOjkmc7nc9nK5vBXO3zr8AgJ8oGrVrMHWqoFpBU/hrzQQOGqDox9qbJoGWNX4/Uu5ZNARA6vlpUbg
-        kOlHVj4oN2czB19lcOyqfSyuWVFEh9MAUqeA+xr6YZfL2YG5LyEfryuDzmqnQDomvy+b7+zvFZ0g7RWT
-        evVbViJnGftrOXeg7w9C9rieDNt4CvfFSXs6OAI/uCM+CmZEOM+85rdcJvKjiiwm3uM5xwqTo4bfE9aQ
-        GMPxgt4B6uIEfHVlGBVVkyNKW7SJz6R71vhsDChs0z0fk5Ubs19FYoyZ4HZwzmBmcIuKmgdWO4w/gqNX
-        COCpu4JSR2kf+CcMAAEOcK6K/gw0oD8JXiz9MDTM9CnHfZtMpRlpZxDq/Jsr43apWgbBerQFnndHsgWJ
-        T05WxRF+w1iqCNnheHwslxosQKy8ngw6p1mECDLpHbiM7qrPMeUqK44h/g5ZBQ4eQ5M3N1zOkY1z1JOt
-        5xj28RkFQzcp5GrZNDiBFwsCbCl5pSPucbKDBYfVDNTyGAtsRGxi+G0vsLm4GJ+lDwTSLT6rJ2Ml2PnY
-        Pu2tRtAZDasDjgqrnQXnbGPVuRfeVzVmuIW27BvhryB3BC4c7q9SCdh4mPamOGL30yu0VSkBUyr7isJU
-        KgELjjLOUUpAG+Tty6ohkL7kQYLVztggJJXLF8ui8U1eFAAeNcBW+zTnksff3Qj2k/K0mXpj1gUC2Nwn
-        GSalHqXIgLxkWNX2dHC4FQyduo9Sph1cUriokVui0Ah8vTLa2jccVtpGXm+11LOcTYYye9Qs4Lid/B87
-        /6eBlZTZxZCJUaUSgBvTf83KSjUfSOcm/3OKts3+jVVWXzLLyEJWoWzV9loXmcxvRme4qUoCbQcAAAAA
-        SUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQSSURBVFhH1VfbTlNBFG29PIli4iXe4u0D1FgEq9DT03Pm
+        tIkGNVIlSgQN+huoz/gmAg+G+GBFPkN+wmAiavRdEgWND7jW7p7jnNJSwCboSib0rD37Mnv27BlS64Hx
+        zJDneQthPnyFz3SVFaRDL5ymjHOUaz1M3sxiLHMEQbBH6RQc77U8gnujdOuB1fVhfISjZ0rFQAYm/Lz/
+        iXOU+o+BVfRjRU+w0i6lBEEuOCe8ZwbwmagBchijkR9llBNg/nnV6VdqdXCi3U+MRd/3j5EPw/BQNpv9
+        5sgGRQGAzpDlOafYUzxIvugVj4NbsrIoH90UhdWgK7dOliMvukw+8ILQ5fH9VBQA6IzVyELy1HV5ZkgU
+        VgNThskSNYrqfalU2kUeld4Gbo58tjP7A/O6RQEo5oo95CgLc+FbY8wO8shae5AP5sljLEaFqFMUmoFp
+        Z/TWuUXvhd6dMHiJqVUqhukxJyhjoEoJaIO2EMxRpTYO1gGMXa0tNALpPYMArnCOUhtHoVA4zH10V4OU
+        38f3T00nx0wmk9leLpe3wvlrh19CgPdUrZo12GoYmFbwLP5KA4GjDjj6rsbmaIBVjd+/lIsHHTGwWl5q
+        BA6ZfmTlnXA4HTZz8FUGx646yOJaEEV0OA0gcQq4r6Ef9rqcHZj7HPKpujLoNDoF0jH5fdF8ZX+v6ARp
+        r5g0oN+yEjnL2F/LuQN9fwSyh/Vk2MZTuC9O2tPBEfjBLfGRN+PCeeYlv+UykR9VpDHxDs85VhgfNfye
+        tobEGI4X9A5QFyfgsyvDqKiaHFHaok18xt2zxmdzQGGb7vmkrNyY/SoSY8wEt4NzRlIjW1TUOrDaYfwB
+        HL1AAI/dFZS6S/vAP2IACHCYc1W0NtCA/iR4sQzB0BjTpxz3bSaRZqSdQajzL66M26VqKQTr0RZ43h3x
+        FsQ+OVkVx/kNY4kiZIfj8bFcYrAAsfJ6MuicZhEiyLh34DK6rT4nlausOIb4O2oVOHgMTc5cczlHNsVR
+        T7aeYzjIZxQMXaeQq7XXLi8WBNhW8kpH3ONkBwsOqxmu5TGW2IjYxPC7eoHxmi4Uz9IHAukTn9WTsRLs
+        fGyf9lYj6IyG1QFHhdXOgnO2sercC++qGjPcRlv2jfBXkDsCFw73V6kYbDxMe0scsfvpFdqulIAplX1F
+        YSoVgwVHGecoJaAN8vZl1RRIX/wgwWrnbRCSSnuxsB58kxMFgEcNsNU+x7nk8Xc3gv2gPG0m3ph1gQA2
+        90mGSYlHKTIgLxlWtfsodSsYOnUfpUw7uLhwUSM3RKEZ+HpltLVvOKy0g7zeaolnOZsMZfaoWcBxF/k1
+        O/+ngZWU2cWQiQmlYoCb1H/Nykq1HkjnJv9zirbN/o1VVl8yf5CGrEJZw/ZaF6nUb5jct/ucSrvYAAAA
+        AElFTkSuQmCC
 </value>
+  </data>
+  <data name="toolStripButtonGaussianBlur.ToolTipText" xml:space="preserve">
+    <value>Гаусове розмиття</value>
   </data>
   <data name="toolStripButtonHSLFiltering.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
-        HiqUAAAAAElFTkSuQmCC
+        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
+        V2SvQREyXgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="toolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripButtonHSLFiltering.ToolTipText" xml:space="preserve">
+    <value>HSL фільтрація</value>
+  </data>
+  <data name="toolStripButtonPerlinNoise.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQYSURBVFhHtZZvbBN1GMd/mo3oG0mmYVlmiBhoMRIhAzUz
-        xipuRvfCZCjSXkUUArq1y4IhvACTw2gYGdD03BzMQHin+A+ixD8xjCYQXxg2FNjWP3eFMhdls+tdRwe0
-        bn18rvtt63rPlbbqN/lkTe/6/Ty/3+2uZaUGGLt7kC2vusRWVOLru/jb/28CzPKAn1l3BdjS8/3MOhlg
-        VpimKhVgy37GYzvC7OGF/PT/LvoKUf7uRWaNz0nNWBINsmVb+Uf/fXrZ6nJc2We0LB+Wbv0y8ZrSg0WH
-        acGdwcH38ZrSgiXrc0uLBS9HHa8rLvrW4+plqrQ4LH0l3SV4i9XThcXjZ8tX89rCg5NLVFkp4P/CHl5b
-        eAaZ9QeqrDQsn/LawoMPll66rHhwMT28tvDgAGcG1tZAYPfTEOh8FkIHnoGB5lrwV68gJTrBsscgvLAO
-        IosaIVL5ClytaAD53ifxmOVrXnvniP3rF0iyvcXnsyUhVAe5pEP1oF52QPCt52bFV6oaYMT2IYw+vh9G
-        1xg5ufL9W8ytNbNtUM41dDyy/VFvSAhKigCn5XUGeS7qpR0Q3dRFSrPZWX8cWIuGqH7WOv4I182PJG94
-        ap/SGNflOocVB/yNq6XEGZRGgMk4TKk3Ibq2gxTrXK/ZC/c1/cEHyKAxV7yWa6fjDW9c7B18bWRGPsN5
-        +WVarpMahplMXouRcp2jtZ3Zco76J2uJPsj1uPqQ40SuXOdj3IWx0EtGefQYV88l0XXOIFdW7YF7mkeJ
-        ARCX9mVG7pGdNaIopKkBdI7JdpiQG+YPMDXBtXNJJ5Lz5MNPtIHlTT8tzyCmWau6inlloZ0SZ3NEsUMs
-        vGFaPryTK43Rmj/PyOXnPbB4S5iQ5qK2MUlx9FFSil+uueBm/AzXGaP29IN307eEyASX1osDCH/livJx
-        InYRvhpPwK+3kqCkUiAnU3ABX38RT8CRyBAtMuPt6CgTFeE2JTLj+FgfdKvjJIcihWx7Fs7obX0HhnIl
-        +Th6/RQp19l14TItMiei34KnKZEZnb97SLnOum9+oyR5iP3EvIqjlRKZcmUrfKJqxgFiGlTsNrnnzXBr
-        bnwK2ivbFeEGKTOha6THMMAHoSJX79LG2Ts3FmUeRl5FECmRGR1XW3HFY1kDjMHS/RFaZIZbey8j19Pd
-        u60cvwV7KJkZncOHZgdw/ljstdfOMhEWcP10OgY33i+FhHOUzAxRFNNNCCHIx1m2Xavg2vnJ/BhRHAew
-        PJkrM2KXpZDzBSx8kTVFlRyJEf2eb9HaDSun8lHg9SWSLLR5FPuA5LNNzUkbE7hL30lh52b9svHTcXIs
-        datb8Nn+PUomZqU23xT+7cdje/GL5yF+dnERfbayg8E3qg8OvUpvGxV9i7dHq3GwMv6OSRj7BxNPbZog
-        RzoMAAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM2SURBVFhHxZdZyE1RFMevMSHJnFnmkDmKkHgxJA/kQSLl
+        RR4ND8KbIRLKUBTyRGR4M5RkSKZMIcoUypAh8/z7XXd/nXO/e9z73YF//frOt/c+a519115rnZMqQZPg
+        Ygav/5nGwln4ApszeO2YcxXTcDgO32EndIEgrx1zzjUDoWzqD4fhJ+yD3pAk5/bCrvR/JcpdbQN3dQwG
+        Q011Dgb8uSxcnWAHfIOTMAKKVWeoA0NhI2g7UW1gE3igzsN4KJe6gza17YPoq0rNYAW8g5swDWpBJTQO
+        LsMH2ACtIPUQfsFSqO1AhaUPfenzgQOjwBz+CuZ0O6iUtK0PfelT31Xy57GqGSdPfyxOJao5rIKPcB0S
+        w+zgZLgK78GbmkKxagyL4Q3cgllQUJjHwCswTv7VSCMoVK71nqgNbeZVP7CS/cj87QPz4Am8AI02gCTV
+        B9c/hefg+l4QLWhDoJp0tB8st4fABwkyLP50ng13Y9bMhboQ5LVjzr2EhdAQlLYPgJsytPrQl+Np+XRO
+        +nTDHIhoAlyCT7AeusJyeAt3YEYGrx2znjQB5drdoO2jYDVU+tCX41sdyPUAo+E0mC7Ot4cgf+Zl4E78
+        RSwqa8CTrkw1DXvvGciOfbUHUNEQeFqd3APdIMiaPhvuQziYNqx0NUMtYB2YaldgIkRlWA+CtmMhiCr7
+        EPaAfKkZTbXbkJ1qNqS8hzBbIQ3tiHfBXa0FdxnkIVsEHjpL6hyIHsyOsB20UXAautvpYBhsTjq9AJ8h
+        dDHPwHww1Z7BgsxYUGuw0XiP92pDW9rUds4KqHyxNHZhty1BecNUuAGG4BG4oyUQLU521ZXgGtd6T3Cm
+        LW2G8xF7iY02oy2Q1IyM60y4B6/Bjmb8xWvHnHNNUrnVtj5izaim7bgeWO0eg9VOvHbMuXzSR6wdm7+r
+        wXy+BlMgMU4RWZKNv/ytPAdpU9v60Jc+Q+1IyziZYlY9X59MvXJpJJyCUNjaQqI6gItMn1yVrCbyW+IE
+        hLpieS5YpbyW94VoQesJRcuSGYwdAT9UkmTrDQ3Ihx4EZZNNxAcIu4r2CateCJtNLPauV279t4/TbFnN
+        fMeXIj/PU6nfHc/s6C+Eo3EAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="toolStripButtonPerlinNoise.ToolTipText" xml:space="preserve">
+    <value>Шум Перліна</value>
   </data>
   <data name="printPreviewDialog.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

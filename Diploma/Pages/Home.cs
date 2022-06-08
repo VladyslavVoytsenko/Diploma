@@ -10,8 +10,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
+using System.Threading;
 using System.Windows.Forms;
 using Diploma.View_Forms;
 using Point = System.Drawing.Point;
@@ -23,10 +22,12 @@ namespace Diploma.Pages
         [Obsolete("Obsolete")]
         public void SuperUpdate()
         {
+           if (bitmap == null) return;
             Controls.Clear();
             InitializeComponent();
             deleteImage = true;
             imageDisplay.Invalidate();
+            
         }
         
 
@@ -36,53 +37,30 @@ namespace Diploma.Pages
             InitializeComponent();
             var levelControl = printPreviewDialog.TopLevelControl;
             if (levelControl != null)
-                levelControl.Text = "Print Preview";
+                levelControl.Text = @"Print Preview";
             imageDisplay.Select();
         }
-
-        #region ClassArrayPoints
-
-        private class ArrayPoints
-        {
-            private int index;
-            private Point[] points;
-
-            public ArrayPoints(int size )
-            {
-                if (size < 0)  size = 2; 
-                points = new Point[size];
-            }
-
-            public void SetPoint(int x, int y)
-            {
-                if(index>=points.Length) index = 0;
-                points[index] = new Point(x, y);
-                index++;
-            }
-
-            public void ResetPoints() => index = 0;
-
-            public int GetCountPoints() { return index; }
-
-            public Point[] GetPoints() { return points; }
-        }
-
-        #endregion
 
         #region Fields
 
         private string imageFile;                                       // name of the file we want to display
+        
         private ArrayList imageFiles;                                   // list which contains all image files in the current folder
-        private int currentFileIndex = -1;                              // index of the currently used file, if the value is -1 there is no open file                    
+        
+        private int currentFileIndex = -1;                              // index of the currently used file, if the value is -1 there is no open file    
+        
         private FileInfo imageFileInfo;                                 // image file information
+        
         private Bitmap bitmap;                                          // bitmap object of the image file we want to display
         private Bitmap deletedBitmap;                                   // image cleared from the screen (can be reopened)
         private Bitmap undoBitmap;                                      // bitmap for storing the state of the image before the last change
         private Bitmap zoomBitmap;                                      // bitmap for zooming
-        private Bitmap resetBitmap;                                      // bitmap for reset image
+
         private PointF position;                                        // point from which the image is drawn
+        
         private float zoom = 1.00F;                                     // current image zoom
         private float zoomFactor = 1.00F;                               // zoom factor, used when changing image dimensions
+        
         private bool fitImagesToWindow;                                 // size image to fit the window dimensions
         private bool deleteImage;                                       // clear image from the window
         private bool isDeleted;                                         // image is deleted/cleared
@@ -96,12 +74,12 @@ namespace Diploma.Pages
         private bool fitImagesState;                                    // fit images to window state
         private bool toolBarShowState;                                  // toolbar visibility state
         private bool statusBarShowState;                                // status bar visibility state
-        private bool PencilTool = false;                                        // pen tool
         
         private int formTop;                                            // window top position
         private int formLeft;                                           // window left position
         private int formWidth;                                          // window width
         private int formHeight;                                         // window height
+        
         private FormWindowState formState = FormWindowState.Normal;     // window state
         private const string Filter =                                   // filter for Open and Save dialogs
                                 "All Supported Formats|*.jpg;*.jpeg;*.bmp;*.gif;*.png;*.tif;*.tiff|"
@@ -116,17 +94,15 @@ namespace Diploma.Pages
         private Point displayEndPoint;                                  // cropping end point on the display
         private Point cropStartPoint;                                   // cropping start point on the image
         private Point cropEndPoint;                                     // cropping end point on the image
+        
         private Rectangle selection;                                    // cropping selection rectangle
-                                                                        //private MailAddress from_email;
+
+        //private MailAddress from_email;
                                                                         //private object data;
-        Graphics graphics;
-        Pen pen = new Pen(Color.Black, 3f);
         #endregion
 
 
-        #region ClassObjects
-        private ArrayPoints arrayPoints = new ArrayPoints(2);
-        #endregion
+        
 
 
 
@@ -145,7 +121,14 @@ namespace Diploma.Pages
         {
             zoom = zoomFactor;
             if (!(zoom < 0.09F) && !(zoom > 5.01F)) return;
-            MessageBox.Show("Image zoom must be between 10 and 500% !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+            {
+                MessageBox.Show(@"Масштаб зображення має бути від 10 до 500% !", @"Застереження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else {
+                MessageBox.Show(@"Image zoom must be between 10 and 500% !", @"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+              
             if (zoom < 0.09F)
                 zoomFactor += 0.10F;
             else
@@ -164,7 +147,7 @@ namespace Diploma.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             imageDisplay.Invalidate();
         }
@@ -216,7 +199,7 @@ namespace Diploma.Pages
                         ici = codec;
                 }
                 EncoderParameters ep = new EncoderParameters(1);
-                ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)85);
+                ep.Param[0] = new EncoderParameter(Encoder.Quality, (long)85);
                 if (ici != null) bitmap.Save(mss, ici, ep);
             }
             else
@@ -231,7 +214,7 @@ namespace Diploma.Pages
 
             Stream st = File.Open(GetFilePath(), FileMode.Open, FileAccess.Read, FileShare.Read);
             var b = new byte[st.Length];
-            st.Read(b, 0, b.Length);
+            var read = st.Read(b, 0, b.Length);
             var ms = new MemoryStream(b);
             deletedBitmap = (Bitmap)System.Drawing.Image.FromStream(ms, true);
         }
@@ -319,8 +302,8 @@ namespace Diploma.Pages
             var toolStripButtons = new[] { toolStripButtonSaveAs, toolStripButton1, toolStripButtonPrintImage ,
             toolStripButtonDelete,toolStripButtonUndo, ImageProperties, toolStripButtonZoomIn, toolStripButtonZoomOut, toolStripButtonFullScreen,
             toolStripButtonCrop, toolStripButtonRotateLeft, toolStripButtonRotateRight, FlipVertical, FlipHorizontal, toolStripButtonActualSize,
-            toolStripButtonFitImages, toolStripButtonSend, toolStripButtonReset, toolStripButtonBrightness, toolStripButtonContrast, toolStripButtonColorFiltering,
-            toolStripButtonSaturation, toolStripButtonHUE, toolStripButtonSmooth, toolStripButtonResize, toolStripButtonCustomRotation, toolStripButtonPixellate, toolStripButtonOilPainting, toolStripButtonGaussianBlur};
+            toolStripButtonFitImages, toolStripButtonBrightness, toolStripButtonContrast, toolStripButtonColorFiltering, toolStripButtonPerlinNoise,
+            toolStripButtonSaturation, toolStripButtonHUE, toolStripButtonSmooth, toolStripButtonResize, toolStripButtonCustomRotation, toolStripButtonPixellate, toolStripButtonOilPainting, toolStripButtonGaussianBlur, toolStripButtonHSLFiltering};
 
            // ToolStripButton[] toolStripButtonsNextPrev = new ToolStripButton[] { toolStripButtonPreviousImage, toolStripButtonNextImage };
             foreach (var button in toolStripButtons)
@@ -392,20 +375,16 @@ namespace Diploma.Pages
         private static Bitmap ColorToGrayscale(Bitmap bmp)
         {
             int w = bmp.Width,
-                h = bmp.Height,
-                r, ic, oc,
-                outputStride, bytesPerPixel;
+                h = bmp.Height;
+            int bytesPerPixel;
             PixelFormat pfIn = bmp.PixelFormat;
-            ColorPalette palette;
-            Bitmap output;
-            BitmapData bmpData, outputData;
 
-            output = new Bitmap(w, h, PixelFormat.Format8bppIndexed);
+            var output = new Bitmap(w, h, PixelFormat.Format8bppIndexed);
 
-            palette = output.Palette;
+            var palette = output.Palette;
             for (var i = 0; i < 256; i++)
             {
-                var tmp = Color.FromArgb(255, i, i, i);
+                Color.FromArgb(255, i, i, i);
                 palette.Entries[i] = Color.FromArgb(255, i, i, i);
             }
             output.Palette = palette;
@@ -446,16 +425,19 @@ namespace Diploma.Pages
                 default: throw new InvalidOperationException("Image format not supported");
             }
 
-            bmpData = bmp.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.ReadOnly, pfIn);
-            outputData = output.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+            var bmpData = bmp.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.ReadOnly, pfIn);
+            var outputData = output.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
             var bmpStride = bmpData.Stride;
-            outputStride = outputData.Stride;
+            var outputStride = outputData.Stride;
 
             unsafe
             {
                 byte* bmpPtr = (byte*)bmpData.Scan0.ToPointer(),
                 outputPtr = (byte*)outputData.Scan0.ToPointer();
 
+                int r;
+                int ic;
+                int oc;
                 if (bytesPerPixel == 3)
                 {
                     for (r = 0; r < h; r++)
@@ -493,7 +475,7 @@ namespace Diploma.Pages
 
             imageFileInfo = new FileInfo(imageFiles[currentFileIndex].ToString());
             long byteSize = imageFileInfo.Length;
-            float kiloByteSize = (float)byteSize / 1024F;
+            float kiloByteSize = byteSize / 1024F;
             float megaByteSize = kiloByteSize / 1024F;
         }
 
@@ -529,7 +511,7 @@ namespace Diploma.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -564,13 +546,15 @@ namespace Diploma.Pages
 
         private void ProcessDirectory()
         {
-            ArrayList fileTypes = new ArrayList();
-            fileTypes.Add("*.JPG");
-            fileTypes.Add("*.JPEG");
-            fileTypes.Add("*.BMP");
-            fileTypes.Add("*.GIF");
-            fileTypes.Add("*.PNG");
-            fileTypes.Add("*.TIF");
+            ArrayList fileTypes = new ArrayList
+            {
+                "*.JPG",
+                "*.JPEG",
+                "*.BMP",
+                "*.GIF",
+                "*.PNG",
+                "*.TIF"
+            };
 
             imageFiles = new ArrayList();
             foreach (string type in fileTypes)
@@ -603,11 +587,11 @@ namespace Diploma.Pages
                 {
                     FileStream st = File.Open(GetFilePath(), FileMode.Open, FileAccess.Read, FileShare.Read);
                     byte[] b = new byte[st.Length];
-                    st.Read(b, 0, b.Length); MemoryStream ms = new MemoryStream(b);
+                    var read = st.Read(b, 0, b.Length);
+                    MemoryStream ms = new MemoryStream(b);
                     bitmap = (Bitmap)System.Drawing.Image.FromStream(ms, true);
                     zoomBitmap = new Bitmap(bitmap, new Size(bitmap.Width, bitmap.Height));
                     deletedBitmap = (Bitmap)bitmap.Clone();
-                    resetBitmap = (Bitmap)bitmap.Clone();
                 }
 
                 printImage.DocumentName = Path.GetFileName(GetFilePath()); 
@@ -620,7 +604,7 @@ namespace Diploma.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -628,7 +612,7 @@ namespace Diploma.Pages
 
         private void toolStripButtonOpen_Click(object sender, EventArgs e)
         {
-            openFileDialog.Title = "Open Image File";
+            openFileDialog.Title = @"Open Image File";
             openFileDialog.Filter = Filter;
             openFileDialog.Multiselect = false;
             try
@@ -644,34 +628,32 @@ namespace Diploma.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         
         private void toolStripButtonSaveAs_Click(object sender, EventArgs e)
         {
-            string filePath =GetFilePath();
-            string fileName = Path.GetFileName(filePath);
+            var filePath =GetFilePath();
+            var fileName = Path.GetFileName(filePath);
 
-            saveFileDialog.Title = "Save Image As";
+            saveFileDialog.Title = @"Save Image As";
             saveFileDialog.Filter = Filter;
             saveFileDialog.FileName = fileName;
             saveFileDialog.OverwritePrompt = true;
             saveFileDialog.AddExtension = true;
             try
             {
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    fileName = saveFileDialog.FileName;
-                    filePath = Path.GetFullPath(fileName);
+                if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
+                fileName = saveFileDialog.FileName;
+                filePath = Path.GetFullPath(fileName);
 
-                    SaveImage(filePath);
-                }
+                SaveImage(filePath);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -695,7 +677,8 @@ namespace Diploma.Pages
             try
             {
                 
-                Graphics g = e.Graphics; g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                var g = e.Graphics; 
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 if (cropped)
                 {
                     zoomFactor = 1.0F;
@@ -705,7 +688,7 @@ namespace Diploma.Pages
                 if (bitmap.Width * zoomFactor <= imageDisplay.Width && bitmap.Height * zoomFactor <= imageDisplay.Height)
                 {
                     CheckZoom(); 
-                    this.imageDisplay.AutoScroll = false;
+                    imageDisplay.AutoScroll = false;
                     if (MenuItemCenterImages.Checked)
                     {
                         position.X = (imageDisplay.Width - bitmap.Width * zoomFactor) / 2;
@@ -721,22 +704,22 @@ namespace Diploma.Pages
 
                     if (fullScreen)
                     {
-                        string fileIndex = " [" + (currentFileIndex + 1).ToString() + "/" + imageFiles.Count.ToString() + "]";
-                        g.DrawString(GetFilePath() + fileIndex, new Font("Segoe UI", 10, GraphicsUnit.Point), Brushes.Lime, new Point(2, 2));
+                        var fileIndex = " [" + (currentFileIndex + 1) + "/" + imageFiles.Count + "]";
+                        g.DrawString(GetFilePath() + fileIndex, new Font("Segoe UI", 12, GraphicsUnit.Point), Brushes.Chocolate, new Point(2, 2));
                     }
 
                     zoomBitmap = new Bitmap(bitmap, new Size((int)(bitmap.Width * zoomFactor), (int)(bitmap.Height * zoomFactor)));
 
-                    this.Text = Path.GetFileName(GetFilePath()) + " - Image editor";
+                    Text = Path.GetFileName(GetFilePath()) + @" - Image editor";
                 }
                 else
                 {
                     if (fitImagesToWindow)
                     {
-                        this.imageDisplay.AutoScroll = false;
+                        imageDisplay.AutoScroll = false;
 
                         int maxWidth = imageDisplay.Width, maxHeight = imageDisplay.Height; int width = bitmap.Width, height = bitmap.Height;
-                        float ratio = (float)width / (float)height;
+                        float ratio = width / (float)height;
                         width = maxWidth;
                         height = (int)Math.Floor(maxWidth / ratio);
 
@@ -773,7 +756,7 @@ namespace Diploma.Pages
 
                         zoomBitmap = new Bitmap(bitmap, new Size(width, height));
 
-                        zoom = (float)Math.Min((float)width / bitmap.Width, (float)height / bitmap.Height);
+                        zoom = Math.Min((float)width / bitmap.Width, (float)height / bitmap.Height);
                     }
                     else
                     {
@@ -806,12 +789,12 @@ namespace Diploma.Pages
 
                         zoomBitmap = new Bitmap(bitmap, new Size(zoomSize.Width, zoomSize.Height));
 
-                        this.Text = Path.GetFileName(GetFilePath()) + " - Image Editor";
+                        this.Text = Path.GetFileName(GetFilePath()) + @" - Image Editor";
                     }
                 }
                 if (dragging)
                 {
-                    Pen pen = Pens.Lime;
+                    var pen = Pens.Brown;
                     g.DrawRectangle(pen, selection);
                 }
                 else
@@ -823,7 +806,7 @@ namespace Diploma.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -840,7 +823,7 @@ namespace Diploma.Pages
             }
             catch (InvalidPrinterException ex)
             {
-                MessageBox.Show(ex.Message, "Image editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Image editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -873,7 +856,6 @@ namespace Diploma.Pages
                     imageDisplay.Invalidate();
                 }
             }
-            PencilTool = true;
             FormBorderStyle = FormBorderStyle.None;
         }
 
@@ -903,7 +885,7 @@ namespace Diploma.Pages
                     StatusLabelMousePosition.Visible = false;
                     StatusLabelRGB.Visible = false;
                     StatusLabelHSL.Visible = false;
-                    this.Cursor = Cursors.Default;
+                    Cursor = Cursors.Default;
                     return;
                 }
             }
@@ -949,38 +931,18 @@ namespace Diploma.Pages
                 }
             }
 
-            /*if (PencilTool)
-            {
-                try
-                {
-                    pen.StartCap = LineCap.Round;
-                    pen.EndCap = LineCap.Round;
-                    arrayPoints.SetPoint(posX, posY);
-                    graphics = Graphics.FromImage(bitmap);
-                    if (arrayPoints.GetCountPoints() >= 2)
-                    {
-                        graphics.DrawLines(pen, arrayPoints.GetPoints());
-                        arrayPoints.SetPoint(e.X, e.Y);
-                    }
-                    imageDisplay.Invalidate();
-                } catch (Exception)
-                {
-                    arrayPoints.ResetPoints();
-                }
-            }*/
-
             Color color = zoomBitmap.GetPixel(posX, posY);
             RGB rgbColor = new RGB(color);
             HSL hslColor = HSL.FromRGB(rgbColor);
 
             StatusLabelMousePosition.Visible = true;
-            StatusLabelMousePosition.Text = "X: " + posX + " Y: " + posY;
+            StatusLabelMousePosition.Text = @"X: " + posX + @" Y: " + posY;
 
             StatusLabelRGB.Visible = true;
-            StatusLabelRGB.Text = "R: " + rgbColor.Red + " G: " + rgbColor.Green + " B: " + rgbColor.Blue;
+            StatusLabelRGB.Text = @"R: " + rgbColor.Red + @" G: " + rgbColor.Green + @" B: " + rgbColor.Blue;
 
             StatusLabelHSL.Visible = true;
-            StatusLabelHSL.Text = "H: " + hslColor.Hue + " S: " + hslColor.Saturation.ToString("0.000", CultureInfo.InvariantCulture) + " L: " + hslColor.Luminance.ToString("0.000", CultureInfo.InvariantCulture);
+            StatusLabelHSL.Text = @"H: " + hslColor.Hue + @" S: " + hslColor.Saturation.ToString("0.000", CultureInfo.InvariantCulture) + @" L: " + hslColor.Luminance.ToString("0.000", CultureInfo.InvariantCulture);
 
             if (!cropping) return;
             Cursor = Cursors.Cross;
@@ -1067,9 +1029,9 @@ namespace Diploma.Pages
 
             imageFileInfo = new FileInfo(imageFiles[currentFileIndex].ToString());
             long byteSize = imageFileInfo.Length;
-            float kiloByteSize = (float)byteSize / 1024F;
+            float kiloByteSize = byteSize / 1024F;
             float megaByteSize = kiloByteSize / 1024F;
-            string diskSize = (kiloByteSize >= 1024F ? megaByteSize.ToString("#.00", CultureInfo.InvariantCulture) + " MB" : kiloByteSize.ToString("#.00", CultureInfo.InvariantCulture) + " KB") + " (" + byteSize.ToString() + " bytes)";
+            string diskSize = (kiloByteSize >= 1024F ? megaByteSize.ToString("#.00", CultureInfo.InvariantCulture) + " MB" : kiloByteSize.ToString("#.00", CultureInfo.InvariantCulture) + " KB") + " (" + byteSize + " bytes)";
 
             string pixelFormat = pixelFormatCurrent.ToString();
             string bpp = ReturnBitDepth(pixelFormat);
@@ -1077,9 +1039,9 @@ namespace Diploma.Pages
             float currentByteSize = currentBitSize / 8F;
             float currentKiloByteSize = currentByteSize / 1024F;
             float currentMegaByteSize = currentKiloByteSize / 1024F;
-            string currentMemorySize = (currentKiloByteSize >= 1024F ? currentMegaByteSize.ToString("#.00", CultureInfo.InvariantCulture) + " MB" : currentKiloByteSize.ToString("#.00", CultureInfo.InvariantCulture) + " KB") + " (" + currentByteSize.ToString() + " bytes)";
+            string currentMemorySize = (currentKiloByteSize >= 1024F ? currentMegaByteSize.ToString("#.00", CultureInfo.InvariantCulture) + " MB" : currentKiloByteSize.ToString("#.00", CultureInfo.InvariantCulture) + " KB") + " (" + currentByteSize + " bytes)";
 
-            string currentDirectoryIndex = (currentFileIndex + 1).ToString() + " / " + imageFiles.Count.ToString();
+            string currentDirectoryIndex = (currentFileIndex + 1) + " / " + imageFiles.Count;
             string fileDateTime = imageFileInfo.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
 
             string[] properties = new string[12];
@@ -1232,7 +1194,7 @@ namespace Diploma.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1272,8 +1234,8 @@ namespace Diploma.Pages
 
                 if (bitmap.Width <= e.MarginBounds.Width && bitmap.Height <= e.MarginBounds.Height)
                 {
-                    rcImage.X = (int)(e.MarginBounds.Width / 2 - bitmap.Width / 2 + e.MarginBounds.X);
-                    rcImage.Y = (int)(e.MarginBounds.Height / 2 - bitmap.Height / 2 + e.MarginBounds.Y);
+                    rcImage.X = e.MarginBounds.Width / 2 - bitmap.Width / 2 + e.MarginBounds.X;
+                    rcImage.Y = e.MarginBounds.Height / 2 - bitmap.Height / 2 + e.MarginBounds.Y;
 
                     rcImage.Width = bitmap.Width;
                     rcImage.Height = bitmap.Height;
@@ -1313,7 +1275,7 @@ namespace Diploma.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1322,7 +1284,13 @@ namespace Diploma.Pages
 
             if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
             {
-                MessageBox.Show(@"Brightness adjustment using HSL color space is available for 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(@"Регулювання яскравості з використанням кольорового простору HSL доступна тільки для зображень RGB 24 bpp!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                } else
+                {
+                    MessageBox.Show(@"Brightness adjustment using HSL color space is available for 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 return;
             }
 
@@ -1335,22 +1303,17 @@ namespace Diploma.Pages
             }
         }
 
-        private void toolStripButtonReset_Click(object sender, EventArgs e)
-        {
-            if (bitmap == null && resetBitmap == null) return;
-            bitmap = (Bitmap)resetBitmap.Clone();
-            resetBitmap.Dispose();
-            MenuItemUndo.Enabled = false;
-            toolStripButtonUndo.Enabled = false;
-            imageDisplay.Invalidate();
-            toolStripButtonReset.Enabled = false;
-        }
-
         private void toolStripButtonContrast_Click(object sender, EventArgs e)
         {
             if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
             {
-                MessageBox.Show(@"Contrast adjustment using HSL color space is available for 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(@"Налаштування контрасту за допомогою колірного простору HSL доступне лише для RGB-зображень 24 bpp!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                } else
+                {
+                    MessageBox.Show(@"Contrast adjustment using HSL color space is available for 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 return;
             }
 
@@ -1369,7 +1332,14 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
             {
-                MessageBox.Show("Color filtering can be applied to 24 bpp RGB images only!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(@"Фільтрування кольорів можна застосувати лише до зображень RGB 24 bpp!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show(@"Color filtering can be applied to 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 return;
             }
 
@@ -1386,11 +1356,16 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
             {
-                MessageBox.Show("Saturation adjustment using HSL color space is available for 24 bpp RGB images only!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(@"Регулювання насиченості за допомогою колірного простору HSL доступне лише для зображень RGB 24 bpp!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                } else
+                {
+                    MessageBox.Show(@"Saturation adjustment using HSL color space is available for 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 return;
             }
-
-            SaturationForm form = new SaturationForm();
+            var form = new SaturationForm();
             form.Image = bitmap;
 
             if (form.ShowDialog() == DialogResult.OK)
@@ -1399,80 +1374,18 @@ namespace Diploma.Pages
             }
         }
 
-        private void toolStripButtonSend_Click(object sender, EventArgs e)
-        {
-            //Cursor.Current = Cursors.WaitCursor;
-            //try
-            //{
-            //    SmtpClient client = new SmtpClient("details here");
-            //    MailMessage message = new MailMessage();
-            //    message.From = new MailAddress("email here");
-            //    string mailBox = txtBugAdd.Text.Trim();
-            //    message.To.Add(mailBox);
-            //    string mailFrom = txtEmailFromBug.Text.Trim();
-            //    message.CC.Add(mailFrom);
-            //    string mailCC = txtMailCCBug.Text.Trim();
-            //    message.Bcc.Add(mailCC);
-            //    message.IsBodyHtml = true;
-            //    message.Body = "Bug Report - please see below: " +
-            //        "\n" + "<br>" + "<b>" + "1. What were you doing at the time of the error?" + "</b>" +
-            //            "\n" + "<br>" + rtbTimeOfError.Text +
-            //            "\n" + "<br>" + "<b>" + "2. Are you able to repeat the steps and achieve the same error?" + "</b>" +
-            //            "\n" + "<br>" + rtbCanRepeat.Text +
-            //            "\n" + "<br>" + "<b>" + "3. Does this problem happen again if you change any of the details you have entered?" + "</b>" +
-            //            "\n" + "<br>" + rtbChangeDetails.Text;
-            //    message.Subject = "Bug Report";
-            //    var image = bitmap;
-            //    using (var ms = new MemoryStream())
-            //    {
-            //        image.Save(ms, ImageFormat.Jpeg);
-            //        message.Attachments.Add(new Attachment(ms, "Screenshot.jpg"));
-            //        client.Credentials = new System.Net.NetworkCredential("credentials here");
-            //        client.Port = System.Convert.ToInt32(25);
-            //        client.Send(message);
-            //    }
-            //    new Endpage().Show();
-            //    this.Close();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("my comment here");
-            //}
-            bitmap.Save("img.bmp");
-
-            using (var msg = new MailMessage())
-            {
-                msg.From = new MailAddress("14voytsenko@gmail.com");
-                msg.To.Add("voytsenko.vladyslav@chnu.edu.ua");
-                msg.Subject = "Test";
-                msg.Body = "Test";
-                msg.Attachments.Add(new Attachment(@"img.bmp"));
-                using (var smtp = new SmtpClient())
-                {
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Timeout = 20000;
-                    smtp.Credentials = new NetworkCredential("14voytsenko@gmail.com", "Vlad1516082001");
-                    try
-                    {
-                        smtp.Send(msg);
-                    }
-                    catch (Exception exception)
-                    {
-                        MessageBox.Show(exception.Message);
-                    }
-                }
-            }
-        }
-
         private void toolStripButtonHUE_Click(object sender, EventArgs e)
         {
             if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
             {
-                MessageBox.Show("Hue modifier is available for 24 bpp RGB images only!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(@"Модифікатор відтінку доступний лише для зображень RGB 24 bpp!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show(@"Hue modifier is available for 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 return;
             }
 
@@ -1487,16 +1400,14 @@ namespace Diploma.Pages
 
         private void toolStripButtonSmooth_Click(object sender, EventArgs e)
         {
-            AdaptiveSmoothForm form = new AdaptiveSmoothForm();
+            var form = new AdaptiveSmoothForm();
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
-                    toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void toolStripButtonResize_Click(object sender, EventArgs e)
@@ -1504,12 +1415,10 @@ namespace Diploma.Pages
             Size bitmapSize = bitmap.Size;
             ResizeForm form = new ResizeForm(bitmapSize);
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
-                    toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void MenuItemReopen_Click(object sender, EventArgs e)
@@ -1529,10 +1438,16 @@ namespace Diploma.Pages
             {
                 Clipboard.SetDataObject(bitmap, true);
                 deleteImage = true;
-                this.imageDisplay.Invalidate();
+                imageDisplay.Invalidate();
+            }
+            else if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+            {
+                MessageBox.Show(this, @"Нема зображення, яке потрібно вирізати!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show(this, "There is no image to cut!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                MessageBox.Show(this, @"There is no image to cut!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void MenuItemCopy_Click(object sender, EventArgs e)
@@ -1541,12 +1456,19 @@ namespace Diploma.Pages
             {
                 Clipboard.SetDataObject(bitmap, true);
             }
+            else if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+            {
+                MessageBox.Show(this, @"Немає зображення для копіювання!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
-                MessageBox.Show(this, "There is no image to copy!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                MessageBox.Show(this, @"There is no image to copy!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void MenuItemPaste_Click(object sender, EventArgs e)
         {
+            // ReSharper disable once PossibleNullReferenceException
             if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Bitmap))
             {
                 if (bitmap != null)
@@ -1555,23 +1477,36 @@ namespace Diploma.Pages
                         MenuItemRandomImage.Enabled = toolStripButtonPreviousImage.Enabled = toolStripButtonNextImage.Enabled = false;
                 }
 
-                Bitmap newBitmap = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
-                bitmap = newBitmap.Clone(new Rectangle(0, 0, newBitmap.Width, newBitmap.Height), PixelFormat.Format24bppRgb);
-                newBitmap.Dispose();
+                var newBitmap = (Bitmap)Clipboard.GetDataObject()?.GetData(DataFormats.Bitmap);
+                if (newBitmap != null)
+                {
+                    bitmap = newBitmap.Clone(new Rectangle(0, 0, newBitmap.Width, newBitmap.Height),
+                        PixelFormat.Format24bppRgb);
+                    newBitmap.Dispose();
+                }
 
                 string drive = Environment.GetEnvironmentVariable("SystemDrive");
                 Directory.CreateDirectory(drive + "\\Temp");
                 string filePath = drive + "\\Temp\\Clipboard.bmp";
                 SaveImage(filePath);
                 imageFile = filePath;
-                Directory.SetCurrentDirectory(Directory.GetParent(imageFile).FullName.ToString());
+                Directory.SetCurrentDirectory(Directory.GetParent(imageFile)?.FullName ?? string.Empty);
                 ProcessDirectory();
                 zoomFactor = 1.00F;
                 isDeleted = false;
                 ShowPicture();
             }
             else
-                MessageBox.Show(this, "There is no image to paste!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(this, @"Немає зображення для вставлення!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(this, @"There is no image to paste!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void MenuItemShowToolbar_Click(object sender, EventArgs e)
@@ -1594,10 +1529,7 @@ namespace Diploma.Pages
 
         private void MenuItemShowStatusBar_Click(object sender, EventArgs e)
         {
-            if (MenuItemShowStatusBar.Checked)
-                statusBar.Visible = true;
-            else
-                statusBar.Visible = false;
+            statusBar.Visible = MenuItemShowStatusBar.Checked;
         }
 
         private void MenuItemFirstImage_Click(object sender, EventArgs e)
@@ -1620,86 +1552,100 @@ namespace Diploma.Pages
         {
             bitmap.Dispose();
             deletedBitmap.Dispose();
-            Random random = new Random();
+            var random = new Random();
             currentFileIndex = random.Next(imageFiles.Count); ShowPicture();
         }
 
         private void MenuItem10_Click(object sender, EventArgs e)
         {
             zoomFactor = 0.10F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItem25_Click(object sender, EventArgs e)
         {
             zoomFactor = 0.25F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItem50_Click(object sender, EventArgs e)
         {
             zoomFactor = 0.50F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItem75_Click(object sender, EventArgs e)
         {
             zoomFactor = 0.75F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItemActualSize_Click(object sender, EventArgs e)
         {
             zoomFactor = 1.00F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItem150_Click(object sender, EventArgs e)
         {
             zoomFactor = 1.50F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItem200_Click(object sender, EventArgs e)
         {
             zoomFactor = 2.00F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItem400_Click(object sender, EventArgs e)
         {
             zoomFactor = 4.00F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItem500_Click(object sender, EventArgs e)
         {
             zoomFactor = 5.00F;
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         private void MenuItemCenterImages_Click(object sender, EventArgs e)
         {
-            this.imageDisplay.Invalidate();
+            imageDisplay.Invalidate();
         }
 
         [Obsolete]
         private void MenuItemGrayscale_Click(object sender, EventArgs e)
         {
-            ImageFormat format = FormatFromExtension(GetFilePath());
+            var format = FormatFromExtension(GetFilePath());
 
             if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed || bitmap.PixelFormat == PixelFormat.Format16bppGrayScale)
             {
-                if (format == ImageFormat.Gif)
+                if (Equals(format, ImageFormat.Gif))
                 {
-                    MessageBox.Show("Source pixel format is not supported by the filter.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                    {
+                        MessageBox.Show(@"Формат вихідного пікселя не підтримується фільтром.", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"Source pixel format is not supported by the filter.", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
                     return;
+                }
+
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(@"Зображення вже має відтінки сірого!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    MessageBox.Show("The image is already grayscale!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    MessageBox.Show(@"The image is already grayscale!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+
+                return;
             }
 
             toGrayscale = true;
@@ -1716,11 +1662,6 @@ namespace Diploma.Pages
             ApplyFilterInPlace(new Invert());
         }
 
-        private void toolStripButtonPen_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void MenuItemBlur_Click(object sender, EventArgs e)
         {
             ApplyFilterInPlace(new Blur());
@@ -1733,7 +1674,7 @@ namespace Diploma.Pages
 
         private void MenuItemRed_Click(object sender, EventArgs e)
         {
-            ApplyFilterInPlace(new ChannelFiltering(new AForge.IntRange(0, 255), new IntRange(0, 0), new IntRange(0, 0)));
+            ApplyFilterInPlace(new ChannelFiltering(new IntRange(0, 255), new IntRange(0, 0), new IntRange(0, 0)));
         }
 
         private void MenuItemGreen_Click(object sender, EventArgs e)
@@ -1770,7 +1711,15 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
             {
-                MessageBox.Show("Channels filtering can be applied to 24 bpp RGB images only!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(@"Фільтрування каналів може бути застосовано лише до RGB-зображень 24 bpp!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show(@"Channels filtering can be applied to 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                
                 return;
             }
 
@@ -1804,12 +1753,10 @@ namespace Diploma.Pages
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
-                    toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void MenuItemGaussianBlur_Click(object sender, EventArgs e)
@@ -1818,12 +1765,10 @@ namespace Diploma.Pages
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
-                    toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void MenuItemGaussianSharpen_Click(object sender, EventArgs e)
@@ -1832,12 +1777,10 @@ namespace Diploma.Pages
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
-                    toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void MenuItemConservativeSmoothing_Click(object sender, EventArgs e)
@@ -1851,12 +1794,10 @@ namespace Diploma.Pages
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
-                    toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void MenuItemJitter_Click(object sender, EventArgs e)
@@ -1870,26 +1811,23 @@ namespace Diploma.Pages
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
-                    toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
+        [Obsolete("Obsolete")]
         private void MenuItemPerlinNoise_Click(object sender, EventArgs e)
         {
             PerlinNoiseForm form = new PerlinNoiseForm();
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
-                    toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            if (bitmap.PixelFormat == PixelFormat.Format8bppIndexed)
+                toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void MenuItemEdges_Click(object sender, EventArgs e)
@@ -1901,7 +1839,7 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
             {
-                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             ApplyFilterInPlace(new HomogenityEdgeDetector());
@@ -1911,25 +1849,23 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed && bitmap.PixelFormat != PixelFormat.Format16bppGrayScale)
             {
-                MessageBox.Show("The filter accepts only 8 and 16 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             ThresholdForm form = new ThresholdForm();
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void MenuItemThresholdWithErrorCarry_Click(object sender, EventArgs e)
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
             {
-                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             ApplyFilterInPlace(new ThresholdWithCarry());
@@ -1939,7 +1875,7 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
             {
-                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             ApplyFilterInPlace(new OrderedDithering());
@@ -1949,7 +1885,7 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
             {
-                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             ApplyFilterInPlace(new FloydSteinbergDithering());
@@ -1959,7 +1895,7 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
             {
-                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             ApplyFilterInPlace(new SISThreshold());
@@ -1985,11 +1921,23 @@ namespace Diploma.Pages
             ApplyFilterInPlace(new Closing());
         }
 
+        private static void ReturnMessageBox()
+        {
+            if (Equals(Thread.CurrentThread.CurrentUICulture, new  CultureInfo("uk")))
+            {
+                MessageBox.Show(@"Фільтр приймає для обробки лише 8 bpp зображень у відтінках сірого! Спочатку потрібно перетворити зображення у відтінки сірого за допомогою Ефекти->Відтінки сірого.", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show(@"The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        
         private void MenuItemSobel_Click(object sender, EventArgs e)
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
             {
-                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             ApplyFilterInPlace(new SobelEdgeDetector());
@@ -1999,25 +1947,23 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
             {
-                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             CannyDetectorForm form = new CannyDetectorForm();
 
             form.Image = bitmap;
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                toGrayscale = true;
-                ApplyFilter(form.Filter);
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            toGrayscale = true;
+            ApplyFilter(form.Filter);
         }
 
         private void MenuItemDifference_Click(object sender, EventArgs e)
         {
             if (bitmap.PixelFormat != PixelFormat.Format8bppIndexed)
             {
-                MessageBox.Show("The filter accepts only 8 bpp grayscale images for processing! You should first convert the image to grayscale using Effects->Grayscale.", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ReturnMessageBox();
                 return;
             }
             ApplyFilterInPlace(new DifferenceEdgeDetector());
@@ -2027,11 +1973,18 @@ namespace Diploma.Pages
         {
             if (bitmap.PixelFormat != PixelFormat.Format24bppRgb)
             {
-                MessageBox.Show("HSL filtering is available for 24 bpp RGB images only!", "Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Equals(Thread.CurrentThread.CurrentUICulture, new CultureInfo("uk")))
+                {
+                    MessageBox.Show(@"HSL-фільтрація доступна лише для RGB-зображень 24 bpp!", @"Редактор зображень", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show(@"HSL filtering is available for 24 bpp RGB images only!", @"Image Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 return;
             }
 
-            HslFilteringForm form = new HslFilteringForm();
+            var form = new HslFilteringForm();
             form.Image = bitmap;
 
             if (form.ShowDialog() == DialogResult.OK)

@@ -7,18 +7,15 @@ namespace Diploma.ImageProcessing
 {
     public partial class ThresholdForm : Form
     {
-        private Threshold filter = new Threshold();
+        private readonly Threshold filter = new Threshold();
         private byte threshold = 128;
 
         public Bitmap Image
         {
-            set { filterPreview.Image = value; }
+            set => filterPreview.Image = value;
         }
 
-        public IFilter Filter
-        {
-            get { return filter; }
-        }
+        public IFilter Filter => filter;
 
         public ThresholdForm()
         {
@@ -45,6 +42,7 @@ namespace Diploma.ImageProcessing
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 
